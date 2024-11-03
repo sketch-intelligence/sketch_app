@@ -117,5 +117,9 @@ class Assets {
   /// Assets for imagesThumbUp
   /// assets/images/ThumbUp.svg
   static const String imagesThumbUp = "assets/images/ThumbUp.svg";
+
+  /// Assets for imagesUser
+  /// assets/images/User.svg
+  static const String imagesUser = "assets/images/User.svg";
 }
 

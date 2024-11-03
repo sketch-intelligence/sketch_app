@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sketch/constants.dart';
 import 'package:sketch/core/utils/app_assets.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/form_validator.dart';
 import 'package:sketch/core/widgets/custom_button.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
-import 'package:sketch/features/auth/presentation/views/widgets/custom_or_divider.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
+import 'package:sketch/features/auth/presentation/views/widgets/role_switch.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart';
 
-class MobileLoginViewBody extends StatelessWidget {
-  const MobileLoginViewBody({super.key});
+class MobileRegisterViewBody extends StatelessWidget {
+  const MobileRegisterViewBody({super.key});
+  static final TextEditingController userNameController =
+      TextEditingController();
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
@@ -27,26 +28,21 @@ class MobileLoginViewBody extends StatelessWidget {
           children: [
             const SketchLogo(),
             Text(
-              'Login',
+              'Register',
               style: AppStyles.styleBold22(context),
             ),
             const SizedBox(
               height: 26,
             ),
-            CustomElevatedButton(
-              onPressed: () {},
-              text: 'Continue with Google',
-              icon: const Icon(
-                FontAwesomeIcons.google,
-                color: Colors.white,
-              ),
+            CustomTextField(
+              controller: userNameController,
+              label: 'Username',
+              iconPath: Assets.imagesUser,
+              validator: (value) =>
+                  FormValidators.validateString(value, 'Username'),
             ),
             const SizedBox(
-              height: 30,
-            ),
-            const CustomOrDivider(),
-            const SizedBox(
-              height: 30,
+              height: 12,
             ),
             CustomTextField(
               controller: emailController,
@@ -67,10 +63,14 @@ class MobileLoginViewBody extends StatelessWidget {
                   FormValidators.validateString(value, 'Password'),
             ),
             const SizedBox(
+              height: 12,
+            ),
+            const RoleSwitch(),
+            const SizedBox(
               height: 30,
             ),
             CustomElevatedButton(
-              text: 'Login',
+              text: 'Next',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   print('valid');
@@ -80,7 +80,7 @@ class MobileLoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 22,
             ),
-            const LoginAlternative(),
+            const RegisterAlternative(),
           ],
         ),
       ),
