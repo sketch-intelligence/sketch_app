@@ -62,6 +62,14 @@ class Assets {
   /// assets/images/List.svg
   static const String imagesList = "assets/images/List.svg";
 
+  /// Assets for imagesLock
+  /// assets/images/Lock.svg
+  static const String imagesLock = "assets/images/Lock.svg";
+
+  /// Assets for imagesMail
+  /// assets/images/Mail.svg
+  static const String imagesMail = "assets/images/Mail.svg";
+
   /// Assets for imagesMeeting
   /// assets/images/Meeting.svg
   static const String imagesMeeting = "assets/images/Meeting.svg";
@@ -93,6 +101,10 @@ class Assets {
   /// Assets for imagesShareNetwork
   /// assets/images/ShareNetwork.svg
   static const String imagesShareNetwork = "assets/images/ShareNetwork.svg";
+
+  /// Assets for imagesSketchLogo
+  /// assets/images/sketchLogo.png
+  static const String imagesSketchLogo = "assets/images/sketchLogo.png";
 
   /// Assets for imagesSmiley
   /// assets/images/Smiley.svg
