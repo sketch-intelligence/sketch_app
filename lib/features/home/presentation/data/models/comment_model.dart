@@ -10,11 +10,13 @@ class CommentModel {
   String? text;
   String? image;
   List<ReactionModel> reactions;
+  final String commentDate;
   CommentModel({
     required this.commentOwner,
     this.text,
     this.image,
     required this.reactions,
+    required this.commentDate,
   });
 
   CommentModel copyWith({
@@ -22,12 +24,14 @@ class CommentModel {
     String? text,
     String? image,
     List<ReactionModel>? reactions,
+    String? commentDate,
   }) {
     return CommentModel(
       commentOwner: commentOwner ?? this.commentOwner,
       text: text ?? this.text,
       image: image ?? this.image,
       reactions: reactions ?? this.reactions,
+      commentDate: commentDate ?? this.commentDate,
     );
   }
 
@@ -37,6 +41,7 @@ class CommentModel {
       'text': text,
       'image': image,
       'reactions': reactions.map((x) => x.toMap()).toList(),
+      'commentDate': commentDate,
     };
   }
 
@@ -51,6 +56,7 @@ class CommentModel {
           (x) => ReactionModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
+      commentDate: map['commentDate'] as String,
     );
   }
 
@@ -61,7 +67,7 @@ class CommentModel {
 
   @override
   String toString() {
-    return 'CommentModel(commentOwner: $commentOwner, text: $text, image: $image, reactions: $reactions)';
+    return 'CommentModel(commentOwner: $commentOwner, text: $text, image: $image, reactions: $reactions, commentDate: $commentDate)';
   }
 
   @override
@@ -71,7 +77,8 @@ class CommentModel {
     return other.commentOwner == commentOwner &&
         other.text == text &&
         other.image == image &&
-        listEquals(other.reactions, reactions);
+        listEquals(other.reactions, reactions) &&
+        other.commentDate == commentDate;
   }
 
   @override
@@ -79,6 +86,7 @@ class CommentModel {
     return commentOwner.hashCode ^
         text.hashCode ^
         image.hashCode ^
-        reactions.hashCode;
+        reactions.hashCode ^
+        commentDate.hashCode;
   }
 }

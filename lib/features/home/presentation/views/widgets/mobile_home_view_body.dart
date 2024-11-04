@@ -20,8 +20,11 @@ class HomeViewBody extends StatelessWidget {
           commentOwner: PersonModel(userName: 'a'),
           reactions: [
             ReactionModel(
-                reactedOwner: PersonModel(userName: 'a'), reactionType: 's')
+              reactedOwner: PersonModel(userName: 'a'),
+              reactionType: 's',
+            )
           ],
+          commentDate: DateFormat('yyyy-MMM-dd').format(DateTime(2002)),
         )
       ],
       reactions: [
@@ -50,6 +53,7 @@ class HomeViewBody extends StatelessWidget {
               reactionType: 's',
             )
           ],
+          commentDate: DateFormat('yyyy-MMM-dd').format(DateTime(2002)),
         )
       ],
       reactions: [
