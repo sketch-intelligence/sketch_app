@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sketch/constants.dart';
 import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/form_validator.dart';
 import 'package:sketch/core/widgets/custom_button.dart';
@@ -73,7 +75,7 @@ class MobileRegisterViewBody extends StatelessWidget {
               text: 'Next',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  print('valid');
+                  GoRouter.of(context).go(AppRouter.kHomeView);
                 }
               },
             ),

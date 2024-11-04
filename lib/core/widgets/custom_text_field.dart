@@ -43,27 +43,39 @@ class CustomTextField extends StatelessWidget {
         ),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            color: kGreyColor,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            color: kGreyColor,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(
-            color: kPrimaryColor,
-          ),
-        ),
+        border: buildOutlineInputBorder(),
+        enabledBorder: buildEnabledBorder(),
+        focusedBorder: buildFocusedBorder(),
       ),
       obscureText: obscureText,
       validator: validator,
+    );
+  }
+
+  OutlineInputBorder buildFocusedBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(
+        color: kPrimaryColor,
+      ),
+    );
+  }
+
+  OutlineInputBorder buildEnabledBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(
+        color: kGreyColor,
+      ),
+    );
+  }
+
+  OutlineInputBorder buildOutlineInputBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(
+        color: kGreyColor,
+      ),
     );
   }
 }
