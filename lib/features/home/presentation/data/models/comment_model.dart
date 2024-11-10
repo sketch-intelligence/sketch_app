@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:collection/collection.dart';
 import 'package:sketch/features/home/presentation/data/models/person_model.dart';
 import 'package:sketch/features/home/presentation/data/models/reaction_model.dart';
 
@@ -10,7 +10,7 @@ class CommentModel {
   String? text;
   String? image;
   List<ReactionModel> reactions;
-  final String commentDate;
+  final DateTime commentDate;
   CommentModel({
     required this.commentOwner,
     this.text,
@@ -24,7 +24,7 @@ class CommentModel {
     String? text,
     String? image,
     List<ReactionModel>? reactions,
-    String? commentDate,
+    DateTime? commentDate,
   }) {
     return CommentModel(
       commentOwner: commentOwner ?? this.commentOwner,
@@ -41,7 +41,7 @@ class CommentModel {
       'text': text,
       'image': image,
       'reactions': reactions.map((x) => x.toMap()).toList(),
-      'commentDate': commentDate,
+      'commentDate': commentDate.millisecondsSinceEpoch,
     };
   }
 
@@ -56,7 +56,8 @@ class CommentModel {
           (x) => ReactionModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      commentDate: map['commentDate'] as String,
+      commentDate:
+          DateTime.fromMillisecondsSinceEpoch(map['commentDate'] as int),
     );
   }
 
@@ -73,6 +74,7 @@ class CommentModel {
   @override
   bool operator ==(covariant CommentModel other) {
     if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
 
     return other.commentOwner == commentOwner &&
         other.text == text &&

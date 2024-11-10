@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/widgets/custom_text_field.dart';
 import 'package:sketch/features/home/presentation/data/models/post_model.dart';
-import 'package:sketch/features/home/presentation/data/models/reaction_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/comment_item.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
+import 'package:sketch/features/home/presentation/views/widgets/user_image_container.dart';
 
 class PostDetailsView extends StatelessWidget {
   const PostDetailsView({super.key, required this.post});
@@ -23,60 +23,61 @@ class PostDetailsView extends StatelessWidget {
 
 class PostDetailsViewBody extends StatelessWidget {
   const PostDetailsViewBody({super.key, required this.post});
-  static final List<CommentModel> comments = [
-    CommentModel(
-      text: 'this is comment number 1',
-      commentOwner: PersonModel(
-        userName: 'a',
-      ),
-      reactions: [
-        ReactionModel(
-          reactedOwner: PersonModel(userName: 'a'),
-          reactionType: 's',
-        ),
-      ],
-      commentDate: DateFormat('HH').format(DateTime.now()),
-    ),
-    CommentModel(
-      text: 'this is comment number 2',
-      commentOwner: PersonModel(
-        userName: 'a',
-      ),
-      reactions: [
-        ReactionModel(
-          reactedOwner: PersonModel(userName: 'a'),
-          reactionType: 's',
-        ),
-      ],
-      commentDate: DateFormat('HH').format(DateTime.now()),
-    ),
-    CommentModel(
-      text: 'this is comment number 3',
-      commentOwner: PersonModel(
-        userName: 'a',
-      ),
-      reactions: [
-        ReactionModel(
-          reactedOwner: PersonModel(userName: 'a'),
-          reactionType: 's',
-        ),
-      ],
-      commentDate: DateFormat('HH').format(DateTime.now()),
-    )
-  ];
-
   final PostModel post;
+  static final TextEditingController commentController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(child: PostListViewItem(postModel: post)),
-        SliverList.builder(
-            itemCount: comments.length,
-            itemBuilder: (context, index) {
-              final comment = comments[index];
-              return CommentItem(commentModel: comment);
-            })
+    return Column(
+      children: [
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: PostListViewItem(postModel: post)),
+              SliverList.builder(
+                itemCount: post.postComments.length,
+                itemBuilder: (context, index) {
+                  final comment = post.postComments[index];
+                  return CommentItem(commentModel: comment);
+                },
+              ),
+            ],
+          ),
+        ),
+        AddComment(commentController: commentController),
+      ],
+    );
+  }
+}
+
+class AddComment extends StatelessWidget {
+  const AddComment({
+    super.key,
+    required this.commentController,
+  });
+
+  final TextEditingController commentController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const SizedBox(
+          width: 8,
+        ),
+        const UserImageContainer(imagePath: Assets.imagesAvatar13),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: CustomTextField(
+                controller: commentController, hint: 'write comment'),
+          ),
+        ),
+        SvgPicture.asset(Assets.imagesPaperPlaneRight),
+        const SizedBox(
+          width: 8,
+        ),
       ],
     );
   }

@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:collection/collection.dart';
 import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
 import 'package:sketch/features/home/presentation/data/models/person_model.dart';
 import 'package:sketch/features/home/presentation/data/models/reaction_model.dart';
@@ -15,7 +15,7 @@ class PostModel {
   List<ReactionModel> reactions;
   List<ShareModel> shares;
   bool isPublic;
-  final String postDate;
+  final DateTime postDate;
   PostModel({
     this.text,
     this.image,
@@ -35,7 +35,7 @@ class PostModel {
     List<ReactionModel>? reactions,
     List<ShareModel>? shares,
     bool? isPublic,
-    String? postDate,
+    DateTime? postDate,
   }) {
     return PostModel(
       text: text ?? this.text,
@@ -58,7 +58,7 @@ class PostModel {
       'reactions': reactions.map((x) => x.toMap()).toList(),
       'shares': shares.map((x) => x.toMap()).toList(),
       'isPublic': isPublic,
-      'postDate': postDate,
+      'postDate': postDate.millisecondsSinceEpoch,
     };
   }
 
@@ -83,7 +83,7 @@ class PostModel {
         ),
       ),
       isPublic: map['isPublic'] as bool,
-      postDate: map['postDate'] as String,
+      postDate: DateTime.fromMillisecondsSinceEpoch(map['postDate'] as int),
     );
   }
 
@@ -100,6 +100,7 @@ class PostModel {
   @override
   bool operator ==(covariant PostModel other) {
     if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
 
     return other.text == text &&
         other.image == image &&

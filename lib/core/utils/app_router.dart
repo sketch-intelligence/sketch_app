@@ -5,12 +5,14 @@ import 'package:sketch/features/auth/presentation/views/register_view.dart';
 import 'package:sketch/features/home/presentation/data/models/post_model.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_details_view.dart';
+import 'package:sketch/features/notification/presentation/views/notification_view.dart';
 
 abstract class AppRouter {
   static const kLoginView = '/';
   static const kRegisterView = '/registerView';
   static const kHomeView = '/homeView';
   static const kPostDetailsView = '/postDetailsView';
+  static const kNotificationView = '/notificationView';
 
   static final router = GoRouter(
     routes: [
@@ -34,6 +36,10 @@ abstract class AppRouter {
             post: post,
           );
         },
+      ),
+      GoRoute(
+        path: kNotificationView,
+        builder: (context, state) => const NotificationView(),
       ),
     ],
   );

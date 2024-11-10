@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
 import 'package:sketch/features/home/presentation/data/models/person_model.dart';
@@ -17,6 +16,7 @@ class HomeViewBody extends StatelessWidget {
       postOwner: PersonModel(userName: 'a'),
       postComments: [
         CommentModel(
+          text: 'comment for post 1',
           commentOwner: PersonModel(userName: 'a'),
           reactions: [
             ReactionModel(
@@ -24,7 +24,29 @@ class HomeViewBody extends StatelessWidget {
               reactionType: 's',
             )
           ],
-          commentDate: DateFormat('yyyy-MMM-dd').format(DateTime(2002)),
+          commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
+        ),
+        CommentModel(
+          text: 'second comment for post 1',
+          commentOwner: PersonModel(userName: 'a'),
+          reactions: [
+            ReactionModel(
+              reactedOwner: PersonModel(userName: 'a'),
+              reactionType: 's',
+            )
+          ],
+          commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
+        ),
+        CommentModel(
+          text: 'third comment for post 1',
+          commentOwner: PersonModel(userName: 'a'),
+          reactions: [
+            ReactionModel(
+              reactedOwner: PersonModel(userName: 'a'),
+              reactionType: 's',
+            )
+          ],
+          commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
         )
       ],
       reactions: [
@@ -37,23 +59,44 @@ class HomeViewBody extends StatelessWidget {
         ),
       ],
       isPublic: true,
-      postDate: DateFormat('yyyy-MMM-dd').format(DateTime(2002)),
+      postDate: DateTime.now().subtract(const Duration(hours: 10)),
     ),
     PostModel(
       text: 'this is post number 2',
       postOwner: PersonModel(userName: 'a'),
       postComments: [
         CommentModel(
-          commentOwner: PersonModel(
-            userName: 'a',
-          ),
+          text: 'comment for post 2',
+          commentOwner: PersonModel(userName: 'a'),
           reactions: [
             ReactionModel(
               reactedOwner: PersonModel(userName: 'a'),
               reactionType: 's',
             )
           ],
-          commentDate: DateFormat('yyyy-MMM-dd').format(DateTime(2002)),
+          commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
+        ),
+        CommentModel(
+          text: 'second comment for post 2',
+          commentOwner: PersonModel(userName: 'a'),
+          reactions: [
+            ReactionModel(
+              reactedOwner: PersonModel(userName: 'a'),
+              reactionType: 's',
+            )
+          ],
+          commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
+        ),
+        CommentModel(
+          text: 'third comment for post 2',
+          commentOwner: PersonModel(userName: 'a'),
+          reactions: [
+            ReactionModel(
+              reactedOwner: PersonModel(userName: 'a'),
+              reactionType: 's',
+            )
+          ],
+          commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
         )
       ],
       reactions: [
@@ -68,7 +111,7 @@ class HomeViewBody extends StatelessWidget {
         ),
       ],
       isPublic: true,
-      postDate: DateFormat('yyyy-MMM-dd').format(DateTime(2002)),
+      postDate: DateTime.now().subtract(const Duration(minutes: 10)),
     ),
   ];
   @override

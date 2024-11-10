@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/utils/app_assets.dart';
 import 'package:sketch/features/home/presentation/data/models/post_model.dart';
 
@@ -25,7 +26,7 @@ class PostHeader extends StatelessWidget {
             Text(postModel.postOwner.userName),
             Row(
               children: [
-                Text(postModel.postDate.toString()),
+                Text(formatTime(postModel.postDate)),
                 const Text('.'),
                 SvgPicture.asset(
                   postModel.isPublic

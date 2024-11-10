@@ -7,14 +7,16 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.controller,
-    required this.label,
+    this.label,
+    this.hint,
     this.obscureText = false,
     this.validator,
     this.iconPath,
   });
 
   final TextEditingController controller;
-  final String label;
+  final String? label;
+  final String? hint;
   final bool obscureText;
   final String? Function(String?)? validator;
   final String? iconPath;
@@ -24,6 +26,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
+        hintText: hint,
         labelText: label,
         labelStyle:
             AppStyles.styleRegular16(context).copyWith(color: Colors.black),

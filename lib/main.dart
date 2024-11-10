@@ -13,7 +13,9 @@ class Sketch extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
-      theme: ThemeData(iconTheme: const IconThemeData(color: Colors.white)),
+      theme: ThemeData(
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
     );
   }
 }
