@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/constants.dart';
+import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_assets.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/form_validator.dart';
-import 'package:sketch/core/widgets/custom_button.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/custom_or_divider.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
@@ -35,10 +35,10 @@ class MobileLoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 26,
             ),
-            CustomElevatedButton(
+            CustomButton(
               onPressed: () {},
               text: 'Continue with Google',
-              icon: const Icon(
+              rowChild: const Icon(
                 FontAwesomeIcons.google,
                 color: Colors.white,
               ),
@@ -71,7 +71,7 @@ class MobileLoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            CustomElevatedButton(
+            CustomButton(
               text: 'Login',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
