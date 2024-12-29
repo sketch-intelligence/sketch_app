@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/constants.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
-import 'package:sketch/core/utils/app_assets.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
 
@@ -67,7 +67,7 @@ class CommentItem extends StatelessWidget {
               Assets.imagesLike,
               height: 20,
               width: 20,
-              color: kGreyColor,
+              color: AppColors.grey3C,
             )
           ],
         ),

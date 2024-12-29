@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sketch/constants.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
+import 'package:sketch/core/constant/app_padding/app_padding.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
-import 'package:sketch/core/utils/app_assets.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/form_validator.dart';
@@ -22,7 +22,8 @@ class MobileRegisterViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: kMainPadding,
+      padding:
+          const EdgeInsets.symmetric(horizontal: AppPaddingSize.padding_30),
       child: Form(
         key: _formKey,
         child: Column(

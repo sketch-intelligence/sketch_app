@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sketch/constants.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 
@@ -17,7 +17,7 @@ class LoginAlternative extends StatelessWidget {
           child: Text(
             'Forgot Password ?',
             style: AppStyles.styleRegular16(context)
-                .copyWith(color: kPrimaryColor),
+                .copyWith(color: AppColors.primary),
           ),
         ),
         const SizedBox(
@@ -36,7 +36,7 @@ class LoginAlternative extends StatelessWidget {
               child: Text(
                 'Register here',
                 style: AppStyles.styleRegular16(context)
-                    .copyWith(color: kPrimaryColor),
+                    .copyWith(color: AppColors.primary),
               ),
             )
           ],
@@ -64,7 +64,7 @@ class RegisterAlternative extends StatelessWidget {
           child: Text(
             'Login here',
             style: AppStyles.styleRegular16(context)
-                .copyWith(color: kPrimaryColor),
+                .copyWith(color: AppColors.primary),
           ),
         )
       ],

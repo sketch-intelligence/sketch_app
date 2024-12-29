@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 
 class SketchLogo extends StatelessWidget {
   const SketchLogo({
@@ -11,7 +11,7 @@ class SketchLogo extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 2,
       child: Image.asset(
-        Assets.imagesSketchLogo,
+        Assets.imagesSketch,
       ),
     );
   }

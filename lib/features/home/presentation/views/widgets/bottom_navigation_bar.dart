@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sketch/constants.dart';
-import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({
@@ -28,7 +28,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: kPrimaryColor,
+      selectedItemColor: AppColors.primary,
       unselectedItemColor: Colors.grey, // Unselected color
       showSelectedLabels: true,
       showUnselectedLabels: true,
@@ -36,28 +36,28 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             Assets.imagesHome,
-            color: _selectedIndex == 0 ? kPrimaryColor : Colors.grey,
+            color: _selectedIndex == 0 ? AppColors.primary : Colors.grey,
           ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             Assets.imagesNetwork,
-            color: _selectedIndex == 1 ? kPrimaryColor : Colors.grey,
+            color: _selectedIndex == 1 ? AppColors.primary : Colors.grey,
           ),
           label: 'Network',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             Assets.imagesArtificialBrain,
-            color: _selectedIndex == 2 ? kPrimaryColor : Colors.grey,
+            color: _selectedIndex == 2 ? AppColors.primary : Colors.grey,
           ),
           label: 'Generate',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             Assets.imagesList,
-            color: _selectedIndex == 3 ? kPrimaryColor : Colors.grey,
+            color: _selectedIndex == 3 ? AppColors.primary : Colors.grey,
           ),
           label: 'Menu',
         ),

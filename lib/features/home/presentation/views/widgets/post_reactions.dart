@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sketch/constants.dart';
-import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/home/presentation/data/models/post_model.dart';
 
 class PostReactions extends StatelessWidget {
@@ -42,7 +42,7 @@ class PostComments extends StatelessWidget {
       children: [
         SvgPicture.asset(
           Assets.imagesComments,
-          color: kGreyColor,
+          color: AppColors.grey3C,
           height: 18,
           width: 18,
         ),
@@ -69,7 +69,7 @@ class PostLikes extends StatelessWidget {
       children: [
         SvgPicture.asset(
           Assets.imagesLike,
-          color: kGreyColor,
+          color: AppColors.grey3C,
           height: 18,
           width: 18,
         ),
@@ -96,7 +96,7 @@ class PostShares extends StatelessWidget {
       children: [
         SvgPicture.asset(
           Assets.imagesShareNetwork,
-          color: kGreyColor,
+          color: AppColors.grey3C,
           height: 18,
           width: 18,
         ),

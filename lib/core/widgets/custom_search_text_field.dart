@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sketch/constants.dart';
-import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({super.key});
@@ -37,21 +37,21 @@ class SearchTextField extends StatelessWidget {
   OutlineInputBorder buildFocusedBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: kPrimaryColor, width: 1.5),
+      borderSide: BorderSide(color: AppColors.primary, width: 1.5),
     );
   }
 
   OutlineInputBorder buildEnabledBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: kPrimaryColor, width: 1.5),
+      borderSide: BorderSide(color: AppColors.primary, width: 1.5),
     );
   }
 
   OutlineInputBorder buildOutlineInputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: kPrimaryColor, width: 1.5),
+      borderSide: BorderSide(color: AppColors.primary, width: 1.5),
     );
   }
 }

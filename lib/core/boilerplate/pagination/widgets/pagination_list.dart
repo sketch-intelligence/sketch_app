@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:lottie/lottie.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:sketch/core/ui/widgets/no_data_screen.dart';
 
 import '../cubits/pagination_cubit.dart';
 import 'footer.dart';
@@ -115,7 +114,8 @@ class _PaginationListState<Model> extends State<PaginationList<Model>> {
   smartRefresher(List<Model> list) {
     Widget child;
     if (list.isEmpty && widget.withEmptyWidget) {
-      child = widget.noDataWidget ?? const NoDataScreen();
+      child =
+          widget.noDataWidget ?? const SizedBox(); // ?? const NoDataScreen();
     } else {
       child = widget.listBuilder!(list);
     }

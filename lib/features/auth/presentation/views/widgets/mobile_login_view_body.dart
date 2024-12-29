@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sketch/constants.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
+import 'package:sketch/core/constant/app_padding/app_padding.dart';
+import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
-import 'package:sketch/core/utils/app_assets.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/form_validator.dart';
@@ -21,7 +22,8 @@ class MobileLoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: kMainPadding,
+      padding:
+          const EdgeInsets.symmetric(horizontal: AppPaddingSize.padding_30),
       child: Form(
         key: _formKey,
         child: Column(
@@ -34,21 +36,6 @@ class MobileLoginViewBody extends StatelessWidget {
             ),
             const SizedBox(
               height: 26,
-            ),
-            CustomButton(
-              onPressed: () {},
-              text: 'Continue with Google',
-              rowChild: const Icon(
-                FontAwesomeIcons.google,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const CustomOrDivider(),
-            const SizedBox(
-              height: 30,
             ),
             CustomTextField(
               controller: emailController,
@@ -80,7 +67,36 @@ class MobileLoginViewBody extends StatelessWidget {
               },
             ),
             const SizedBox(
+              height: 30,
+            ),
+            const CustomOrDivider(),
+            const SizedBox(
               height: 22,
+            ),
+            CustomButton(
+              onPressed: () {},
+              text: '',
+              textStyle: AppTextStyle.getRegularStyle(color: Colors.black),
+              rowChild: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    FontAwesomeIcons.google,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    'Continue with Google',
+                    style: AppStyles.styleRegular18(context)
+                        .copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
             ),
             const LoginAlternative(),
           ],

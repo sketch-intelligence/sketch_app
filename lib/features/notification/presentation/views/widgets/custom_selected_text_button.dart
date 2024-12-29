@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/constants.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton(
@@ -15,7 +15,7 @@ class CustomTextButton extends StatelessWidget {
     return Container(
       decoration: isSelected
           ? BoxDecoration(
-              color: kLightGreyColor,
+              color: AppColors.grey3C,
               borderRadius: BorderRadius.circular(12),
             )
           : null,

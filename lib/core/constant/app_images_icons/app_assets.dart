@@ -122,6 +122,10 @@ class Assets {
   /// assets/images/ShareNetwork.svg
   static const String imagesShareNetwork = "assets/images/ShareNetwork.svg";
 
+  /// Assets for imagesSketch
+  /// assets/images/sketch.png
+  static const String imagesSketch = "assets/images/sketch.png";
+
   /// Assets for imagesSketchLogo
   /// assets/images/sketchLogo.png
   static const String imagesSketchLogo = "assets/images/sketchLogo.png";

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/home/presentation/data/models/person_model.dart';
 import 'package:sketch/features/notification/data/model/notificatioin_model.dart';
 import 'package:sketch/features/notification/data/model/notification_type.dart';

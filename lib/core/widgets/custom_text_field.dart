@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/constants.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -58,8 +58,8 @@ class CustomTextField extends StatelessWidget {
   OutlineInputBorder buildFocusedBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(
-        color: kPrimaryColor,
+      borderSide: BorderSide(
+        color: AppColors.primary,
       ),
     );
   }
@@ -67,8 +67,8 @@ class CustomTextField extends StatelessWidget {
   OutlineInputBorder buildEnabledBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        color: kGreyColor,
+      borderSide: const BorderSide(
+        color: AppColors.grey3C,
       ),
     );
   }
@@ -76,8 +76,8 @@ class CustomTextField extends StatelessWidget {
   OutlineInputBorder buildOutlineInputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        color: kGreyColor,
+      borderSide: const BorderSide(
+        color: AppColors.grey3C,
       ),
     );
   }
