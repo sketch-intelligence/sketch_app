@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/core/utils/app_assets.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/home/presentation/data/models/person_model.dart';
 
 class UserProfilePage extends StatelessWidget {

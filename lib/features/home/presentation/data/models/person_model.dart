@@ -1,19 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class PersonModel {
   final String userName;
   final String? image;
- 
   PersonModel({
     required this.userName,
     this.image,
-   
   });
 
   PersonModel copyWith({
     String? userName,
     String? image,
-    
   }) {
     return PersonModel(
       userName: userName ?? this.userName,
