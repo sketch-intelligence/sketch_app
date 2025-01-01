@@ -2,10 +2,10 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
-import 'package:sketch/features/home/presentation/data/models/reaction_model.dart';
-import 'package:sketch/features/home/presentation/data/models/share_model.dart';
+import 'package:sketch/features/home/data/models/comment_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/reaction_model.dart';
+import 'package:sketch/features/home/data/models/share_model.dart';
 
 class PostModel {
   final String? text;

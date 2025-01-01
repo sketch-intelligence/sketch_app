@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/utils/app_styles.dart';
-import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
-import 'package:sketch/features/home/presentation/data/models/post_model.dart';
-import 'package:sketch/features/home/presentation/data/models/reaction_model.dart';
-import 'package:sketch/features/home/presentation/data/models/share_model.dart';
+import 'package:sketch/features/home/data/models/comment_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/post_model.dart';
+import 'package:sketch/features/home/data/models/reaction_model.dart';
+import 'package:sketch/features/home/data/models/share_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
 

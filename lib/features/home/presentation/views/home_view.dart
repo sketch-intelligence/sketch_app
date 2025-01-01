@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/utils/adaptive_layout.dart';
-import 'package:sketch/features/home/presentation/views/widgets/bottom_navigation_bar.dart';
 import 'package:sketch/features/home/presentation/views/widgets/mobile_home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,7 +14,7 @@ class HomeView extends StatelessWidget {
         tabletLayout: (context) => const SizedBox(),
         desktopLayout: (context) => const SizedBox(),
       ),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+      // bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

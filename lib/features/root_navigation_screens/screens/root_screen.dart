@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
+import 'package:sketch/core/constant/text_styles/app_text_style.dart';
+import 'package:sketch/core/constant/text_styles/font_size.dart';
+import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
+import 'package:sketch/features/home/presentation/views/home_view.dart';
+import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
+import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
+
+class RootScreen extends StatelessWidget {
+  const RootScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RootPageCubit, RootPageStates>(
+      builder: (context, state) => WillPopScope(
+        onWillPop: () async {
+          if (context.read<RootPageCubit>().rootIndex == 0) {
+            ActionAlertDialog.show(context,
+                dialogTitle: "AppLocalizations.of(context)!.app_exit",
+                message: "AppLocalizations.of(context)!.msg_exit",
+                confirmText: "AppLocalizations.of(context)!.confirm",
+                cancelText: " AppLocalizations.of(context)!.cancel",
+                onConfirm: () {
+              SystemNavigator.pop();
+            });
+          } else {
+            context.read<RootPageCubit>().changePageIndex(0);
+          }
+          return false;
+        },
+        child: Scaffold(
+            bottomNavigationBar: SizedBox(
+              height: 76,
+              child: BottomNavigationBar(
+                  elevation: 0,
+                  showSelectedLabels: true,
+                  showUnselectedLabels: true,
+                  selectedItemColor: Theme.of(context).colorScheme.primaryColor,
+                  unselectedItemColor: AppColors.grey89,
+                  unselectedLabelStyle: AppTextStyle.getRegularStyle(
+                      color: AppColors.grey89, fontSize: AppFontSize.size_12),
+                  selectedLabelStyle: AppTextStyle.getRegularStyle(
+                      color: Theme.of(context).colorScheme.primaryColor,
+                      fontSize: AppFontSize.size_12),
+                  currentIndex: context.read<RootPageCubit>().rootIndex,
+                  onTap: (value) =>
+                      context.read<RootPageCubit>().changePageIndex(value),
+                  items: [
+                    BottomNavigationBarItem(
+                        label: "Home",
+                        icon: SvgPicture.asset(
+                          Assets.imagesHome,
+                          color: context.read<RootPageCubit>().rootIndex == 0
+                              ? AppColors.primary
+                              : AppColors.grey9A,
+                          fit: BoxFit.fill,
+                        )),
+                    BottomNavigationBarItem(
+                        label: "Network",
+                        icon: SvgPicture.asset(
+                          Assets.imagesNetwork,
+                          color: context.read<RootPageCubit>().rootIndex == 1
+                              ? AppColors.primary
+                              : AppColors.grey9A,
+                          fit: BoxFit.fill,
+                        )),
+                    //
+                    BottomNavigationBarItem(
+                        label: "Generate",
+                        icon: SvgPicture.asset(
+                          Assets.imagesArtificialBrain,
+                          color: context.read<RootPageCubit>().rootIndex == 2
+                              ? AppColors.primary
+                              : AppColors.grey9A,
+                          fit: BoxFit.fill,
+                        )),
+
+                    BottomNavigationBarItem(
+                        label: "Profile",
+                        icon: SvgPicture.asset(
+                          Assets.imagesProfile,
+                          color: context.read<RootPageCubit>().rootIndex == 3
+                              ? AppColors.primary
+                              : AppColors.grey9A,
+                          fit: BoxFit.fill,
+                        )),
+                  ]),
+            ),
+            body: (context.read<RootPageCubit>().rootIndex == 0)
+                ? const HomeView()
+                : (context.read<RootPageCubit>().rootIndex == 1)
+                    ? const SizedBox() // FarmsOnMapScreen(fromRoot: false,)
+                    // : (context.read<RootPageCubit>().rootIndex==3)
+                    // ? const ChatListScreen()
+                    : const SizedBox()),
+      ),
+    );
+  }
+}

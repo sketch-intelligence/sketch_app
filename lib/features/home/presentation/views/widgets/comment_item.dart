@@ -4,7 +4,7 @@ import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/utils/app_styles.dart';
-import 'package:sketch/features/home/presentation/data/models/comment_model.dart';
+import 'package:sketch/features/home/data/models/comment_model.dart';
 
 class CommentItem extends StatelessWidget {
   const CommentItem({super.key, required this.commentModel});

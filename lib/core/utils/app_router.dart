@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/features/auth/presentation/views/login_view.dart';
 import 'package:sketch/features/auth/presentation/views/register_view.dart';
-import 'package:sketch/features/home/presentation/data/models/post_model.dart';
-import 'package:sketch/features/home/presentation/views/home_view.dart';
+import 'package:sketch/features/home/data/models/post_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_details_view.dart';
 import 'package:sketch/features/notification/presentation/views/notification_view.dart';
+import 'package:sketch/features/root_navigation_screens/screens/root_screen.dart';
 
 abstract class AppRouter {
   static const kLoginView = '/';
@@ -26,7 +26,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const RootScreen(),
       ),
       GoRoute(
         path: kPostDetailsView,

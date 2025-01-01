@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/features/home/presentation/data/models/post_model.dart';
+import 'package:sketch/features/home/data/models/post_model.dart';
 
 class PostReactions extends StatelessWidget {
   const PostReactions({

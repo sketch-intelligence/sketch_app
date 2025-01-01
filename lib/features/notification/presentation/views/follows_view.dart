@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
 
 class UserProfilePage extends StatelessWidget {
-  final String username = "Katie Lee";
+  static String username = "Katie Lee";
 
-  final List<PersonModel> followers = [
+  static List<PersonModel> followers = [
     PersonModel(userName: "omar", image: Assets.imagesGlobeHemisphereEast),
     PersonModel(userName: "maher", image: Assets.imagesGlobeHemisphereEast),
     PersonModel(userName: "beshir"),
     PersonModel(userName: "aziz"),
   ];
 
-  final List<PersonModel> following = [
+  static List<PersonModel> following = [
     PersonModel(userName: "john", image: Assets.imagesGlobeHemisphereEast),
     PersonModel(userName: "alice"),
     PersonModel(userName: "bob"),
     PersonModel(userName: "charlie"),
   ];
+
+  const UserProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +32,15 @@ class UserProfilePage extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Row(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundImage: NetworkImage(
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg/800px-Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg"),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               Text(username),
             ],
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(text: 'Followers'),
               Tab(text: 'Following'),
@@ -59,7 +61,7 @@ class UserProfilePage extends StatelessWidget {
 class UserList extends StatelessWidget {
   final List<PersonModel> users;
 
-  UserList({required this.users});
+  const UserList({super.key, required this.users});
 
   @override
   Widget build(BuildContext context) {
@@ -67,13 +69,13 @@ class UserList extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               labelText: 'Search',
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               itemCount: users.length,
@@ -81,7 +83,7 @@ class UserList extends StatelessWidget {
                 return ListTile(
                   leading: SvgPicture.asset(Assets.imagesAvatar23),
                   title: Text(users[index].userName),
-                  trailing: FollowingButton(),
+                  trailing: const FollowingButton(),
                 );
               },
             ),
@@ -93,6 +95,8 @@ class UserList extends StatelessWidget {
 }
 
 class FollowingButton extends StatelessWidget {
+  const FollowingButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -104,7 +108,7 @@ class FollowingButton extends StatelessWidget {
         onPressed: () {
           print("Button pressed");
         },
-        child: Text(
+        child: const Text(
           'Following',
           style: TextStyle(
             fontSize: 14,

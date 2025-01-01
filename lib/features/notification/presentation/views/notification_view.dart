@@ -5,7 +5,6 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/size_config.dart';
-import 'package:sketch/features/home/presentation/views/widgets/bottom_navigation_bar.dart';
 import 'package:sketch/features/notification/presentation/views/widgets/notification_view_body.dart';
 
 class NotificationView extends StatelessWidget {
@@ -34,7 +33,6 @@ class NotificationView extends StatelessWidget {
         tabletLayout: (context) => const SizedBox(),
         desktopLayout: (context) => const SizedBox(),
       ),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

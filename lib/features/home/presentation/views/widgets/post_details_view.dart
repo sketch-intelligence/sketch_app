@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
-import 'package:sketch/features/home/presentation/data/models/post_model.dart';
+import 'package:sketch/features/home/data/models/post_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/comment_item.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
 import 'package:sketch/features/home/presentation/views/widgets/user_image_container.dart';

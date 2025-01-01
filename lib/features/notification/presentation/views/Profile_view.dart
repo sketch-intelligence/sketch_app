@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/notification/presentation/views/follows_view.dart';
 
 class ProfilePage extends StatelessWidget {
-  PersonModel user1=PersonModel(userName: "Katie Lee",);
-    PersonModel user2=PersonModel(userName: "jena",);
+  PersonModel user1 = PersonModel(
+    userName: "Katie Lee",
+  );
+  PersonModel user2 = PersonModel(
+    userName: "jena",
+  );
 
+  ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,45 +23,47 @@ class ProfilePage extends StatelessWidget {
             title: Text(user1.userName),
             centerTitle: true,
             backgroundColor: Colors.white,
-            expandedHeight: 150.0, 
+            expandedHeight: 150.0,
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
                     height: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.grey,
                     ),
                     width: double.infinity,
                     child: Image.network(
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg/800px-Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg', 
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg/800px-Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg/800px-Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg'),
+                    backgroundImage: NetworkImage(
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg/800px-Mark_Zuckerberg_at_the_37th_G8_Summit_in_Deauville_018_v1.jpg'),
                   ),
                 ],
               ),
             ),
-            pinned: true, 
+            pinned: true,
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: SizedBox(height: 10),
           ),
           SliverToBoxAdapter(
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: 20), 
+                  const SizedBox(height: 20),
                   Text(
                     user2.userName,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 4),
-                  Text(
+                  const SizedBox(height: 4),
+                  const Text(
                     'Photographer, travelholic, food lover',
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
@@ -64,8 +71,8 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 10), 
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 10),
           ),
           SliverToBoxAdapter(
             child: Center(
@@ -74,14 +81,14 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('Connected'),
+                    child: const Text('Connected'),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   TextButton(
                     onPressed: () {},
-                    child: Text('Message'),
+                    child: const Text('Message'),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   SvgPicture.asset(
                     Assets.imagesDotsThreeVertical,
                     color: Colors.red,
@@ -91,7 +98,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: SizedBox(height: 20),
           ),
           SliverToBoxAdapter(
@@ -100,41 +107,48 @@ class ProfilePage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('Posts'),
+                  child: const Text('Posts'),
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('Projects'),
+                  child: const Text('Projects'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfilePage(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserProfilePage(),
+                        ));
                   },
-                  child: Text('Follows'),
+                  child: const Text('Follows'),
                 ),
               ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 20), 
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 20),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                ProjectCard(
+                const ProjectCard(
                   title: 'Skyline Tower',
-                  description: 'A state-of-the-art skyscraper featuring sustainable design.',
-                  imageUrl: 'https://via.placeholder.com/150', 
+                  description:
+                      'A state-of-the-art skyscraper featuring sustainable design.',
+                  imageUrl: 'https://via.placeholder.com/150',
                 ),
-                ProjectCard(
+                const ProjectCard(
                   title: 'Luxury Villa',
-                  description: 'This villa combines modern design with luxury living.',
-                  imageUrl: 'https://via.placeholder.com/150', 
+                  description:
+                      'This villa combines modern design with luxury living.',
+                  imageUrl: 'https://via.placeholder.com/150',
                 ),
-                ProjectCard(
+                const ProjectCard(
                   title: 'Green Office',
-                  description: 'An environmentally-conscious workspace promoting sustainability.',
-                  imageUrl: 'https://via.placeholder.com/150', 
+                  description:
+                      'An environmentally-conscious workspace promoting sustainability.',
+                  imageUrl: 'https://via.placeholder.com/150',
                 ),
               ],
             ),
@@ -151,6 +165,7 @@ class ProjectCard extends StatelessWidget {
   final String imageUrl;
 
   const ProjectCard({
+    super.key,
     required this.title,
     required this.description,
     required this.imageUrl,
@@ -159,7 +174,7 @@ class ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
       elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -172,21 +187,22 @@ class ProjectCard extends StatelessWidget {
               width: 100,
               fit: BoxFit.cover,
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(description),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('View Project'),
+                    child: const Text('View Project'),
                   ),
                 ],
               ),
