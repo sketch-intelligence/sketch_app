@@ -28,7 +28,10 @@ class BackWidget extends StatelessWidget {
                   : () => Navigator.pop(
                         context,
                       ),
-              child: const Icon(Icons.arrow_back_ios_new_rounded)),
+              child: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: AppColors.black1c,
+              )),
         //  const Spacer(),
         titleWidget != null
             ? titleWidget!

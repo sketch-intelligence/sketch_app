@@ -7,7 +7,7 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
-import 'package:sketch/features/design/presentation/views/generate_design_view.dart';
+import 'package:sketch/features/design/presentation/views/question_pages.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
@@ -97,7 +97,7 @@ class RootScreen extends StatelessWidget {
               : (context.read<RootPageCubit>().rootIndex == 1)
                   ? const SizedBox()
                   : (context.read<RootPageCubit>().rootIndex == 2)
-                      ? const GenerateDesignView()
+                      ? const QuestionPages()
                       : (context.read<RootPageCubit>().rootIndex == 3)
                           ? const SizedBox()
                           : const SizedBox(),
