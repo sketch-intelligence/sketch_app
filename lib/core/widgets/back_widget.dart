@@ -38,7 +38,7 @@ class BackWidget extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
-                  style: AppTextStyle.getMediumStyle(
+                  style: AppTextStyle.getBoldStyle(
                       color: AppColors.black1c, fontSize: AppFontSize.size_26),
                 ),
               ),

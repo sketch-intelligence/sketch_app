@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
+  
   /// Assets for imagesArtificialBrain
   /// assets/images/ArtificialBrain.svg
-  static const String imagesArtificialBrain =
-      "assets/images/ArtificialBrain.svg";
+  static const String imagesArtificialBrain = "assets/images/ArtificialBrain.svg";
 
   /// Assets for imagesAvatar13
   /// assets/images/Avatar13.svg
@@ -49,8 +48,7 @@ class Assets {
 
   /// Assets for imagesDotsThreeVertical
   /// assets/images/DotsThreeVertical.svg
-  static const String imagesDotsThreeVertical =
-      "assets/images/DotsThreeVertical.svg";
+  static const String imagesDotsThreeVertical = "assets/images/DotsThreeVertical.svg";
 
   /// Assets for imagesEdit
   /// assets/images/Edit.svg
@@ -62,8 +60,7 @@ class Assets {
 
   /// Assets for imagesGlobeHemisphereEast
   /// assets/images/GlobeHemisphereEast.svg
-  static const String imagesGlobeHemisphereEast =
-      "assets/images/GlobeHemisphereEast.svg";
+  static const String imagesGlobeHemisphereEast = "assets/images/GlobeHemisphereEast.svg";
 
   /// Assets for imagesHome
   /// assets/images/Home.svg
@@ -72,6 +69,10 @@ class Assets {
   /// Assets for imagesImage
   /// assets/images/image.png
   static const String imagesImage = "assets/images/image.png";
+
+  /// Assets for imagesImage20
+  /// assets/images/Image20.png
+  static const String imagesImage20 = "assets/images/Image20.png";
 
   /// Assets for imagesImage59
   /// assets/images/Image59.svg
@@ -103,13 +104,11 @@ class Assets {
 
   /// Assets for imagesNewspaperClipping
   /// assets/images/NewspaperClipping.svg
-  static const String imagesNewspaperClipping =
-      "assets/images/NewspaperClipping.svg";
+  static const String imagesNewspaperClipping = "assets/images/NewspaperClipping.svg";
 
   /// Assets for imagesPaperPlaneRight
   /// assets/images/PaperPlaneRight.svg
-  static const String imagesPaperPlaneRight =
-      "assets/images/PaperPlaneRight.svg";
+  static const String imagesPaperPlaneRight = "assets/images/PaperPlaneRight.svg";
 
   /// Assets for imagesPhone
   /// assets/images/Phone.svg
@@ -118,6 +117,10 @@ class Assets {
   /// Assets for imagesPin
   /// assets/images/Pin.svg
   static const String imagesPin = "assets/images/Pin.svg";
+
+  /// Assets for imagesProfile
+  /// assets/images/profile.svg
+  static const String imagesProfile = "assets/images/profile.svg";
 
   /// Assets for imagesSearch
   /// assets/images/Search.svg
@@ -150,6 +153,5 @@ class Assets {
   /// Assets for imagesUser
   /// assets/images/User.svg
   static const String imagesUser = "assets/images/User.svg";
-
-  static const String imagesProfile = "assets/images/profile.svg";
 }
+
