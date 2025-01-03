@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
+import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/functions/format_time.dart';
+import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model.dart';
@@ -13,53 +15,56 @@ class UserProposedProjectItem extends StatelessWidget {
   final UserProposedProjectModel project;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        GoRouter.of(context)
-            .push(AppRouter.kUserProposedProjectDetails, extra: project);
-      },
-      child: Card(
-        elevation: 2,
-        color: AppColors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                project.title,
-                style: AppStyles.styleBold18(context),
+    return Card(
+      elevation: 2,
+      color: AppColors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              project.title,
+              style: AppStyles.styleBold18(context),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              project.description,
+              style: AppStyles.styleRegular18(context)
+                  .copyWith(color: AppColors.grey3B),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                children: [
+                  ProjectDetailsInfo(
+                    name: project.author.userName,
+                    iconPath: Assets.imagesProfile,
+                  ),
+                  ProjectDetailsInfo(
+                    name: "Bids",
+                    numberOfBids: project.numberOfBids,
+                    iconPath: Assets.imagesChat,
+                  ),
+                  ProjectDetailsInfo(
+                    date: project.postDate,
+                    iconPath: Assets.imagesThumbUp,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                project.description,
-                style: AppStyles.styleRegular18(context)
-                    .copyWith(color: AppColors.grey3B),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Row(
-                  children: [
-                    ProjectDetailsInfo(
-                      name: project.author.userName,
-                      iconPath: Assets.imagesProfile,
-                    ),
-                    ProjectDetailsInfo(
-                      name: "Bids",
-                      numberOfBids: project.numberOfBids,
-                      iconPath: Assets.imagesChat,
-                    ),
-                    ProjectDetailsInfo(
-                      date: project.postDate,
-                      iconPath: Assets.imagesThumbUp,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+            CustomButton(
+              text: 'View Project',
+              color: Colors.transparent,
+              textStyle: AppTextStyle.getMediumStyle(color: AppColors.primary),
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.kUserProposedProjectDetails,
+                    extra: project);
+              },
+            )
+          ],
         ),
       ),
     );
