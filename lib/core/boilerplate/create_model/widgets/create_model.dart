@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sketch/core/utils/Navigation/navigation.dart';
 
 import '../../../ui/dialogs/dialogs.dart';
 // import '../../../utils/Navigation/navigation.dart';
@@ -92,7 +91,7 @@ class _GetModelState<Model> extends State<CreateModel<Model>> {
           }
           if (state is Error) {
             if (widget.errorWidget != null) {
-              Navigation.push(widget.errorWidget!);
+              // Navigation.push(widget.errorWidget!);
             } else if (widget.onError != null) {
               widget.onError!(state.message.toString());
             } else {

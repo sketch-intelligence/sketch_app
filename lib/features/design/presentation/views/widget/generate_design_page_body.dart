@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/app_padding/app_padding.dart';
 import 'package:sketch/core/ui/dialogs/app_dialog.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
+import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 
 class GenerateDesignPageBody extends StatelessWidget {
   const GenerateDesignPageBody({super.key});
@@ -59,8 +63,12 @@ class GenerateDesignPageBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BackWidget(
+          BackWidget(
             title: "Generate Design",
+            onBack: () {
+              context.read<RootPageCubit>().changePageIndex(0);
+              GoRouter.of(context).go(AppRouter.kRootView);
+            },
           ),
           const SizedBox(
             height: 20,

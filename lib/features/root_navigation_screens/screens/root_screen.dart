@@ -11,6 +11,7 @@ import 'package:sketch/features/design/presentation/views/question_pages.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
+import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -72,10 +73,19 @@ class RootScreen extends StatelessWidget {
                       )),
                   //
                   BottomNavigationBarItem(
+                      label: "Projects",
+                      icon: SvgPicture.asset(
+                        Assets.imagesConfigurationTool,
+                        color: context.read<RootPageCubit>().rootIndex == 2
+                            ? AppColors.primary
+                            : AppColors.grey9A,
+                        fit: BoxFit.fill,
+                      )),
+                  BottomNavigationBarItem(
                       label: "Generate",
                       icon: SvgPicture.asset(
                         Assets.imagesArtificialBrain,
-                        color: context.read<RootPageCubit>().rootIndex == 2
+                        color: context.read<RootPageCubit>().rootIndex == 3
                             ? AppColors.primary
                             : AppColors.grey9A,
                         fit: BoxFit.fill,
@@ -85,7 +95,7 @@ class RootScreen extends StatelessWidget {
                       label: "Profile",
                       icon: SvgPicture.asset(
                         Assets.imagesProfile,
-                        color: context.read<RootPageCubit>().rootIndex == 3
+                        color: context.read<RootPageCubit>().rootIndex == 4
                             ? AppColors.primary
                             : AppColors.grey9A,
                         fit: BoxFit.fill,
@@ -97,10 +107,12 @@ class RootScreen extends StatelessWidget {
               : (context.read<RootPageCubit>().rootIndex == 1)
                   ? const SizedBox()
                   : (context.read<RootPageCubit>().rootIndex == 2)
-                      ? const QuestionPages()
+                      ? const UserProposedProjectsPage()
                       : (context.read<RootPageCubit>().rootIndex == 3)
-                          ? const SizedBox()
-                          : const SizedBox(),
+                          ? const QuestionPages()
+                          : (context.read<RootPageCubit>().rootIndex == 4)
+                              ? const SizedBox()
+                              : const SizedBox(),
         ),
       ),
     );

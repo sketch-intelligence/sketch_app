@@ -46,6 +46,10 @@ class Assets {
   /// assets/images/Comments.svg
   static const String imagesComments = "assets/images/Comments.svg";
 
+  /// Assets for imagesConfigurationTool
+  /// assets/images/configuration_tool.svg
+  static const String imagesConfigurationTool = "assets/images/configuration_tool.svg";
+
   /// Assets for imagesDotsThreeVertical
   /// assets/images/DotsThreeVertical.svg
   static const String imagesDotsThreeVertical = "assets/images/DotsThreeVertical.svg";

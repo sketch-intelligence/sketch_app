@@ -62,7 +62,7 @@ class MobileLoginViewBody extends StatelessWidget {
               text: 'Login',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  GoRouter.of(context).go(AppRouter.kHomeView);
+                  GoRouter.of(context).go(AppRouter.kRootView);
                 }
               },
             ),
