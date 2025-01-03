@@ -62,4 +62,5 @@ extension AppColors on ColorScheme {
   static const Color greyA9 = Color(0xFFA9A9A9);
   static const Color babyBlue = Color(0xFF87CEEB);
   static const Color greyAD = Color(0xFFADADB4);
+  static const Color iconColor = Color(0xFF285781);
 }

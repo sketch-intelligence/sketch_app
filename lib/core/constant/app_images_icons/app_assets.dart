@@ -42,6 +42,10 @@ class Assets {
   /// assets/images/CheckDouble.svg
   static const String imagesCheckDouble = "assets/images/CheckDouble.svg";
 
+  /// Assets for imagesClockRegular
+  /// assets/images/clock_regular.svg
+  static const String imagesClockRegular = "assets/images/clock_regular.svg";
+
   /// Assets for imagesComments
   /// assets/images/Comments.svg
   static const String imagesComments = "assets/images/Comments.svg";
@@ -157,5 +161,13 @@ class Assets {
   /// Assets for imagesUser
   /// assets/images/User.svg
   static const String imagesUser = "assets/images/User.svg";
+
+  /// Assets for imagesUserGroupSolid
+  /// assets/images/user_group_solid.svg
+  static const String imagesUserGroupSolid = "assets/images/user_group_solid.svg";
+
+  /// Assets for imagesUserPenSolid
+  /// assets/images/user_pen_solid.svg
+  static const String imagesUserPenSolid = "assets/images/user_pen_solid.svg";
 }
 

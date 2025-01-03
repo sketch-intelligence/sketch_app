@@ -41,16 +41,16 @@ class UserProposedProjectItem extends StatelessWidget {
                 children: [
                   ProjectDetailsInfo(
                     name: project.author.userName,
-                    iconPath: Assets.imagesProfile,
+                    iconPath: Assets.imagesUserPenSolid,
                   ),
                   ProjectDetailsInfo(
                     name: "Bids",
                     numberOfBids: project.numberOfBids,
-                    iconPath: Assets.imagesChat,
+                    iconPath: Assets.imagesUserGroupSolid,
                   ),
                   ProjectDetailsInfo(
                     date: project.postDate,
-                    iconPath: Assets.imagesThumbUp,
+                    iconPath: Assets.imagesClockRegular,
                   ),
                 ],
               ),
@@ -86,7 +86,12 @@ class ProjectDetailsInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(iconPath),
+        SvgPicture.asset(
+          iconPath,
+          height: 18,
+          width: 18,
+          color: AppColors.iconColor,
+        ),
         const SizedBox(
           width: 4,
         ),
@@ -94,7 +99,7 @@ class ProjectDetailsInfo extends StatelessWidget {
         if (date != null) Text(formatTime(date!)),
         if (name != null) Text(name!),
         const SizedBox(
-          width: 12,
+          width: 16,
         ),
       ],
     );
