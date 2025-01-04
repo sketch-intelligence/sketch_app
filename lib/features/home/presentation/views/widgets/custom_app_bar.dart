@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
+import 'package:sketch/features/Chat/presentation/views/chatpage.dart';
 import 'package:sketch/features/home/presentation/views/widgets/user_image_container.dart';
+
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -27,7 +29,11 @@ class CustomAppBar extends StatelessWidget {
           icon: SvgPicture.asset(Assets.imagesBell),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return ChatPage();
+            }));
+          },
           icon: SvgPicture.asset(Assets.imagesChat),
         ),
       ],

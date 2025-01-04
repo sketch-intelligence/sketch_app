@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/features/notification/presentation/views/Profile_view.dart';
+import 'package:sketch/features/Profile/Presentation/views/profile_views.dart';
+
 // Update with your actual path
 
 class UserImageContainer extends StatelessWidget {

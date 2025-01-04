@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton(
-      {super.key,
-      this.w,
-      this.color,
-      required this.text,
-      this.textStyle,
-      this.h,
-      this.radius,
-      this.borderSideColor,
-      this.rowChild,
-      this.onPressed});
+  const CustomButton({
+    super.key,
+    this.w,
+    this.color,
+    required this.text,
+    this.textStyle,
+    this.h,
+    this.radius,
+    this.borderSideColor,
+    this.rowChild,
+    this.onPressed,
+    this.icon, // New icon parameter
+  });
+
   final double? w;
   final double? radius;
   final double? h;
@@ -23,6 +27,7 @@ class CustomButton extends StatelessWidget {
   final TextStyle? textStyle;
   final String? text;
   final Widget? rowChild;
+  final String? icon; // Optional icon
   final VoidCallback? onPressed;
 
   @override
@@ -44,17 +49,26 @@ class CustomButton extends StatelessWidget {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  if (icon != null) ...[
+                   Padding(
+                     padding: const EdgeInsets.only(left: 10),
+                     child: SvgPicture.asset(icon!),
+                   ),
+                    SizedBox(width: 8), // Space between icon and text
+                  ],
                   Expanded(
-                    child: Text(
-                      text!,
-                      style: textStyle ??
-                          AppTextStyle.getMediumStyle(
-                              color:
-                                  Theme.of(context).colorScheme.secondaryColor,
-                              fontSize: AppFontSize.size_16),
-                      textAlign: (rowChild != null)
-                          ? TextAlign.start
-                          : TextAlign.center,
+                    child: Center(
+                      child: Text(
+                        text!,
+                        style: textStyle ??
+                            AppTextStyle.getMediumStyle(
+                              color: Theme.of(context).colorScheme.secondaryColor,
+                              fontSize: AppFontSize.size_16,
+                            ),
+                        textAlign: (rowChild != null)
+                            ? TextAlign.start
+                            : TextAlign.center,
+                      ),
                     ),
                   ),
                 ],
