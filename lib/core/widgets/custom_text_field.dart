@@ -9,26 +9,26 @@ class CustomTextField extends StatelessWidget {
       required this.controller,
       this.label,
       this.hint,
-      this.obscureText = false,
+      this.isObscure = false,
       this.validator,
       this.iconPath,
-      this.isBig = false});
+      this.isBig = false,
+      this.suffixIcon});
 
   final TextEditingController controller;
   final String? label;
   final String? hint;
-  final bool obscureText;
+  final bool isObscure;
   final String? Function(String?)? validator;
   final String? iconPath;
   final bool? isBig;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // height: 70, //
-      child: TextFormField(
-        maxLines: isBig! ? 3 : 1,
-        controller: controller,
-        decoration: InputDecoration(
+    return TextFormField(
+      maxLines: isBig! ? 3 : 1,
+      controller: controller,
+      decoration: InputDecoration(
           hintText: hint,
           labelText: label,
           labelStyle:
@@ -52,10 +52,9 @@ class CustomTextField extends StatelessWidget {
           border: buildOutlineInputBorder(),
           enabledBorder: buildEnabledBorder(),
           focusedBorder: buildFocusedBorder(),
-        ),
-        obscureText: obscureText,
-        validator: validator,
-      ),
+          suffixIcon: suffixIcon),
+      obscureText: isObscure,
+      validator: validator,
     );
   }
 

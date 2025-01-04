@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/di/di.dart';
 import 'package:sketch/core/utils/app_router.dart';
+import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/translations.dart';
 
@@ -22,6 +23,7 @@ class Sketch extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => getIt<RootPageCubit>()),
+        BlocProvider(create: (context) => getIt<AuthCubit>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

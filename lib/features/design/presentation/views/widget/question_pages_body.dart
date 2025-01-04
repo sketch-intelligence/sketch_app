@@ -13,46 +13,58 @@ class QuestionPagesBody extends StatelessWidget {
 
   static final PageController _pageController = PageController();
   static final List<QuestionItem> _questionData = [
-    const QuestionItem(
+    QuestionItem(
       question: 'Which building do you like?',
       options: [
         OptionItem(
           optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
         OptionItem(
-          optionItemName: 'Sky Tower2',
+          optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
         OptionItem(
-          optionItemName: 'Sky Tower3',
+          optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
         OptionItem(
-          optionItemName: 'Sky Tower4',
+          optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
+        // Add other options similarly
       ],
     ),
-    const QuestionItem(
+    QuestionItem(
       question: 'Which do you like?',
       options: [
         OptionItem(
-          optionItemName: 'Sky',
+          optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
         OptionItem(
-          optionItemName: 'Sky',
+          optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
         OptionItem(
-          optionItemName: 'Sky',
+          optionItemName: 'Sky Tower',
           optionItemImg: Assets.imagesImage20,
+          isSelected: false,
+          onTap: () {},
         ),
-        OptionItem(
-          optionItemName: 'Sky',
-          optionItemImg: Assets.imagesImage20,
-        ),
+        // Add other options similarly
       ],
     ),
   ];
