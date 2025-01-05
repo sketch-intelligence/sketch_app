@@ -118,7 +118,7 @@ class ProfilePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => UserProfilePage(),
+                          builder: (context) => const UserProfilePage(),
                         ));
                   },
                   child: const Text('Follows'),
