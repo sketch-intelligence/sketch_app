@@ -4,7 +4,7 @@ import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
 
 class FollowsListView extends StatelessWidget {
   const FollowsListView({
@@ -22,18 +22,27 @@ class FollowsListView extends StatelessWidget {
         return ListTile(
           leading: SvgPicture.asset(Assets.imagesAvatar23),
           title: Text(users[index].userName),
-          trailing: Row(mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomButton(w: 92,h: 36,text: "following",color: AppColors.white,textStyle: TextStyle(color: AppColors.black,fontSize: AppFontSize.size_14),borderSideColor: AppColors.grey3B,),
-              SizedBox(width: 10,),
+              const CustomButton(
+                w: 92,
+                h: 36,
+                text: "following",
+                color: AppColors.white,
+                textStyle: TextStyle(
+                    color: AppColors.black, fontSize: AppFontSize.size_14),
+                borderSideColor: AppColors.grey3B,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
               SvgPicture.asset(Assets.imagesDotsThreeVertical)
             ],
           ),
-          
         );
       },
     );
   }
 }
-

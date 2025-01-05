@@ -6,9 +6,7 @@ import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
 import 'package:sketch/features/follows/presentation/widgets/follows_list_view.dart';
-import 'package:sketch/features/home/presentation/data/models/person_model.dart';
-
-
+import 'package:sketch/features/home/data/models/person_model.dart';
 
 class FollowsBody extends StatelessWidget {
   const FollowsBody({
@@ -24,17 +22,18 @@ class FollowsBody extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          SearchTextField(),
-    
-          SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          const SearchTextField(),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-            Text("Sorted by Date Followed : Latest"),
-    
-            
-            SvgPicture.asset(Assets.imagesFunnel)
-          ],),
-          SizedBox(height: 10,),
+              const Text("Sorted by Date Followed : Latest"),
+              SvgPicture.asset(Assets.imagesFunnel)
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           Expanded(
             child: FollowsListView(users: users),
           ),
@@ -43,4 +42,3 @@ class FollowsBody extends StatelessWidget {
     );
   }
 }
-
