@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/notification/presentation/views/follows_view.dart';
+import 'package:sketch/translations.dart';
 
 class ProfilePage extends StatelessWidget {
   PersonModel user1 = PersonModel(
@@ -81,12 +82,16 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {},
-                    child: const Text('Connected'),
+                    child: Text(
+                      AppLocalizations.of(context)!.connected,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   TextButton(
                     onPressed: () {},
-                    child: const Text('Message'),
+                    child: Text(
+                      AppLocalizations.of(context)!.message,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   SvgPicture.asset(
@@ -107,11 +112,15 @@ class ProfilePage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Posts'),
+                  child: Text(
+                    AppLocalizations.of(context)!.posts,
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Projects'),
+                  child: Text(
+                    AppLocalizations.of(context)!.projects,
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -121,7 +130,9 @@ class ProfilePage extends StatelessWidget {
                           builder: (context) => const UserProfilePage(),
                         ));
                   },
-                  child: const Text('Follows'),
+                  child: Text(
+                    AppLocalizations.of(context)!.follows,
+                  ),
                 ),
               ],
             ),
@@ -202,7 +213,9 @@ class ProjectCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   ElevatedButton(
                     onPressed: () {},
-                    child: const Text('View Project'),
+                    child: Text(
+                      AppLocalizations.of(context)!.viewProject,
+                    ),
                   ),
                 ],
               ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 Widget buildCoverImage(BuildContext context) {
-  double height = MediaQuery.of(context).size.height * 0.25; // 25% of screen height
+  double height =
+      MediaQuery.of(context).size.height * 0.25; // 25% of screen height
   return Container(
     color: Colors.grey,
     child: Image.network(

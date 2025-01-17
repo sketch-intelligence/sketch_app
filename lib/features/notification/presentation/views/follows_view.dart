@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/translations.dart';
 
 class UserProfilePage extends StatelessWidget {
   static String username = "Katie Lee";
@@ -40,10 +41,12 @@ class UserProfilePage extends StatelessWidget {
               Text(username),
             ],
           ),
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
-              Tab(text: 'Followers'),
-              Tab(text: 'Following'),
+              Tab(
+                text: AppLocalizations.of(context)!.followers,
+              ),
+              Tab(text: AppLocalizations.of(context)!.following),
             ],
           ),
         ),
@@ -69,10 +72,10 @@ class UserList extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          const TextField(
+          TextField(
             decoration: InputDecoration(
-              labelText: 'Search',
-              border: OutlineInputBorder(),
+              labelText: AppLocalizations.of(context)!.search,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 10),

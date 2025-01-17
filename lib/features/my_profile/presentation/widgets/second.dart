@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/translations.dart';
 
 class MyProfileSecondSection extends StatelessWidget {
   const MyProfileSecondSection({
@@ -29,39 +30,43 @@ class MyProfileSecondSection extends StatelessWidget {
               }
             },
             child: CustomButton(
-              text: "Add",
+              text: AppLocalizations.of(context)!.add,
               h: 36,
               w: 136,
               color: Colors.white,
-              borderSideColor: Color(0xff408bc1),
-              textStyle: TextStyle(color: Color(0xff408bc1)),
+              borderSideColor: const Color(0xff408bc1),
+              textStyle: const TextStyle(color: Color(0xff408bc1)),
             ),
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem<String>(
                   value: 'Post',
-                  child: Container(
+                  child: SizedBox(
                     width: screenWidth * 0.2, // 50% of screen width
                     height: 30, // Fixed height for consistency
                     child: Row(
                       children: [
-                        SvgPicture.asset(Assets.imagesNewspaperClipping), // Icon for post
-                        SizedBox(width: 8),
-                        Text('Post', style: TextStyle(fontSize: 16)),
+                        SvgPicture.asset(
+                            Assets.imagesNewspaperClipping), // Icon for post
+                        const SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.like,
+                            style: const TextStyle(fontSize: 16)),
                       ],
                     ),
                   ),
                 ),
                 PopupMenuItem<String>(
                   value: 'Project',
-                  child: Container(
+                  child: SizedBox(
                     width: screenWidth * 0.2, // 50% of screen width
                     height: 30, // Fixed height for consistency
                     child: Row(
                       children: [
-                        SvgPicture.asset(Assets.imagesMeeting), // Icon for project
-                        SizedBox(width: 8),
-                        Text('Project', style: TextStyle(fontSize: 16)),
+                        SvgPicture.asset(
+                            Assets.imagesMeeting), // Icon for project
+                        const SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.projects,
+                            style: const TextStyle(fontSize: 16)),
                       ],
                     ),
                   ),
@@ -70,17 +75,17 @@ class MyProfileSecondSection extends StatelessWidget {
             },
           ),
         ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         Expanded(
           child: CustomButton(
-            text: "Edit Profile",
+            text: AppLocalizations.of(context)!.editProfile,
             h: 36,
             w: 136,
-            borderSideColor: Color(0xff408bc1),
-            textStyle: TextStyle(color: Colors.white),
+            borderSideColor: const Color(0xff408bc1),
+            textStyle: const TextStyle(color: Colors.white),
           ),
         ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         Container(
           width: 36,
           height: 36,

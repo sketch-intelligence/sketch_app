@@ -61,7 +61,24 @@
     "activeNow": "Active now",
       "message": "Message",
   "promptInput": "Prompt Input",
-    "describeStructure": "Describe the structure you want..."
+    "describeStructure": "Describe the structure you want...",
+      "like": "Like",
+  "reply": "Reply",
+    "feed": "Feed",
+       "writeComment": "Write a comment",
+         "search": "Search",
+         "notification":"Notification",
+         "profile_settings":"Profile Settings",
+         "main_information":"Main Information",
+         "change_lang":"Change Language",
+         "choose_lang":"Choose Language",
+         "english":"English",
+         "arabic":"Arabic",
+         "save":"Save"
+
+
+
+
 
 
 

@@ -60,7 +60,26 @@
   "primary": "أساسي",
     "activeNow": "نشط الآن",
       "message": "رسالة",
-  "promptInput": "إدخال النص الموجه"
+  "promptInput": "إدخال النص الموجه",
+    "describeStructure": "صف البنية التي تريدها...",
+      "like": "إعجاب",
+  "reply": "رد",
+    "feed": "الصفحة الرئيسية",
+       "writeComment": "اكتب تعليقًا",
+
+       "search": "بحث",
+       "notification":"الإشعارات",
+       "profile_settings":"إعدادات الملف الشخصي",
+       "main_information":"المعلومات الأساسية",
+       "change_lang":"تغيير اللغة",
+       "choose_lang":"اختار لغة",
+       "english":"English",
+       "arabic":"العربية",
+       "save":"حفظ"
+
+
+
+
 
 
 

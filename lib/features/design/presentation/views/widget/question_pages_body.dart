@@ -7,6 +7,7 @@ import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/features/design/presentation/views/widget/option_item.dart';
 import 'package:sketch/features/design/presentation/views/widget/question_item.dart';
+import 'package:sketch/translations.dart';
 
 class QuestionPagesBody extends StatelessWidget {
   const QuestionPagesBody({super.key});
@@ -133,7 +134,7 @@ class QuestionPagesBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: CustomButton(
-                text: "Next",
+                text: AppLocalizations.of(context)!.next,
                 onPressed: () {
                   _goToNextPage(context);
                 },
@@ -144,7 +145,7 @@ class QuestionPagesBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: CustomButton(
-                text: "Skip",
+                text: AppLocalizations.of(context)!.skip,
                 onPressed: () {
                   _goToNextPage(context, isSkip: true);
                 },

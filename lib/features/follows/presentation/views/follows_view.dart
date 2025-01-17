@@ -6,6 +6,7 @@ import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/size_config.dart';
 import 'package:sketch/features/follows/presentation/widgets/FollowsBody.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/translations.dart';
 
 class FollowsView extends StatelessWidget {
   static String username = "Katie Lee";
@@ -45,25 +46,29 @@ class FollowsView extends StatelessWidget {
                 bottom: TabBar(
                   indicatorColor: AppColors.primary,
                   labelColor: AppColors.primary,
-                  tabs: const [
+                  tabs: [
                     Tab(
                       child: Row(
                         children: [
-                          Text("77"),
-                          SizedBox(
+                          const Text("77"),
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text("followers"),
+                          Text(
+                            AppLocalizations.of(context)!.followers,
+                          ),
                         ],
                       ),
                     ),
                     Tab(
                       child: Row(children: [
-                        Text("85"),
-                        SizedBox(
+                        const Text("85"),
+                        const SizedBox(
                           width: 5,
                         ),
-                        Text("Following")
+                        Text(
+                          AppLocalizations.of(context)!.following,
+                        )
                       ]),
                     ),
                   ],

@@ -10,18 +10,18 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView( // Allow for full-page scrolling
+    return SingleChildScrollView(
+      // Allow for full-page scrolling
       child: Column(
         children: [
-          BuildTopPage(),
-          TheFirstSection(),
-          Divider(), // Dividing line before tabs
-          CustomTabBar(),
+          const BuildTopPage(),
+          const TheFirstSection(),
+          const Divider(), // Dividing line before tabs
+          const CustomTabBar(),
 
           // Directly include the ProjectsView here
-          ProjectsView(), 
-          
-          
+          ProjectsView(),
+
           // This will now be part of the single scrollable area
         ],
       ),

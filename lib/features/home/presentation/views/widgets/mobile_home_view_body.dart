@@ -7,6 +7,7 @@ import 'package:sketch/features/home/data/models/reaction_model.dart';
 import 'package:sketch/features/home/data/models/share_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
+import 'package:sketch/translations.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -135,7 +136,7 @@ class HomeViewBody extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Text(
-              'Feed',
+              AppLocalizations.of(context)!.feed,
               style: AppStyles.styleSemiBold20(context),
             ),
           ),

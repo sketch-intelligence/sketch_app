@@ -5,6 +5,7 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/translations.dart';
 
 class FollowsListView extends StatelessWidget {
   const FollowsListView({
@@ -26,12 +27,12 @@ class FollowsListView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomButton(
+              CustomButton(
                 w: 92,
                 h: 36,
-                text: "following",
+                text: AppLocalizations.of(context)!.following,
                 color: AppColors.white,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     color: AppColors.black, fontSize: AppFontSize.size_14),
                 borderSideColor: AppColors.grey3B,
               ),

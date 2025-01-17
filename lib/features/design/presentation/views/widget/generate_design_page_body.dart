@@ -92,7 +92,7 @@ class GenerateDesignPageBody extends StatelessWidget {
           ),
           CustomTextField(
             controller: promptController,
-            hint: 'Describe the structure you want...',
+            hint: AppLocalizations.of(context)!.describeStructure,
             iconPath: Assets.imagesEdit,
           ),
           const SizedBox(
@@ -115,7 +115,7 @@ class GenerateDesignPageBody extends StatelessWidget {
                         width: 6,
                       ),
                       Text(
-                        'Generate',
+                        AppLocalizations.of(context)!.generate,
                         style: AppStyles.styleRegular18(context)
                             .copyWith(color: AppColors.whiteF0),
                       ),

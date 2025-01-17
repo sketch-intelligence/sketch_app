@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/core/constant/text_styles/font_size.dart';
-import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
 import 'package:sketch/features/follows/presentation/widgets/follows_list_view.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/translations.dart';
 
 class FollowsBody extends StatelessWidget {
   const FollowsBody({
@@ -27,7 +25,9 @@ class FollowsBody extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text("Sorted by Date Followed : Latest"),
+              Text(
+                AppLocalizations.of(context)!.sortedByDateFollowed,
+              ),
               SvgPicture.asset(Assets.imagesFunnel)
             ],
           ),
