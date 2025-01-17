@@ -14,6 +14,7 @@ import 'package:sketch/features/auth/presentation/manager/cubit/auth_states.dart
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/role_switch.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart';
+import 'package:sketch/translations.dart';
 
 class MobileRegisterViewBody extends StatelessWidget {
   const MobileRegisterViewBody({super.key});
@@ -40,7 +41,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                 children: [
                   const SketchLogo(),
                   Text(
-                    'Register',
+                    AppLocalizations.of(context)!.register,
                     style: AppStyles.styleBold22(context),
                   ),
                   const SizedBox(
@@ -48,7 +49,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                   ),
                   CustomTextField(
                     controller: userNameController,
-                    label: 'Username',
+                    label: AppLocalizations.of(context)!.username,
                     iconPath: Assets.imagesUser,
                     validator: (value) => AppValidators.validateFillFields(
                         context, userNameController.text),
@@ -58,7 +59,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                   ),
                   CustomTextField(
                     controller: emailController,
-                    label: 'Email',
+                    label: AppLocalizations.of(context)!.email,
                     iconPath: Assets.imagesMail,
                     validator: (value) => AppValidators.validateEmailFields(
                         context, emailController.text),
@@ -79,7 +80,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                               : Icons.remove_red_eye,
                           color: AppColors.primary),
                     ),
-                    label: 'Password',
+                    label: AppLocalizations.of(context)!.password,
                     iconPath: Assets.imagesLock,
                     validator: (value) => AppValidators.validatePasswordFields(
                         context, passwordController.text),
@@ -101,7 +102,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                                 : Icons.remove_red_eye,
                             color: AppColors.primary),
                       ),
-                      label: 'Confirm Password',
+                      label: AppLocalizations.of(context)!.confirmPassword,
                       iconPath: Assets.imagesLock,
                       validator: (value) =>
                           AppValidators.validateRepeatPasswordFields(
@@ -116,7 +117,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                     height: 30,
                   ),
                   CustomButton(
-                    text: 'Next',
+                    text: AppLocalizations.of(context)!.next,
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         GoRouter.of(context).go(AppRouter.kRootView);

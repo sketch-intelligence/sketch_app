@@ -12,6 +12,7 @@ import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
+import 'package:sketch/translations.dart';
 
 class GenerateDesignPageBody extends StatelessWidget {
   const GenerateDesignPageBody({super.key});
@@ -64,7 +65,7 @@ class GenerateDesignPageBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BackWidget(
-            title: "Generate Design",
+            title: AppLocalizations.of(context)!.generateDesign,
             onBack: () {
               context.read<RootPageCubit>().changePageIndex(0);
               GoRouter.of(context).go(AppRouter.kRootView);
@@ -77,7 +78,7 @@ class GenerateDesignPageBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Prompt Input',
+                AppLocalizations.of(context)!.promptInput,
                 style: AppStyles.styleBold18(context),
               ),
               IconButton(

@@ -15,10 +15,10 @@ class BodyColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-       SearchTextField(),
-        SizedBox(height: 16),
+        const SearchTextField(),
+        const SizedBox(height: 16),
         ChatTabBar(tabController: _tabController),
-        SizedBox(height: 25),
+        const SizedBox(height: 25),
         Expanded(
           child: ChatTabBarView(tabController: _tabController),
         ),
@@ -26,6 +26,3 @@ class BodyColumn extends StatelessWidget {
     );
   }
 }
-
-
-

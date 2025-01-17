@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
+import 'package:sketch/translations.dart';
 
 class LoginAlternative extends StatelessWidget {
   const LoginAlternative({super.key});
@@ -15,7 +16,7 @@ class LoginAlternative extends StatelessWidget {
         InkWell(
           onTap: () {},
           child: Text(
-            'Forgot Password ?',
+            AppLocalizations.of(context)!.forgotPassword,
             style: AppStyles.styleRegular16(context)
                 .copyWith(color: AppColors.primary),
           ),
@@ -26,7 +27,7 @@ class LoginAlternative extends StatelessWidget {
         Row(
           children: [
             Text(
-              'New user ? ',
+              AppLocalizations.of(context)!.newUser,
               style: AppStyles.styleRegular16(context),
             ),
             InkWell(
@@ -34,7 +35,7 @@ class LoginAlternative extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.kRegisterView);
               },
               child: Text(
-                'Register here',
+                AppLocalizations.of(context)!.registerHere,
                 style: AppStyles.styleRegular16(context)
                     .copyWith(color: AppColors.primary),
               ),
@@ -54,7 +55,7 @@ class RegisterAlternative extends StatelessWidget {
     return Row(
       children: [
         Text(
-          'Already have an account ? ',
+          AppLocalizations.of(context)!.alreadyHaveAccount,
           style: AppStyles.styleRegular16(context),
         ),
         InkWell(
@@ -62,7 +63,7 @@ class RegisterAlternative extends StatelessWidget {
             GoRouter.of(context).pop();
           },
           child: Text(
-            'Login here',
+            AppLocalizations.of(context)!.loginHere,
             style: AppStyles.styleRegular16(context)
                 .copyWith(color: AppColors.primary),
           ),

@@ -10,7 +10,7 @@ import 'package:sketch/features/Chat/presentation/Widgets/detailed%20chat%20page
 class DetailedChatPage extends StatelessWidget {
   final Chat chat;
 
-  DetailedChatPage({required this.chat});
+  const DetailedChatPage({super.key, required this.chat});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,8 @@ class DetailedChatPage extends StatelessWidget {
         actions: [
           // Phone icon for calling
           IconButton(
-            icon: SvgPicture.asset(Assets.imagesPhone), // Replace with the correct asset path
+            icon: SvgPicture.asset(
+                Assets.imagesPhone), // Replace with the correct asset path
             onPressed: () {
               // Handle phone call action
             },
@@ -37,41 +38,35 @@ class DetailedChatPage extends StatelessWidget {
               itemCount: chat.messages.length,
               itemBuilder: (context, index) {
                 final message = chat.messages[index];
-                bool isMe = message.senderName == "You"; // Change logic as needed
-                return _buildMessageTile(message, isMe,context);
+                bool isMe =
+                    message.senderName == "You"; // Change logic as needed
+                return _buildMessageTile(message, isMe, context);
               },
             ),
           ),
-          buildMessageInput(),
+          const buildMessageInput(),
         ],
       ),
     );
   }
 
-
-
-
-
-
-
-
-
-  Widget _buildMessageTile(Message message, bool isMe,BuildContext context) {
+  Widget _buildMessageTile(Message message, bool isMe, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           // Profile image for the sender/receiver
-          if (!isMe)
-           SvgPicture.asset(Assets.imagesAvatar22),
-          SizedBox(width: 8),
+          if (!isMe) SvgPicture.asset(Assets.imagesAvatar22),
+          const SizedBox(width: 8),
           // Message bubble
           Flexible(
             child: Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.75, // Limit max width
+                maxWidth:
+                    MediaQuery.of(context).size.width * 0.75, // Limit max width
               ),
               decoration: BoxDecoration(
                 color: isMe ? Colors.blue[200] : Colors.grey[300],
@@ -83,27 +78,23 @@ class DetailedChatPage extends StatelessWidget {
                   // Message content
                   Text(
                     message.content,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   // Message timestamp
                   Text(
                     message.time,
-                    style: TextStyle(fontSize: 10, color: Colors.black54),
+                    style: const TextStyle(fontSize: 10, color: Colors.black54),
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           // Profile image for the sender/receiver
-          if (isMe)
-           SvgPicture.asset(Assets.imagesAvatar13),
+          if (isMe) SvgPicture.asset(Assets.imagesAvatar13),
         ],
       ),
     );
   }
 }
-
-
-

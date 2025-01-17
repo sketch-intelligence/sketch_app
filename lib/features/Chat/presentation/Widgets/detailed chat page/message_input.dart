@@ -1,9 +1,9 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
+import 'package:sketch/translations.dart';
 
-
-  class buildMessageInput extends StatelessWidget {
+class buildMessageInput extends StatelessWidget {
   const buildMessageInput({super.key});
 
   @override
@@ -16,35 +16,37 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
           Row(
             children: [
               SvgPicture.asset(Assets.imagesShareNetwork),
-              SizedBox(width: 8.0), 
+              const SizedBox(width: 8.0),
               SvgPicture.asset(Assets.imagesSmiley),
-              SizedBox(width: 8.0), 
+              const SizedBox(width: 8.0),
               SvgPicture.asset(Assets.imagesImage59)
             ],
           ),
-          SizedBox(width: 8.0), // Space between icons and TextField
+          const SizedBox(width: 8.0), // Space between icons and TextField
           Expanded(
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Message',
+                hintText: AppLocalizations.of(context)!.message,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0), // Rounded corners
                   borderSide: BorderSide.none, // Remove border line
                 ),
                 filled: true,
                 fillColor: Colors.grey[200], // Match the background color
-                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0), // Adjust padding
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 16.0), // Adjust padding
               ),
             ),
           ),
-          SizedBox(width: 8.0), // Space between TextField and IconButton
+          const SizedBox(width: 8.0), // Space between TextField and IconButton
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.blue, // Change this to your desired color
             ),
             child: IconButton(
-              icon: Icon(Icons.send, color: Colors.white), // White icon color
+              icon: const Icon(Icons.send,
+                  color: Colors.white), // White icon color
               onPressed: () {
                 // Handle sending message logic here
               },

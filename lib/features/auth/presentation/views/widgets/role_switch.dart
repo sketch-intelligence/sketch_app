@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/translations.dart';
 
 class RoleSwitch extends StatefulWidget {
   const RoleSwitch({super.key});
@@ -25,7 +26,9 @@ class RoleSwitchState extends State<RoleSwitch> {
                 _selectedRole = value!;
               });
             },
-            title: const Text("User"),
+            title: Text(
+              AppLocalizations.of(context)!.user,
+            ),
             activeColor: AppColors.primary,
             dense: true,
             controlAffinity: ListTileControlAffinity.leading,
@@ -40,7 +43,9 @@ class RoleSwitchState extends State<RoleSwitch> {
                 _selectedRole = value!;
               });
             },
-            title: const Text("Architect"),
+            title: Text(
+              AppLocalizations.of(context)!.architect,
+            ),
             activeColor: AppColors.primary,
             dense: true,
             controlAffinity: ListTileControlAffinity.leading,

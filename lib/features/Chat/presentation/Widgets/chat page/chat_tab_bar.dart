@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/translations.dart';
 
 class ChatTabBar extends StatelessWidget {
   const ChatTabBar({
@@ -16,8 +17,12 @@ class ChatTabBar extends StatelessWidget {
       labelColor: AppColors.primary,
       controller: _tabController,
       tabs: [
-        Tab(text: 'Primary '),
-        Tab(text: 'Chatbot '),
+        Tab(
+          text: AppLocalizations.of(context)!.primary,
+        ),
+        Tab(
+          text: AppLocalizations.of(context)!.chatbot,
+        ),
       ],
     );
   }

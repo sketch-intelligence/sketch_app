@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/translations.dart';
 
 class CustomOrDivider extends StatelessWidget {
   const CustomOrDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: Divider(
             color: AppColors.grey3C,
             thickness: 1,
@@ -17,12 +18,12 @@ class CustomOrDivider extends StatelessWidget {
           ),
         ),
         Text(
-          "OR",
-          style: TextStyle(
+          AppLocalizations.of(context)!.or,
+          style: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
         ),
-        Expanded(
+        const Expanded(
           child: Divider(
             color: AppColors.grey3C,
             thickness: 1,

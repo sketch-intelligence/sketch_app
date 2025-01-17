@@ -5,7 +5,7 @@ import 'package:sketch/features/Chat/presentation/views/detailed_chat_page.dart'
 class ChatListView extends StatelessWidget {
   final List<Chat> chats;
 
-  ChatListView(this.chats);
+  const ChatListView(this.chats, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class ChatListView extends StatelessWidget {
         final chat = chats[index];
         return ListTile(
           leading: CircleAvatar(
-            child: Text(chat.userName[0]),
             backgroundColor: chat.isOnline ? Colors.green : Colors.grey,
+            child: Text(chat.userName[0]),
           ),
           title: Text(chat.userName),
           subtitle: Text(chat.lastMessage),
@@ -27,7 +27,7 @@ class ChatListView extends StatelessWidget {
                 Container(
                   width: 8,
                   height: 8,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.green,
                     shape: BoxShape.circle,
                   ),

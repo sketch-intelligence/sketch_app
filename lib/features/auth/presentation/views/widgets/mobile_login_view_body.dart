@@ -16,6 +16,7 @@ import 'package:sketch/features/auth/presentation/manager/cubit/auth_states.dart
 import 'package:sketch/features/auth/presentation/views/widgets/custom_or_divider.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart';
+import 'package:sketch/translations.dart';
 
 class MobileLoginViewBody extends StatelessWidget {
   const MobileLoginViewBody({super.key});
@@ -38,7 +39,7 @@ class MobileLoginViewBody extends StatelessWidget {
                 children: [
                   const SketchLogo(),
                   Text(
-                    'Login',
+                    AppLocalizations.of(context)!.login,
                     style: AppStyles.styleBold22(context),
                   ),
                   const SizedBox(
@@ -46,7 +47,7 @@ class MobileLoginViewBody extends StatelessWidget {
                   ),
                   CustomTextField(
                     controller: emailController,
-                    label: 'Email',
+                    label: AppLocalizations.of(context)!.email,
                     iconPath: Assets.imagesMail,
                     validator: (value) => AppValidators.validateEmailFields(
                         context, emailController.text),
@@ -67,7 +68,7 @@ class MobileLoginViewBody extends StatelessWidget {
                               : Icons.remove_red_eye,
                           color: AppColors.primary),
                     ),
-                    label: 'Password',
+                    label: AppLocalizations.of(context)!.password,
                     iconPath: Assets.imagesLock,
                     validator: (value) => AppValidators.validatePasswordFields(
                         context, passwordController.text),
@@ -76,7 +77,7 @@ class MobileLoginViewBody extends StatelessWidget {
                     height: 30,
                   ),
                   CustomButton(
-                    text: 'Login',
+                    text: AppLocalizations.of(context)!.login,
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         GoRouter.of(context).go(AppRouter.kRootView);
@@ -106,7 +107,7 @@ class MobileLoginViewBody extends StatelessWidget {
                           width: 8,
                         ),
                         Text(
-                          'Continue with Google',
+                          AppLocalizations.of(context)!.continueWithGoogle,
                           style: AppStyles.styleRegular18(context)
                               .copyWith(color: Colors.white),
                         ),
