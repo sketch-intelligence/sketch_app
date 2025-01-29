@@ -238,8 +238,9 @@ class ApiProvider {
         decodedJson = response.data;
       }
 
-      if (decodedJson['data'] == false || decodedJson['data'] == true)
+      if (decodedJson['data'] == false || decodedJson['data'] == true) {
         decodedJson['data'] = {'': ''};
+      }
       if (kDebugMode) {
         printWrapped(decodedJson.toString());
       }

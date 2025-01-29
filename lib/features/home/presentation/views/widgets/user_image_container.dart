@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/features/Profile/Presentation/views/profile_views.dart';
+import 'package:sketch/features/Profile/Presentation/user%20profile/views/profile_views.dart';
+import 'package:sketch/features/my%20profile/presentation/views/my_profile_view.dart';
 
 // Update with your actual path
 
@@ -17,7 +18,8 @@ class UserImageContainer extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProfilePage()), // Navigate to ProfileView
+          MaterialPageRoute(
+              builder: (context) => MyProfilePage()), // Navigate to ProfileView
         );
       },
       child: Container(

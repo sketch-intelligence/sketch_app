@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
-import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
+import 'package:sketch/features/follows/data/models/follows_model.dart';
 import 'package:sketch/features/follows/presentation/widgets/follows_list_view.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
 
@@ -14,7 +13,7 @@ class FollowsBody extends StatelessWidget {
     required this.users,
   });
 
-  final List<PersonModel> users;
+  final List<FollowModel> users;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +26,26 @@ class FollowsBody extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text("Sorted by Date Followed : Latest"),
-              SvgPicture.asset(Assets.imagesFunnel)
+              // Responsive text size
+              Text(
+                "Sorted by Date Followed : Latest",
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width < 350
+                      ? AppFontSize
+                          .size_12 // Smaller font size for smaller screens
+                      : AppFontSize.size_14, // Regular font size
+                ),
+              ),
+              SvgPicture.asset(
+                Assets.imagesFunnel,
+                width: MediaQuery.of(context).size.width < 350
+                    ? 16
+                    : 20, // Smaller icon size for smaller screens
+                height: MediaQuery.of(context).size.width < 350
+                    ? 16
+                    : 20, // Keep the height proportional
+              ),
             ],
-          ),
-          const SizedBox(
-            height: 10,
           ),
           Expanded(
             child: FollowsListView(users: users),

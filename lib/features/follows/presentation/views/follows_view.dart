@@ -4,27 +4,36 @@ import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/size_config.dart';
+import 'package:sketch/features/follows/data/models/follows_model.dart';
 import 'package:sketch/features/follows/presentation/widgets/FollowsBody.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
 
-class FollowsView extends StatelessWidget {
-  static String username = "Katie Lee";
-
-  static List<PersonModel> followers = [
-    PersonModel(userName: "omar", image: Assets.imagesGlobeHemisphereEast),
-    PersonModel(userName: "maher", image: Assets.imagesGlobeHemisphereEast),
-    PersonModel(userName: "beshir"),
-    PersonModel(userName: "aziz"),
-  ];
-
-  static List<PersonModel> following = [
-    PersonModel(userName: "john", image: Assets.imagesGlobeHemisphereEast),
-    PersonModel(userName: "alice"),
-    PersonModel(userName: "bob"),
-    PersonModel(userName: "charlie"),
-  ];
-
+class FollowsView extends StatefulWidget {
   const FollowsView({super.key});
+
+  @override
+  _FollowsViewState createState() => _FollowsViewState();
+}
+
+class _FollowsViewState extends State<FollowsView> {
+  String username = "Katie Lee";
+
+  List<FollowModel> followers = [
+    FollowModel(person: PersonModel(userName: "omar")),
+    FollowModel(person: PersonModel(userName: "beshir")),
+    FollowModel(person: PersonModel(userName: "Aziz")),
+    FollowModel(person: PersonModel(userName: "Quotish")),
+    FollowModel(person: PersonModel(userName: "Maher")),
+    FollowModel(person: PersonModel(userName: "Bashar")),
+  ];
+
+  List<FollowModel> following = [
+    FollowModel(person: PersonModel(userName: "omar")),
+    FollowModel(person: PersonModel(userName: "beshir")),
+    FollowModel(person: PersonModel(userName: "Aziz")),
+    FollowModel(person: PersonModel(userName: "Quotish")),
+    FollowModel(person: PersonModel(userName: "Maher")),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,51 +41,45 @@ class FollowsView extends StatelessWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
-            ? AppBar(
-                backgroundColor: Colors.white,
-                title: Row(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Row(
+            children: [
+              SvgPicture.asset(Assets.imagesAvatar13),
+              const SizedBox(width: 20),
+              Text(username),
+            ],
+          ),
+          bottom: TabBar(
+            indicatorColor: AppColors.primary,
+            labelColor: AppColors.primary,
+            tabs: [
+              Tab(
+                child: Row(
                   children: [
-                    SvgPicture.asset(Assets.imagesAvatar13),
-                    const SizedBox(width: 20),
-                    Text(username),
+                    Text("${followers.length}"), // Dynamic count
+                    const SizedBox(width: 5),
+                    const Text("Followers"),
                   ],
                 ),
-                bottom: TabBar(
-                  indicatorColor: AppColors.primary,
-                  labelColor: AppColors.primary,
-                  tabs: const [
-                    Tab(
-                      child: Row(
-                        children: [
-                          Text("77"),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("followers"),
-                        ],
-                      ),
-                    ),
-                    Tab(
-                      child: Row(children: [
-                        Text("85"),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text("Following")
-                      ]),
-                    ),
+              ),
+              Tab(
+                child: Row(
+                  children: [
+                    Text("${following.length}"), // Dynamic count
+                    const SizedBox(width: 5),
+                    const Text("Following"),
                   ],
                 ),
-              )
-            : null,
-        body: AdaptiveLayout(
-          mobileLayout: (context) => TabBarView(children: [
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
             FollowsBody(users: followers),
-            FollowsBody(users: following)
-          ]),
-          tabletLayout: (context) => const SizedBox(),
-          desktopLayout: (context) => const SizedBox(),
+            FollowsBody(users: following),
+          ],
         ),
       ),
     );

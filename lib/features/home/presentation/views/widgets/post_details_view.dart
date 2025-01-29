@@ -66,7 +66,7 @@ class AddComment extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        const UserImageContainer(imagePath: Assets.imagesAvatar13),
+        UserImageContainer(imagePath: Assets.imagesAvatar13),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

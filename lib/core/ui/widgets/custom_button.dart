@@ -50,11 +50,11 @@ class CustomButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null) ...[
-                   Padding(
-                     padding: const EdgeInsets.only(left: 10),
-                     child: SvgPicture.asset(icon!),
-                   ),
-                    SizedBox(width: 8), // Space between icon and text
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: SvgPicture.asset(icon!),
+                    ),
+                    const SizedBox(width: 8), // Space between icon and text
                   ],
                   Expanded(
                     child: Center(
@@ -62,7 +62,8 @@ class CustomButton extends StatelessWidget {
                         text!,
                         style: textStyle ??
                             AppTextStyle.getMediumStyle(
-                              color: Theme.of(context).colorScheme.secondaryColor,
+                              color:
+                                  Theme.of(context).colorScheme.secondaryColor,
                               fontSize: AppFontSize.size_16,
                             ),
                         textAlign: (rowChild != null)

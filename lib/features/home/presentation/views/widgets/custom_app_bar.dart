@@ -7,7 +7,6 @@ import 'package:sketch/core/widgets/custom_search_text_field.dart';
 import 'package:sketch/features/Chat/presentation/views/chatpage.dart';
 import 'package:sketch/features/home/presentation/views/widgets/user_image_container.dart';
 
-
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
@@ -15,7 +14,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const UserImageContainer(imagePath: Assets.imagesAvatar13),
+        UserImageContainer(imagePath: Assets.imagesAvatar13),
         const SizedBox(
           width: 8,
         ),
@@ -30,8 +29,8 @@ class CustomAppBar extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return ChatPage();
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const ChatPage();
             }));
           },
           icon: SvgPicture.asset(Assets.imagesChat),
