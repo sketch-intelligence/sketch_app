@@ -14,11 +14,11 @@ class DatePickerField extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
-          context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(2000),
-          lastDate: DateTime(2101),
-        );
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime(2101),
+            fieldLabelText: "enter a date");
         if (pickedDate != null) {
           controller.text = DateFormat('dd MMM yyyy').format(pickedDate);
         }

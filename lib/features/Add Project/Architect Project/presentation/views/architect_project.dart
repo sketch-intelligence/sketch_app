@@ -105,7 +105,9 @@ class _ArchitectProjectState extends State<ArchitectProject> {
               maxLines: 5,
             ),
             const SizedBox(height: 12),
-            const LabelWidget(text: "Completion Date"),
+            const LabelWidget(
+              text: "Completion Date",
+            ),
             DatePickerField(controller: _completionDateController),
             const SizedBox(height: 60),
             Center(
