@@ -1,42 +1,45 @@
-// lib/features/Add Project/Architect Project/widgets/file_upload_widget.dart
 import 'package:flutter/material.dart';
-import 'package:sketch/core/constant/app_colors/app_colors.dart';
-import 'package:sketch/core/constant/text_styles/app_text_style.dart';
-import 'package:sketch/core/constant/text_styles/font_size.dart';
+import 'package:file_picker/file_picker.dart';
 
 class FileUploadWidget extends StatelessWidget {
   final String? selectedFile;
-  final Function onTap;
+  final VoidCallback onTap;
 
-  const FileUploadWidget({super.key, this.selectedFile, required this.onTap});
+  const FileUploadWidget({
+    Key? key,
+    required this.selectedFile,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(),
+      onTap: onTap, // Trigger file picker on tap
       child: Container(
-        height: 120,
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.greyDD, width: 1),
+          color: Colors.grey[200],
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Center(
-          child: selectedFile == null
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.cloud_upload, size: 40, color: Colors.grey),
-                    Text("Browse files",
-                        style: AppTextStyle.getMediumStyle(
-                            fontSize: AppFontSize.size_14, color: Colors.blue)),
-                    Text("Supported format: PNG, JPG",
-                        style: AppTextStyle.getRegularStyle(
-                            fontSize: AppFontSize.size_12, color: Colors.grey)),
-                  ],
-                )
-              : Text("Selected: $selectedFile",
-                  style: AppTextStyle.getMediumStyle(
-                      fontSize: AppFontSize.size_14, color: Colors.black)),
+        child: Column(
+          children: [
+            selectedFile != null
+                ? Image.asset(
+                    selectedFile!,
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  )
+                : Icon(
+                    Icons.add_a_photo,
+                    size: 50,
+                    color: Colors.grey,
+                  ),
+            Text(
+              selectedFile != null ? selectedFile! : 'Choose an image',
+              style: TextStyle(color: Colors.grey),
+            ),
+          ],
         ),
       ),
     );

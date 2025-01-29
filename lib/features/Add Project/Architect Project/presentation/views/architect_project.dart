@@ -1,4 +1,3 @@
-// lib/features/Add Project/Architect Project/screens/architect_project.dart
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
@@ -9,6 +8,7 @@ import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/w
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/widgets/file_upload_widget.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/widgets/label_widget.dart';
 import '../../../../../core/constant/text_styles/font_size.dart';
+import 'package:file_picker/file_picker.dart';
 
 class ArchitectProject extends StatefulWidget {
   final ArchitectProjectModel? project;
@@ -38,12 +38,26 @@ class _ArchitectProjectState extends State<ArchitectProject> {
     }
   }
 
+  // Function to handle the file picker and store the selected file
+  Future<void> _chooseImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image, // Set the file type to images only
+    );
+
+    if (result != null) {
+      setState(() {
+        selectedFile = result.files.single.path; // Store the selected file path
+      });
+    }
+  }
+
+  // Function to submit the project
   void _submitProject() {
     ArchitectProjectModel newProject = ArchitectProjectModel(
       id: "1",
       title: _titleController.text,
       description: _descriptionController.text,
-      imageUrl: selectedFile ?? '',
+      imageUrl: selectedFile ?? '', // Pass the selected file path
       completionDate: [_completionDateController.text],
     );
 
@@ -89,11 +103,7 @@ class _ArchitectProjectState extends State<ArchitectProject> {
             const LabelWidget(text: "Project Gallery"),
             FileUploadWidget(
               selectedFile: selectedFile,
-              onTap: () {
-                setState(() {
-                  selectedFile = "SampleFile.png";
-                });
-              },
+              onTap: _chooseImage, // Invoke the file picker here
             ),
             const SizedBox(height: 12),
             const LabelWidget(text: "Project Description"),
