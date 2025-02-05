@@ -9,6 +9,7 @@ import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
 import 'package:sketch/features/design/presentation/views/question_pages.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
+import 'package:sketch/features/profile_settings/presentation/profile_setting_view.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
@@ -112,7 +113,7 @@ class RootScreen extends StatelessWidget {
                       : (context.read<RootPageCubit>().rootIndex == 3)
                           ? const QuestionPages()
                           : (context.read<RootPageCubit>().rootIndex == 4)
-                              ? const SizedBox()
+                              ? const ProfileSettingScreen()
                               : const SizedBox(),
         ),
       ),

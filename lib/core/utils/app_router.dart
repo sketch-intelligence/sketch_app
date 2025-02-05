@@ -7,6 +7,7 @@ import 'package:sketch/features/home/data/models/post_model.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_details_view.dart';
 import 'package:sketch/features/notification/presentation/views/notification_view.dart';
+import 'package:sketch/features/profile_settings/presentation/widgets/change_lang.dart';
 import 'package:sketch/features/root_navigation_screens/screens/root_screen.dart';
 import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_project_details_view.dart';
@@ -19,6 +20,7 @@ abstract class AppRouter {
   static const kPostDetailsView = '/postDetailsView';
   static const kNotificationView = '/notificationView';
   static const kDesignView = '/designView';
+  static const kLangView = '/langView';
   static const kUserProposedProjectDetails = '/userProposedProjectDetails';
 
   static final router = GoRouter(
@@ -38,6 +40,10 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: kLangView,
+        builder: (context, state) => const ChangeLanguageScreen(),
       ),
       GoRoute(
         path: kPostDetailsView,

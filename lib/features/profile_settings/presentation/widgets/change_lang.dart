@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rent_chicken/core/constant/app_colors/app_colors.dart';
-import 'package:rent_chicken/core/constant/app_padding/app_padding.dart';
-import 'package:rent_chicken/core/constant/text_styles/app_text_style.dart';
-import 'package:rent_chicken/core/constant/text_styles/font_size.dart';
-import 'package:rent_chicken/core/ui/widgets/custom_button.dart';
-import 'package:rent_chicken/features/language/cubit/language_cubit.dart';
-
-import '../../../core/classes/keys.dart';
-import '../../../core/ui/widgets/back_widget.dart';
-import '../../../translations.dart';
-import '../../language/cubit/language_states.dart';
+import 'package:sketch/core/classes/keys.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_padding/app_padding.dart';
+import 'package:sketch/core/constant/text_styles/app_text_style.dart';
+import 'package:sketch/core/constant/text_styles/font_size.dart';
+import 'package:sketch/core/ui/widgets/back_widget.dart';
+import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/features/language/cubit/language_cubit.dart';
+import 'package:sketch/features/language/cubit/language_states.dart';
+import 'package:sketch/translations.dart';
 
 class ChangeLanguageScreen extends StatelessWidget {
   const ChangeLanguageScreen({super.key});
@@ -82,12 +81,12 @@ class ChangeLanguageScreen extends StatelessWidget {
                           InkWell(
                             onTap: () => context
                                 .read<LanguageCubit>()
-                                .updateLanguage(lng: 'fr'),
+                                .updateLanguage(lng: 'ar'),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color:
-                                    context.read<LanguageCubit>().lang == 'fr'
+                                    context.read<LanguageCubit>().lang == 'ar'
                                         ? AppColors.greyE5
                                         : null,
                                 border: Border.all(color: AppColors.greyDD),
@@ -99,7 +98,7 @@ class ChangeLanguageScreen extends StatelessWidget {
                                     vertical: AppPaddingSize.padding_14,
                                     horizontal: AppPaddingSize.padding_25),
                                 child: Text(
-                                  AppLocalizations.of(context)!.french,
+                                  AppLocalizations.of(context)!.arabic,
                                   style: AppTextStyle.getMediumStyle(
                                       fontSize: AppFontSize.size_16,
                                       color: AppColors.black14),
