@@ -6,6 +6,7 @@ import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/utils/size_config.dart';
 import 'package:sketch/features/notification/presentation/views/widgets/notification_view_body.dart';
+import 'package:sketch/translations.dart';
 
 class NotificationView extends StatelessWidget {
   const NotificationView({super.key});
@@ -22,7 +23,7 @@ class NotificationView extends StatelessWidget {
                 icon: SvgPicture.asset(Assets.imagesBackArrow),
               ),
               title: Text(
-                'Notifications',
+                AppLocalizations.of(context)!.notification,
                 style: AppStyles.styleBold18(context),
               ),
               centerTitle: true,

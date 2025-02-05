@@ -9,9 +9,11 @@ import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
 import 'package:sketch/features/design/presentation/views/question_pages.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
+import 'package:sketch/features/profile_settings/presentation/profile_setting_view.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
+import 'package:sketch/translations.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -54,7 +56,7 @@ class RootScreen extends StatelessWidget {
                     context.read<RootPageCubit>().changePageIndex(value),
                 items: [
                   BottomNavigationBarItem(
-                      label: "Home",
+                      label: AppLocalizations.of(context)!.home,
                       icon: SvgPicture.asset(
                         Assets.imagesHome,
                         color: context.read<RootPageCubit>().rootIndex == 0
@@ -63,7 +65,7 @@ class RootScreen extends StatelessWidget {
                         fit: BoxFit.fill,
                       )),
                   BottomNavigationBarItem(
-                      label: "Network",
+                      label: AppLocalizations.of(context)!.network,
                       icon: SvgPicture.asset(
                         Assets.imagesNetwork,
                         color: context.read<RootPageCubit>().rootIndex == 1
@@ -73,7 +75,7 @@ class RootScreen extends StatelessWidget {
                       )),
                   //
                   BottomNavigationBarItem(
-                      label: "Projects",
+                      label: AppLocalizations.of(context)!.projects,
                       icon: SvgPicture.asset(
                         Assets.imagesConfigurationTool,
                         color: context.read<RootPageCubit>().rootIndex == 2
@@ -82,7 +84,7 @@ class RootScreen extends StatelessWidget {
                         fit: BoxFit.fill,
                       )),
                   BottomNavigationBarItem(
-                      label: "Generate",
+                      label: AppLocalizations.of(context)!.generate,
                       icon: SvgPicture.asset(
                         Assets.imagesArtificialBrain,
                         color: context.read<RootPageCubit>().rootIndex == 3
@@ -92,7 +94,7 @@ class RootScreen extends StatelessWidget {
                       )),
 
                   BottomNavigationBarItem(
-                      label: "Profile",
+                      label: AppLocalizations.of(context)!.profile,
                       icon: SvgPicture.asset(
                         Assets.imagesProfile,
                         color: context.read<RootPageCubit>().rootIndex == 4
@@ -111,7 +113,7 @@ class RootScreen extends StatelessWidget {
                       : (context.read<RootPageCubit>().rootIndex == 3)
                           ? const QuestionPages()
                           : (context.read<RootPageCubit>().rootIndex == 4)
-                              ? const SizedBox()
+                              ? const ProfileSettingScreen()
                               : const SizedBox(),
         ),
       ),

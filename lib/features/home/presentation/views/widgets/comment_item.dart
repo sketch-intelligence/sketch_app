@@ -5,6 +5,7 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/features/home/data/models/comment_model.dart';
+import 'package:sketch/translations.dart';
 
 class CommentItem extends StatelessWidget {
   const CommentItem({super.key, required this.commentModel});
@@ -51,13 +52,17 @@ class CommentItem extends StatelessWidget {
                           width: 16,
                         ),
                         Text(commentModel.reactions.length.toString()),
-                        const Text(' like'),
+                        Text(
+                          AppLocalizations.of(context)!.like,
+                        ),
                         const SizedBox(
                           width: 16,
                         ),
                       ],
                     ),
-                    const Text('Reply'),
+                    Text(
+                      AppLocalizations.of(context)!.reply,
+                    ),
                   ],
                 )
               ],

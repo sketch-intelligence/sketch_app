@@ -6,6 +6,7 @@ import 'package:sketch/features/home/data/models/post_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/comment_item.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
 import 'package:sketch/features/home/presentation/views/widgets/user_image_container.dart';
+import 'package:sketch/translations.dart';
 
 class PostDetailsView extends StatelessWidget {
   const PostDetailsView({super.key, required this.post});
@@ -71,7 +72,9 @@ class AddComment extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: CustomTextField(
-                controller: commentController, hint: 'write comment'),
+              controller: commentController,
+              hint: AppLocalizations.of(context)!.writeComment,
+            ),
           ),
         ),
         SvgPicture.asset(Assets.imagesPaperPlaneRight),

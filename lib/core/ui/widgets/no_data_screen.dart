@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:sketch/core/constant/text_styles/app_text_style.dart';
-// import 'package:sketch/core/constant/text_styles/font_size.dart';
+// import 'package:rms/core/constant/text_styles/app_text_style.dart';
+// import 'package:rms/core/constant/text_styles/font_size.dart';
 
 // import '../../constant/app_colors/app_colors.dart';
 // import '../../constant/app_images/app_images.dart';

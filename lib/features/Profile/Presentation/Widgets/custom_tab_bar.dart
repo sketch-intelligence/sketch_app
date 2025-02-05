@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
-import 'package:sketch/features/follows/presentation/views/follows_view.dart'; // Import the FollowsView
+import 'package:sketch/features/follows/presentation/views/follows_view.dart';
+import 'package:sketch/translations.dart';
 
 class CustomTabBar extends StatelessWidget {
-  final TabController tabController;
-
-  const CustomTabBar({super.key, required this.tabController});
+  const CustomTabBar({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TabBar(
-      controller: tabController,
       indicatorColor: AppColors.primary,
       labelColor: AppColors.primary,
+      tabs: [
+        Tab(
+          text: AppLocalizations.of(context)!.posts,
+        ),
+        Tab(
+          text: AppLocalizations.of(context)!.projects,
+        ),
+        Tab(
+          text: AppLocalizations.of(context)!.follows,
+        ),
+      ],
       onTap: (index) {
+        // Check if the "Follows" tab (index 2) is tapped
         if (index == 2) {
-          // Assuming 2 is the index for the Follows tab
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) =>
                   const FollowsView(), // Navigate to FollowsView
             ),
           );
-        } else {
-          tabController.animateTo(index); // Change the tab if it's not Follows
         }
       },
-      tabs: const [
-        Tab(text: "Posts"),
-        Tab(text: "Projects"),
-        Tab(text: "Follows"),
-      ],
     );
   }
 }

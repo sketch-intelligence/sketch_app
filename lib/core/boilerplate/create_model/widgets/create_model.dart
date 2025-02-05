@@ -96,6 +96,7 @@ class _GetModelState<Model> extends State<CreateModel<Model>> {
               widget.onError!(state.message.toString());
             } else {
               Dialogs.showSnackBar(
+                  context: context,
                   message: state.message.toString(),
                   typeSnackBar: AnimatedSnackBarType.error);
             }

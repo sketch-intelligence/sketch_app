@@ -1,9 +1,9 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:sketch/core/constant/app_colors/app_colors.dart';
-// import 'package:sketch/core/constant/app_images/app_images.dart';
-// import 'package:sketch/core/ui/widgets/base_hens_state_screen.dart';
-// import 'package:sketch/core/utils/app_assets.dart';
+// import 'package:rms/core/constant/app_colors/app_colors.dart';
+// import 'package:rms/core/constant/app_images/app_images.dart';
+// import 'package:rms/core/ui/widgets/base_hens_state_screen.dart';
+// import 'package:rms/core/utils/app_assets.dart';
 
 // import '../../constant/text_styles/app_text_style.dart';
 // import '../../constant/text_styles/font_size.dart';

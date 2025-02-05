@@ -86,6 +86,10 @@ class Assets {
   /// assets/images/Image59.svg
   static const String imagesImage59 = "assets/images/Image59.svg";
 
+  /// Assets for imagesLang
+  /// assets/images/lang.svg
+  static const String imagesLang = "assets/images/lang.svg";
+
   /// Assets for imagesLike
   /// assets/images/Like.svg
   static const String imagesLike = "assets/images/Like.svg";

@@ -5,7 +5,6 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/features/follows/data/models/follows_model.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
 
 class FollowsListView extends StatelessWidget {
   const FollowsListView({

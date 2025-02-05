@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/core/utils/adaptive_layout.dart';
-import 'package:sketch/core/utils/size_config.dart';
 import 'package:sketch/features/follows/data/models/follows_model.dart';
 import 'package:sketch/features/follows/presentation/widgets/FollowsBody.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';

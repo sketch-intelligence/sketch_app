@@ -5,7 +5,6 @@ import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
 import 'package:sketch/features/follows/data/models/follows_model.dart';
 import 'package:sketch/features/follows/presentation/widgets/follows_list_view.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
 
 class FollowsBody extends StatelessWidget {
   const FollowsBody({
