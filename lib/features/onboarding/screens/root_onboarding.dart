@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
@@ -31,18 +31,18 @@ class RootOnBoardingScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: BackWidget(
-                onBack: () => context.read<OnBoardingCubit>().index == 0
-                    ? SystemNavigator.pop()
-                    : context
-                        .read<OnBoardingCubit>()
-                        .pageController
-                        .previousPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeIn),
+                existBack:
+                    context.read<OnBoardingCubit>().index == 0 ? false : true,
+                onBack: () => context
+                    .read<OnBoardingCubit>()
+                    .pageController
+                    .previousPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeIn),
                 titleWidget: const Expanded(
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(end: 16.0),
-                    child: SketchLogo(),
+                    child: SizedBox(height: 70, width: 70, child: SketchLogo()),
                   ),
                 ),
               ),
@@ -77,33 +77,33 @@ class RootOnBoardingScreen extends StatelessWidget {
   String _getImageForIndex(int index) {
     switch (index) {
       case 0:
-        return "assets/images/images.png";
+        return Assets.imagesOnBb2;
       case 1:
-        return "assets/images/images.png";
+        return Assets.imagesOnB2;
       default:
-        return "assets/images/images.png";
+        return Assets.imagesOnB3;
     }
   }
 
   String _getTitleForIndex(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "AppLocalizations.of(context)!.onboarding1_title";
+        return "onboarding1_title";
       case 1:
-        return "AppLocalizations.of(context)!.onboarding2_title";
+        return "onboarding2_title";
       default:
-        return "AppLocalizations.of(context)!.onboarding3_title";
+        return "onboarding3_title";
     }
   }
 
   String _getSubTitleForIndex(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "AppLocalizations.of(context)!.onboarding1_subtitle";
+        return "onboarding1_subtitle";
       case 1:
-        return "AppLocalizations.of(context)!.onboarding2_subtitle";
+        return "onboarding2_subtitle";
       default:
-        return "AppLocalizations.of(context)!.onboarding3_subtitle";
+        return "onboarding3_subtitle";
     }
   }
 }
@@ -235,7 +235,7 @@ class _BottomSection extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primaryColor,
                     text: context.read<OnBoardingCubit>().index != 2
                         ? AppLocalizations.of(context)!.next
-                        : "AppLocalizations.of(context)!.get_started",
+                        : "Get Started",
                     textStyle: AppTextStyle.getMediumStyle(
                       color: Theme.of(context).colorScheme.secondaryColor,
                       fontSize: AppFontSize.size_16,
@@ -266,22 +266,22 @@ class _BottomSection extends StatelessWidget {
   String _getTitle(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "AppLocalizations.of(context)!.onboarding1_title";
+        return "onboarding1_title";
       case 1:
-        return "AppLocalizations.of(context)!.onboarding2_title";
+        return "onboarding2_title";
       default:
-        return "AppLocalizations.of(context)!.onboarding3_title";
+        return "onboarding3_title";
     }
   }
 
   String _getSubtitle(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "AppLocalizations.of(context)!.onboarding1_subtitle";
+        return "onboarding1_subtitle";
       case 1:
-        return "AppLocalizations.of(context)!.onboarding2_subtitle";
+        return "onboarding2_subtitle";
       default:
-        return "AppLocalizations.of(context)!.onboarding3_subtitle";
+        return "onboarding3_subtitle";
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 1, milliseconds: 3), () async {
       if (CacheHelper.token?.isEmpty ?? true) {
-        if (CacheHelper.firstTime == true) {
+        if (CacheHelper.firstTime == false) {
           GoRouter.of(context).go(AppRouter.kOnBoard);
         } else {
           GoRouter.of(context).go(AppRouter.kLoginView);
@@ -46,6 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           const Expanded(child: SketchLogo()),
+          const CupertinoActivityIndicator(),
           Text(
             "Sketch",
             style: AppTextStyle.getBoldStyle(

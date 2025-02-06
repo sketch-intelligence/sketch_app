@@ -1,13 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sketch/core/constant/end_points/cashe_helper_constant.dart';
+import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 
 class CacheHelper {
   static late Box<dynamic> box;
 
   static init() async {
     await Hive.initFlutter();
-    // Hive.registerAdapter(LoginModelAdapter());
-    // Hive.registerAdapter(ForgetPasswordModelAdapter());
+    Hive.registerAdapter(LoginModelAdapter());
     box = await Hive.openBox("default_box");
   }
 
@@ -33,18 +33,18 @@ class CacheHelper {
   static bool get firstTime => box.get(isFirstTime) ?? true;
   static int? get userID => box.get(userId);
 
-  // static Future<void> setUserInfo(LoginModel? value) =>
-  //     box.put(userModel, value);
+  static Future<void> setUserInfo(LoginModel? value) =>
+      box.put(userModel, value);
 
-  // static LoginModel? get userInfo {
-  //   if (!box.containsKey(userModel)) return null;
-  //   return box.get(userModel);
-  // }
+  static LoginModel? get userInfo {
+    if (!box.containsKey(userModel)) return null;
+    return box.get(userModel);
+  }
 
   static void deleteCertificates() {
     setToken(null);
     setUserId(null);
-    // setUserInfo(null);
+    setUserInfo(null);
     setBalance(null);
   }
 }

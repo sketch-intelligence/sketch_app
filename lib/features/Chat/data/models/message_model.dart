@@ -3,5 +3,6 @@ class Message {
   final String content;
   final String time;
 
-  Message({required this.senderName, required this.content, required this.time});
+  Message(
+      {required this.senderName, required this.content, required this.time});
 }

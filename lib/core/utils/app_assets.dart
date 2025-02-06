@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesArtificialBrain
   /// assets/images/ArtificialBrain.svg
-  static const String imagesArtificialBrain = "assets/images/ArtificialBrain.svg";
+  static const String imagesArtificialBrain =
+      "assets/images/ArtificialBrain.svg";
 
   /// Assets for imagesAvatar13
   /// assets/images/Avatar13.svg
@@ -48,7 +49,8 @@ class Assets {
 
   /// Assets for imagesDotsThreeVertical
   /// assets/images/DotsThreeVertical.svg
-  static const String imagesDotsThreeVertical = "assets/images/DotsThreeVertical.svg";
+  static const String imagesDotsThreeVertical =
+      "assets/images/DotsThreeVertical.svg";
 
   /// Assets for imagesEdit
   /// assets/images/Edit.svg
@@ -60,7 +62,8 @@ class Assets {
 
   /// Assets for imagesGlobeHemisphereEast
   /// assets/images/GlobeHemisphereEast.svg
-  static const String imagesGlobeHemisphereEast = "assets/images/GlobeHemisphereEast.svg";
+  static const String imagesGlobeHemisphereEast =
+      "assets/images/GlobeHemisphereEast.svg";
 
   /// Assets for imagesHome
   /// assets/images/Home.svg
@@ -100,11 +103,13 @@ class Assets {
 
   /// Assets for imagesNewspaperClipping
   /// assets/images/NewspaperClipping.svg
-  static const String imagesNewspaperClipping = "assets/images/NewspaperClipping.svg";
+  static const String imagesNewspaperClipping =
+      "assets/images/NewspaperClipping.svg";
 
   /// Assets for imagesPaperPlaneRight
   /// assets/images/PaperPlaneRight.svg
-  static const String imagesPaperPlaneRight = "assets/images/PaperPlaneRight.svg";
+  static const String imagesPaperPlaneRight =
+      "assets/images/PaperPlaneRight.svg";
 
   /// Assets for imagesPhone
   /// assets/images/Phone.svg
@@ -150,4 +155,3 @@ class Assets {
   /// assets/images/User.svg
   static const String imagesUser = "assets/images/User.svg";
 }
-

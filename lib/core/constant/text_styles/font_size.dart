@@ -1,5 +1,4 @@
 abstract class AppFontSize {
-
   static const double size_8 = 8;
   static const double size_17 = 17;
   static const double size_18 = 18;
@@ -19,5 +18,4 @@ abstract class AppFontSize {
   static const double size_26 = 26;
   static const double size_30 = 30;
   static const double size_34 = 34;
-
 }

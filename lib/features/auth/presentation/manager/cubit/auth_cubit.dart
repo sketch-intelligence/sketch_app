@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketch/features/auth/domain/use_case/login_use_case.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_states.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
@@ -6,7 +7,7 @@ class AuthCubit extends Cubit<AuthStates> {
   bool isObscure = true;
   bool passwordObscure = true;
   bool confirmPasswordObscure = true;
-  // LoginParams loginParams = LoginParams(username: '', password: '');
+  LoginParams loginParams = LoginParams(email: '', password: '');
   // ForgetPasswordParams forgetPasswordParams = ForgetPasswordParams();
   // SignupParams signupParams = SignupParams();
 

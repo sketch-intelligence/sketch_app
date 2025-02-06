@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
+import 'package:sketch/core/constant/end_points/cashe_helper_constant.dart';
 import 'package:sketch/core/http/api_provider.dart';
 import 'package:sketch/core/http/http_method.dart';
 
@@ -22,13 +24,19 @@ abstract class RemoteDataSource {
     String? fileVideoKey,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? data,
+    bool withAuthentication = false,
   }) async {
     final Map<String, String> headers = {};
     String? leftResponse;
     dynamic rightResponse;
 
     headers.putIfAbsent("Content-Type", () => 'application/json');
-
+    if (withAuthentication) {
+      // await checkTokenValidation();
+      final String token = CacheHelper.token!;
+      debugPrint("auth token : $token");
+      headers.putIfAbsent(headerAuth, () => 'Bearer $token');
+    }
     // headers.putIfAbsent(LanguageKey, () => '${CacheHelper.getData(key: LanguageValue)}');
     final response = await ApiProvider.sendObjectRequest(
         method: method,
@@ -68,6 +76,13 @@ abstract class RemoteDataSource {
     String? leftResponse;
     dynamic rightResponse;
     final Map<String, String> headers = {};
+
+    if (withAuthentication) {
+      // await checkTokenValidation();
+      String token = CacheHelper.token!;
+      headers.putIfAbsent(headerAuth, () => 'Bearer $token');
+    }
+    // headers.putIfAbsent(LanguageKey, () => '${CacheHelper.getData(key: LanguageValue)}');
 
     final response = await ApiProvider.sendObjectWithOutResponseRequest(
       method: method,

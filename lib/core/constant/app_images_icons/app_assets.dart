@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesArtificialBrain
   /// assets/images/ArtificialBrain.svg
-  static const String imagesArtificialBrain = "assets/images/ArtificialBrain.svg";
+  static const String imagesArtificialBrain =
+      "assets/images/ArtificialBrain.svg";
 
   /// Assets for imagesAvatar13
   /// assets/images/Avatar13.svg
@@ -52,11 +53,13 @@ class Assets {
 
   /// Assets for imagesConfigurationTool
   /// assets/images/configuration_tool.svg
-  static const String imagesConfigurationTool = "assets/images/configuration_tool.svg";
+  static const String imagesConfigurationTool =
+      "assets/images/configuration_tool.svg";
 
   /// Assets for imagesDotsThreeVertical
   /// assets/images/DotsThreeVertical.svg
-  static const String imagesDotsThreeVertical = "assets/images/DotsThreeVertical.svg";
+  static const String imagesDotsThreeVertical =
+      "assets/images/DotsThreeVertical.svg";
 
   /// Assets for imagesEdit
   /// assets/images/Edit.svg
@@ -68,7 +71,8 @@ class Assets {
 
   /// Assets for imagesGlobeHemisphereEast
   /// assets/images/GlobeHemisphereEast.svg
-  static const String imagesGlobeHemisphereEast = "assets/images/GlobeHemisphereEast.svg";
+  static const String imagesGlobeHemisphereEast =
+      "assets/images/GlobeHemisphereEast.svg";
 
   /// Assets for imagesHome
   /// assets/images/Home.svg
@@ -85,6 +89,10 @@ class Assets {
   /// Assets for imagesImage59
   /// assets/images/Image59.svg
   static const String imagesImage59 = "assets/images/Image59.svg";
+
+  /// Assets for imagesImages
+  /// assets/images/images.png
+  static const String imagesImages = "assets/images/images.png";
 
   /// Assets for imagesLang
   /// assets/images/lang.svg
@@ -116,11 +124,29 @@ class Assets {
 
   /// Assets for imagesNewspaperClipping
   /// assets/images/NewspaperClipping.svg
-  static const String imagesNewspaperClipping = "assets/images/NewspaperClipping.svg";
+  static const String imagesNewspaperClipping =
+      "assets/images/NewspaperClipping.svg";
+
+  /// Assets for imagesOnB1
+  /// assets/images/on_b1.jpg
+  static const String imagesOnB1 = "assets/images/on_b1.jpg";
+
+  /// Assets for imagesOnB2
+  /// assets/images/on_b2.jpg
+  static const String imagesOnB2 = "assets/images/on_b2.jpg";
+
+  /// Assets for imagesOnB3
+  /// assets/images/on_b3.jpg
+  static const String imagesOnB3 = "assets/images/on_b3.jpg";
+
+  /// Assets for imagesOnBb2
+  /// assets/images/on_bb2.png
+  static const String imagesOnBb2 = "assets/images/on_bb2.png";
 
   /// Assets for imagesPaperPlaneRight
   /// assets/images/PaperPlaneRight.svg
-  static const String imagesPaperPlaneRight = "assets/images/PaperPlaneRight.svg";
+  static const String imagesPaperPlaneRight =
+      "assets/images/PaperPlaneRight.svg";
 
   /// Assets for imagesPhone
   /// assets/images/Phone.svg
@@ -168,10 +194,10 @@ class Assets {
 
   /// Assets for imagesUserGroupSolid
   /// assets/images/user_group_solid.svg
-  static const String imagesUserGroupSolid = "assets/images/user_group_solid.svg";
+  static const String imagesUserGroupSolid =
+      "assets/images/user_group_solid.svg";
 
   /// Assets for imagesUserPenSolid
   /// assets/images/user_pen_solid.svg
   static const String imagesUserPenSolid = "assets/images/user_pen_solid.svg";
 }
-

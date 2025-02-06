@@ -6,7 +6,8 @@ import 'package:sketch/core/utils/app_styles.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {super.key,
-      required this.controller,
+      this.controller,
+      this.onChanged,
       this.label,
       this.hint,
       this.isObscure = false,
@@ -15,9 +16,10 @@ class CustomTextField extends StatelessWidget {
       this.isBig = false,
       this.suffixIcon});
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? label;
   final String? hint;
+  final Function(String)? onChanged;
   final bool isObscure;
   final String? Function(String?)? validator;
   final String? iconPath;
@@ -54,6 +56,7 @@ class CustomTextField extends StatelessWidget {
           focusedBorder: buildFocusedBorder(),
           suffixIcon: suffixIcon),
       obscureText: isObscure,
+      onChanged: onChanged,
       validator: validator,
     );
   }

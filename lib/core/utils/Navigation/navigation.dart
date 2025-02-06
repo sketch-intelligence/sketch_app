@@ -7,7 +7,7 @@
 // class Navigation {
 //   static bool isOpen = false;
 //   static Future? popThenPush(Widget page) async {
-    
+
 //     return await Navigation.push(page);
 //   }
 

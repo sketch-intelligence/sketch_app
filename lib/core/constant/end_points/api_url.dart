@@ -1,3 +1,5 @@
-const baseUrl = ''; //base_url
+const baseUrl = 'http://localhost:8080/'; //base_url
 
 const authUrl = '${baseUrl}auth';
+const loginUrl = '$authUrl/authenticate';
+const registerUrl = '$authUrl/register/user';

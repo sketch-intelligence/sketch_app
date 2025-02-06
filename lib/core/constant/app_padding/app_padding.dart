@@ -1,9 +1,8 @@
 abstract class AppPaddingSize {
-
-  static const double padding_4  = 4;
-  static const double padding_8  = 8;
-  static const double padding_5  = 5;
-  static const double padding_6  = 6;
+  static const double padding_4 = 4;
+  static const double padding_8 = 8;
+  static const double padding_5 = 5;
+  static const double padding_6 = 6;
   static const double padding_14 = 14;
   static const double padding_16 = 16;
   static const double padding_18 = 18;
