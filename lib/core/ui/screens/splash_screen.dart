@@ -22,22 +22,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    // Only set firstTime to true if it doesn't exist in Hive
     if (!CacheHelper.box.containsKey(isFirstTime)) {
       CacheHelper.setFirstTime(true);
     }
 
-    print('Direct from Hive: ${CacheHelper.box.get(isFirstTime)}');
-    print('The value of firstTime is: ${CacheHelper.firstTime}');
-
     Timer(const Duration(seconds: 1, milliseconds: 3), () async {
       if (CacheHelper.token?.isEmpty ?? true) {
         if (CacheHelper.firstTime == true) {
-          print('yess');
           GoRouter.of(context).go(AppRouter.kOnBoard);
         } else {
-          print("no");
           GoRouter.of(context).go(AppRouter.kLoginView);
         }
       } else {
