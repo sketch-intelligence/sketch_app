@@ -6,7 +6,8 @@ class CacheHelper {
 
   static init() async {
     await Hive.initFlutter();
-    //Hive.registerAdapter(LoginModelAdapter());
+    // Hive.registerAdapter(LoginModelAdapter());
+    // Hive.registerAdapter(ForgetPasswordModelAdapter());
     box = await Hive.openBox("default_box");
   }
 

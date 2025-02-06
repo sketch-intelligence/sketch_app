@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sketch/core/ui/screens/splash_screen.dart';
 import 'package:sketch/features/auth/presentation/views/login_view.dart';
 import 'package:sketch/features/auth/presentation/views/register_view.dart';
 import 'package:sketch/features/design/presentation/views/generate_design_page.dart';
@@ -7,13 +8,15 @@ import 'package:sketch/features/home/data/models/post_model.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_details_view.dart';
 import 'package:sketch/features/notification/presentation/views/notification_view.dart';
+import 'package:sketch/features/onboarding/screens/root_onboarding.dart';
 import 'package:sketch/features/profile_settings/presentation/widgets/change_lang.dart';
 import 'package:sketch/features/root_navigation_screens/screens/root_screen.dart';
 import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_project_details_view.dart';
 
 abstract class AppRouter {
-  static const kLoginView = '/';
+  static const kSplash = '/';
+  static const kLoginView = '/loginView';
   static const kRegisterView = '/registerView';
   static const kHomeView = '/homeView';
   static const kRootView = '/rootView';
@@ -22,9 +25,18 @@ abstract class AppRouter {
   static const kDesignView = '/designView';
   static const kLangView = '/langView';
   static const kUserProposedProjectDetails = '/userProposedProjectDetails';
+  static const kOnBoard = '/onBoard';
 
   static final router = GoRouter(
     routes: [
+      GoRoute(
+        path: kSplash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: kOnBoard,
+        builder: (context, state) => const RootOnBoardingScreen(),
+      ),
       GoRoute(
         path: kLoginView,
         builder: (context, state) => const LoginView(),

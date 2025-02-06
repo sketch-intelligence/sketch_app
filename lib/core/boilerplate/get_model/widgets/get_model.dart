@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketch/core/ui/widgets/general_error_widget.dart';
 
 import '../cubits/get_model_cubit.dart';
 
@@ -61,35 +63,24 @@ class _GetModelState<Model> extends State<GetModel<Model>> {
         debugPrint(state.toString());
         if (state is Loading) {
           return SizedBox(
-            height: widget.loadingHeight,
-            child: widget.withoutCenterLoading
-                ? widget.loading
-                : Center(
-                    child: widget.loading ??
-                        const Center(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 0),
-                            // child: Lottie.asset(loadingLottie),
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                  ),
-          );
+              height: widget.loadingHeight,
+              child: widget.withoutCenterLoading
+                  ? widget.loading
+                  : Center(
+                      child: widget.loading ??
+                          const Center(
+                              child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 0),
+                                  child: CupertinoActivityIndicator()))));
         } else {
           if (state is GetModelSuccessfully) {
             return buildModel(state.model);
           } else if (state is Error) {
             return Center(
               child: widget.errorWidget ??
-                  // GeneralErrorWidget(
-                  //   message: state.message,
-                  //   onTap: () {
-                  //     cubit?.getModel();
-                  //   },
-                  // ),
-                  TextButton(
-                    child: Text(state.message),
-                    onPressed: () {
+                  GeneralErrorWidget(
+                    message: state.message,
+                    onTap: () {
                       cubit?.getModel();
                     },
                   ),

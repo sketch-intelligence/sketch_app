@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../ui/dialogs/dialogs.dart';
-// import '../../../utils/Navigation/navigation.dart';
 import '../cubits/create_model_cubit.dart';
 
 typedef CreatedCallback = void Function(CreateModelCubit cubit);
@@ -21,7 +21,7 @@ class CreateModel<Model> extends StatefulWidget {
   final bool withValidation;
   final Function? onError;
   final Widget? loadingWidget;
-  final Widget? errorWidget;
+  final String? errorWidgetPath;
 
   const CreateModel({
     super.key,
@@ -34,7 +34,7 @@ class CreateModel<Model> extends StatefulWidget {
     this.loadingHeight,
     this.onError,
     this.loadingWidget,
-    this.errorWidget,
+    this.errorWidgetPath,
   });
 
   @override
@@ -90,8 +90,10 @@ class _GetModelState<Model> extends State<CreateModel<Model>> {
             if (widget.onSuccess != null) widget.onSuccess!(state.model);
           }
           if (state is Error) {
-            if (widget.errorWidget != null) {
-              // Navigation.push(widget.errorWidget!);
+            if (widget.errorWidgetPath != null) {
+              // Navigator.push(context,widget.errorWidget!);
+              // Navigator.push(context,);
+              GoRouter.of(context).push(widget.errorWidgetPath!);
             } else if (widget.onError != null) {
               widget.onError!(state.message.toString());
             } else {
