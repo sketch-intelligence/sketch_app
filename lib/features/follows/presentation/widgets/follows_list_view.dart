@@ -16,7 +16,6 @@ class FollowsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width and height for responsive design
     final screenWidth = MediaQuery.of(context).size.width;
 
     return ListView.builder(
@@ -24,7 +23,7 @@ class FollowsListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.05, // Dynamic horizontal padding
+            horizontal: screenWidth * 0.05,
             vertical: 10.0,
           ),
           child: ListTile(
@@ -34,34 +33,27 @@ class FollowsListView extends StatelessWidget {
               users[index].person.userName,
               style: TextStyle(
                 fontSize: screenWidth < 350
-                    ? AppFontSize
-                        .size_12 // Smaller font size on smaller screens
-                    : AppFontSize.size_14, // Regular font size
+                    ? AppFontSize.size_12
+                    : AppFontSize.size_14,
               ),
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // CustomButton adjusts its width based on screen size
                 SizedBox(
                   width: screenWidth < 350
-                      ? screenWidth *
-                          0.22 // Use a percentage of the screen width for smaller screens
-                      : screenWidth *
-                          0.25, // Slightly larger for bigger screens
+                      ? screenWidth * 0.22
+                      : screenWidth * 0.25,
                   child: CustomButton(
-                    h: screenWidth < 350
-                        ? 30
-                        : 36, // Adjust button height for smaller screens
+                    h: screenWidth < 350 ? 30 : 36,
                     text: "following",
                     color: AppColors.white,
                     textStyle: TextStyle(
                       color: AppColors.black,
                       fontSize: screenWidth < 350
-                          ? AppFontSize
-                              .size_12 // Smaller font size for smaller screens
-                          : AppFontSize.size_14, // Regular font size
+                          ? AppFontSize.size_12
+                          : AppFontSize.size_14,
                     ),
                     borderSideColor: AppColors.grey3B,
                   ),

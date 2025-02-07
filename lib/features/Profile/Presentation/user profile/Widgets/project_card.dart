@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/project_detailed_page.dart';
+import 'package:sketch/features/Profile/Presentation/user%20profile/views/profile_views.dart';
 import 'package:sketch/features/Profile/data/models/project_model.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -23,27 +25,17 @@ class ProjectCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8.0),
       elevation: 2,
       child: Padding(
-        padding: EdgeInsets.all(screenWidth < 350
-            ? 8.0
-            : 16.0), // Adjust padding based on screen size
+        padding: EdgeInsets.all(screenWidth < 350 ? 8.0 : 16.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Replace Image.network with SvgPicture.asset
             SvgPicture.asset(
-              project.imageUrl, // Provide your SVG asset path here
-              height: screenHeight < 600
-                  ? 120
-                  : 150, // Adjust image size for smaller screens
-              width: screenWidth < 350
-                  ? 80
-                  : 100, // Adjust image width for smaller screens
+              project.imageUrl,
+              height: screenHeight < 600 ? 120 : 150,
+              width: screenWidth < 350 ? 80 : 100,
               fit: BoxFit.cover,
             ),
-            SizedBox(
-                width: screenWidth < 350
-                    ? 8
-                    : 16), // Adjust space between image and text
+            SizedBox(width: screenWidth < 350 ? 8 : 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,8 +43,7 @@ class ProjectCard extends StatelessWidget {
                   Text(
                     project.title,
                     style: TextStyle(
-                      fontSize:
-                          screenWidth < 350 ? 16 : 18, // Adjust title font size
+                      fontSize: screenWidth < 350 ? 16 : 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -60,23 +51,24 @@ class ProjectCard extends StatelessWidget {
                   Text(
                     project.description,
                     style: TextStyle(
-                      fontSize: screenWidth < 350
-                          ? 12
-                          : 14, // Adjust description font size
+                      fontSize: screenWidth < 350 ? 12 : 14,
                     ),
                   ),
-                  SizedBox(
-                      height: screenHeight < 600
-                          ? 20
-                          : 28), // Adjust space before button
+                  SizedBox(height: screenHeight < 600 ? 20 : 28),
                   CustomButton(
                     text: "View Project",
                     color: AppColors.white,
-                    w: screenWidth < 350 ? 75 : 87, // Adjust button width
-                    h: screenHeight < 600 ? 28 : 32, // Adjust button height
+                    w: screenWidth < 350 ? 75 : 87,
+                    h: screenHeight < 600 ? 28 : 32,
                     borderSideColor: AppColors.primary,
                     textStyle:
                         AppTextStyle.getLightStyle(color: AppColors.primary),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ProjectDetailsPage(project: project);
+                      }));
+                    },
                   ),
                 ],
               ),

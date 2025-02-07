@@ -38,20 +38,18 @@ class _ArchitectProjectState extends State<ArchitectProject> {
     }
   }
 
-  // Function to handle the file picker and store the selected file
   Future<void> _chooseImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image, // Set the file type to images only
+      type: FileType.image,
     );
 
     if (result != null) {
       setState(() {
-        selectedFile = result.files.single.path; // Store the selected file path
+        selectedFile = result.files.single.path;
       });
     }
   }
 
-  // Function to submit the project
   void _submitProject() {
     ArchitectProjectModel newProject = ArchitectProjectModel(
       id: "1",

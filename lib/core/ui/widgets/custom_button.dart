@@ -16,7 +16,8 @@ class CustomButton extends StatelessWidget {
     this.borderSideColor,
     this.rowChild,
     this.onPressed,
-    this.icon, // New icon parameter
+    this.icon,
+    // New icon parameter
   });
 
   final double? w;

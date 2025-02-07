@@ -28,7 +28,7 @@ class RootScreen extends StatelessWidget {
                 dialogTitle: "AppLocalizations.of(context)!.app_exit",
                 message: "AppLocalizations.of(context)!.msg_exit",
                 confirmText: "AppLocalizations.of(context)!.confirm",
-                cancelText: " AppLocalizations.of(context)!.cancel",
+                cancelText: "AppLocalizations.of(context)!.cancel",
                 onConfirm: () {
               SystemNavigator.pop();
             });
@@ -118,5 +118,23 @@ class RootScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Helper method to return the correct screen based on `rootIndex`
+  Widget _getBody(BuildContext context) {
+    switch (context.read<RootPageCubit>().rootIndex) {
+      case 0:
+        return const HomeView();
+      case 1:
+        return SuggestedForYouPage(); // ✅ Show SuggestedForYouPage when "Network" is selected
+      case 2:
+        return const UserProposedProjectsPage();
+      case 3:
+        return const QuestionPages();
+      case 4:
+        return const SizedBox(); // Replace this with your Profile Page if needed
+      default:
+        return const HomeView();
+    }
   }
 }

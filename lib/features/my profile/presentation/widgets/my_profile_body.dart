@@ -31,13 +31,13 @@ class _MyProfileBodyState extends State<MyProfileBody>
       imageUrl: Assets.imagesAvatar13,
     ),
     ProjectModel(
-      id: "1",
+      id: "3",
       title: "project2",
       description: "this is the first project",
       imageUrl: Assets.imagesAvatar13,
     ),
     ProjectModel(
-      id: "1",
+      id: "2",
       title: "project1",
       description: "this is the first project",
       imageUrl: Assets.imagesAvatar13,

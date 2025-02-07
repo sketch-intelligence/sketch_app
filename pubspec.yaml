@@ -52,8 +52,12 @@ dependencies:
   carousel_slider: ^5.0.0
   get_it: ^8.0.3
   file_picker: ^8.3.0
+<<<<<<< HEAD
   hive: ^2.2.3
   overlay_support: ^2.1.0
+=======
+  image_picker: ^1.1.2
+>>>>>>> origin/enhancment
   
   
 

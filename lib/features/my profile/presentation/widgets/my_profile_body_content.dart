@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/my%20profile/presentation/views/edit_profile.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/views/architect_project.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/features/Post/presentation/views/post_view.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 
 class MyProfileBodyContent extends StatelessWidget {
@@ -13,18 +16,22 @@ class MyProfileBodyContent extends StatelessWidget {
     super.key,
     required this.profile,
   });
+  final ProfileModel user = ProfileModel(
+    person: PersonModel(userName: "Beshir"),
+    bio: "Coding and watching movies",
+  );
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          profile.person.userName,
+          user.person.userName,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         Text(
-          profile.bio,
+          user.bio,
           style: const TextStyle(fontSize: 16, color: Colors.grey),
         ),
         const SizedBox(height: 16),
@@ -44,7 +51,7 @@ class MyProfileBodyContent extends StatelessWidget {
                   borderSideColor: const Color(0xff408bc1),
                   textStyle: TextStyle(
                     color: const Color(0xff408bc1),
-                    fontSize: MediaQuery.of(context).size.width * 0.050,
+                    fontSize: MediaQuery.of(context).size.width * 0.048,
                   ),
                   onPressed: () {
                     _showAddOptions(context);
@@ -61,8 +68,14 @@ class MyProfileBodyContent extends StatelessWidget {
                   borderSideColor: const Color(0xff408bc1),
                   textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: MediaQuery.of(context).size.width * 0.050,
+                    fontSize: MediaQuery.of(context).size.width * 0.048,
                   ),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return EditProfilePage();
+                    }));
+                  },
                 ),
               ),
             ],
@@ -131,7 +144,8 @@ class MyProfileBodyContent extends StatelessWidget {
     ).then((value) {
       if (value != null) {
         if (value == 'Post') {
-          print("Add Post");
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddPost()));
         } else if (value == 'Project') {
           Navigator.push(
             context,
