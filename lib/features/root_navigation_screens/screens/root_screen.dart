@@ -8,6 +8,7 @@ import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
 import 'package:sketch/features/design/presentation/views/question_pages.dart';
+import 'package:sketch/features/follows/presentation/views/network_view.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/profile_settings/presentation/profile_setting_view.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
@@ -107,7 +108,7 @@ class RootScreen extends StatelessWidget {
           body: (context.read<RootPageCubit>().rootIndex == 0)
               ? const HomeView()
               : (context.read<RootPageCubit>().rootIndex == 1)
-                  ? const SizedBox()
+                  ? SuggestedForYouPage()
                   : (context.read<RootPageCubit>().rootIndex == 2)
                       ? const UserProposedProjectsPage()
                       : (context.read<RootPageCubit>().rootIndex == 3)
@@ -118,23 +119,5 @@ class RootScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  /// Helper method to return the correct screen based on `rootIndex`
-  Widget _getBody(BuildContext context) {
-    switch (context.read<RootPageCubit>().rootIndex) {
-      case 0:
-        return const HomeView();
-      case 1:
-        return SuggestedForYouPage(); // ✅ Show SuggestedForYouPage when "Network" is selected
-      case 2:
-        return const UserProposedProjectsPage();
-      case 3:
-        return const QuestionPages();
-      case 4:
-        return const SizedBox(); // Replace this with your Profile Page if needed
-      default:
-        return const HomeView();
-    }
   }
 }

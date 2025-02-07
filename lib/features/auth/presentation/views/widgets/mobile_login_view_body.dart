@@ -81,8 +81,7 @@ class MobileLoginViewBody extends StatelessWidget {
                     onChanged: (p) {
                       context.read<AuthCubit>().loginParams.password = p;
                     },
-                    validator: (p0) => AppValidators.validatePasswordFields(
-                        context,
+                    validator: (p0) => AppValidators.validateFillFields(context,
                         context.read<AuthCubit>().loginParams.password),
                   ),
                   const SizedBox(
