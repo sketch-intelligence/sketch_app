@@ -13,6 +13,7 @@ import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cub
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
 import 'package:sketch/features/follows/presentation/views/network_view.dart';
+import 'package:sketch/profile_settings.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -125,7 +126,7 @@ class RootScreen extends StatelessWidget {
       case 3:
         return const QuestionPages();
       case 4:
-        return const SizedBox(); // Replace this with your Profile Page if needed
+        return ProfileSettingsPage(); // Replace this with your Profile Page if needed
       default:
         return const HomeView();
     }
