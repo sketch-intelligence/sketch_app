@@ -75,7 +75,9 @@
        "choose_lang":"اختار لغة",
        "english":"English",
        "arabic":"العربية",
-       "save":"حفظ"
+       "save":"حفظ",
+       "logout":"تسجيل الخروج",
+       "confirm_logout":"هل انت متأكد من تسجيل الخروج ؟"
 
 
 

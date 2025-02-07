@@ -101,7 +101,7 @@ class ApiProvider {
         case HttpMethod.POST:
           response = await dio.post(
             url,
-            data: FormData.fromMap(dataMap),
+            data: dataMap,
             queryParameters: queryParameters ?? {},
             onSendProgress: (int sent, int total) {
               debugPrint(
@@ -124,7 +124,6 @@ class ApiProvider {
           );
           break;
       }
-      var decodedJson;
       dio.interceptors.add(PrettyDioLogger(
           request: true,
           requestHeader: true,
@@ -135,54 +134,94 @@ class ApiProvider {
           compact: true,
           maxWidth: 90));
 
-      if (response.data is String) {
-        debugPrint(response.toString());
-        decodedJson = json.decode(response.data);
-        debugPrint(decodedJson);
-      } else {
-        decodedJson = response.data;
+      var decodedJson =
+          response.data is String ? json.decode(response.data) : response.data;
+
+      if (decodedJson == null) {
+        return const Left('An unexpected error occurred.');
       }
       if (kDebugMode) {
         printWrapped(decodedJson.toString());
       }
-      if ((response.statusCode)! > 199 && (response.statusCode)! < 300) {
-        if (decodedJson['success'] == true) {
-          if (decodedJson['data'] != []) {
-            return Right(converter(response.data));
-          } else {
-            return Left(response.data['message'] ?? response.data[0]);
-          }
-        } else {
-          return Left(response.data['message']);
-        }
+      debugPrint('Response data: $decodedJson');
+
+      if (response.statusCode == 200) {
+        return Right(converter(decodedJson ?? {}));
+      } else if (response.statusCode == 401) {
+        final errorMessage = decodedJson['detail'] ??
+            decodedJson['description'] ??
+            'Something went wrong';
+        return Left(errorMessage);
+      } else if (response.statusCode != null &&
+          response.statusCode! >= 400 &&
+          response.statusCode! < 500) {
+        final errorMessage = decodedJson['message'] ??
+            'An error occurred. Please check your input.';
+        return Left(errorMessage);
+      } else if (response.statusCode != null && response.statusCode! >= 500) {
+        return const Left('Something went wrong');
       } else {
-        return Left(response.data['message']);
+        return const Left('Unexpected error occurred. Please try again later.');
       }
     } on DioException catch (e) {
-      Map dioError = DioErrorsHandler.onError(e);
+      // Map to hold error details
+      // Map dioError = DioErrorsHandler.onError(e);
+
       if (kDebugMode) {
         print(e);
       }
-      Map<String, dynamic> errorMap = {};
-      List<dynamic>? errors = [];
-      if (e.response?.statusCode == 500) {
-        errors = ['Some thing went wrong'];
-      } else {
-        if (e.response?.data['message'] is String) {
-          errors = [e.response?.data['message']];
+
+      List<dynamic> errors = [];
+
+      // Check for specific DioException types
+      if (e.type == DioExceptionType.connectionTimeout) {
+        errors = ['Connection timeout. Please try again later.'];
+      } else if (e.type == DioExceptionType.receiveTimeout) {
+        errors = ['Server took too long to respond.'];
+      } else if (e.type == DioExceptionType.sendTimeout) {
+        errors = ['Request took too long to send.'];
+      } else if (e.type == DioExceptionType.cancel) {
+        errors = ['Request was cancelled.'];
+      } else if (e.type == DioExceptionType.badResponse) {
+        // Handle HTTP errors
+        if (e.response?.statusCode == 500) {
+          errors = ['Something went wrong , try again later.'];
         } else {
-          errorMap = e.response?.data['message'];
-          errors = errorMap.values.toList().first;
+          var message = e.response?.data['description'];
+          if (message is String) {
+            errors = [message];
+          } else if (message is List && message.isNotEmpty) {
+            errors = [message.first ?? 'Unknown error occurred.'];
+          } else if (message is Map && message.isNotEmpty) {
+            var firstKey = message.keys.first;
+            var firstValue = message[firstKey];
+            if (firstValue is List && firstValue.isNotEmpty) {
+              errors = [firstValue.first ?? 'Unknown error occurred.'];
+            } else {
+              errors = [firstValue.toString()];
+            }
+          } else {
+            errors = ['An unexpected error occurred'];
+          }
         }
+      } else if (e.type == DioExceptionType.unknown) {
+        errors = ['An unknown error occurred.'];
       }
-      return Left(errors?.first ?? dioError['message']);
+
+      // Default to a generic error message if no specific errors found
+      if (errors.isEmpty) {
+        errors = ['An unexpected error occurred.'];
+      }
+
+      // Return the first error message
+      return Left(errors.first);
     } on SocketException catch (e, stacktrace) {
       if (kDebugMode) {
         debugPrint('SocketException');
         print(e);
         print(stacktrace);
       }
-      return const Left('please check your connection');
+      return const Left('Please check your connection');
     }
   }
 

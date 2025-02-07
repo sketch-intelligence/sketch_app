@@ -1,17 +1,43 @@
+import 'package:hive/hive.dart';
+
 import 'authority.dart';
 import 'role.dart';
 
+part 'user.g.dart';
+
+@HiveType(typeId: 1) // Unique ID for the User model
 class User {
+  @HiveField(0)
   int? id;
+
+  @HiveField(1)
   String? name;
+
+  @HiveField(2)
   String? email;
+
+  @HiveField(3)
   String? password;
+
+  @HiveField(4)
   List<Role>? roles;
+
+  @HiveField(5)
   bool? enabled;
+
+  @HiveField(6)
   bool? credentialsNonExpired;
+
+  @HiveField(7)
   bool? accountNonExpired;
+
+  @HiveField(8)
   bool? accountNonLocked;
+
+  @HiveField(9)
   String? username;
+
+  @HiveField(10)
   List<Authority>? authorities;
 
   User({

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/app_padding/app_padding.dart';
+import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/features/profile_settings/presentation/widgets/profile_card.dart';
+import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/translations.dart';
 
 class ProfileSettingScreen extends StatelessWidget {
@@ -50,6 +54,21 @@ class ProfileSettingScreen extends StatelessWidget {
               iconUrl: Assets.imagesLang,
               onTap: () => GoRouter.of(context).push(AppRouter.kLangView),
             ),
+            ProfileCard(
+                title: AppLocalizations.of(context)!.logout,
+                iconUrl: Assets.imagesLogout,
+                onTap: () {
+                  ActionAlertDialog.show(context,
+                      dialogTitle: AppLocalizations.of(context)!.confirm_logout,
+                      confirmText: AppLocalizations.of(context)!.logout,
+                      cancelText: AppLocalizations.of(context)!.cancel,
+                      onConfirm: () {
+                    Navigator.pop(context);
+                    CacheHelper.deleteCertificates();
+                    context.read<RootPageCubit>().changePageIndex(0);
+                    GoRouter.of(context).go(AppRouter.kLoginView);
+                  });
+                }),
           ],
         ),
       ),

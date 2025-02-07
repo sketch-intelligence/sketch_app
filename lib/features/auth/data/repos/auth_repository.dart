@@ -12,7 +12,7 @@ class AuthRepository extends CoreRepository {
     final result = await RemoteDataSource.request(
       withAuthentication: false,
       data: params.toJson(),
-      url: loginUrl,
+      url: 'http://localhost:8080/auth/authenticate',
       method: HttpMethod.POST,
       responseStr: 'LoginResponse',
       converter: (json) => LoginModel.fromJson(json),

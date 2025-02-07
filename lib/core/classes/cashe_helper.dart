@@ -1,6 +1,9 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sketch/core/constant/end_points/cashe_helper_constant.dart';
+import 'package:sketch/features/auth/data/model/login_model/authority.dart';
 import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
+import 'package:sketch/features/auth/data/model/login_model/role.dart';
+import 'package:sketch/features/auth/data/model/login_model/user.dart';
 
 class CacheHelper {
   static late Box<dynamic> box;
@@ -8,6 +11,9 @@ class CacheHelper {
   static init() async {
     await Hive.initFlutter();
     Hive.registerAdapter(LoginModelAdapter());
+    Hive.registerAdapter(UserAdapter()); // Register the User adapter
+    Hive.registerAdapter(RoleAdapter()); // Register the Role adapter
+    Hive.registerAdapter(AuthorityAdapter()); // Register the Authority adapter
     box = await Hive.openBox("default_box");
   }
 

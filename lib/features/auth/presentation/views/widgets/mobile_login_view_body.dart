@@ -13,6 +13,7 @@ import 'package:sketch/core/ui/dialogs/dialogs.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
+import 'package:sketch/core/utils/app_validator.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
 import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 import 'package:sketch/features/auth/data/repos/auth_repository.dart';
@@ -25,11 +26,11 @@ import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart
 import 'package:sketch/translations.dart';
 
 class MobileLoginViewBody extends StatelessWidget {
-  const MobileLoginViewBody({super.key});
+  MobileLoginViewBody({super.key});
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
-  static final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(
@@ -57,6 +58,8 @@ class MobileLoginViewBody extends StatelessWidget {
                     },
                     label: AppLocalizations.of(context)!.email,
                     iconPath: Assets.imagesMail,
+                    validator: (p0) => AppValidators.validateEmailFields(
+                        context, context.read<AuthCubit>().loginParams.email),
                   ),
                   const SizedBox(
                     height: 12,
@@ -78,17 +81,19 @@ class MobileLoginViewBody extends StatelessWidget {
                     onChanged: (p) {
                       context.read<AuthCubit>().loginParams.password = p;
                     },
+                    validator: (p0) => AppValidators.validatePasswordFields(
+                        context,
+                        context.read<AuthCubit>().loginParams.password),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  CreateModel<LoginModel>(
+                  CreateModel(
                     withValidation: true,
                     onTap: () => (_formKey.currentState?.validate() ?? false),
-                    useCaseCallBack: (model) {
-                      LoginUseCase(AuthRepository())
+                    useCaseCallBack: (model) async {
+                      return await LoginUseCase(AuthRepository())
                           .call(params: context.read<AuthCubit>().loginParams);
-                      return null;
                     },
                     onError: (val) {
                       Dialogs.showErrorSnackBar(

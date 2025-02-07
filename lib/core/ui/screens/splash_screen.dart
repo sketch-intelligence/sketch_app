@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 1, milliseconds: 3), () async {
       if (CacheHelper.token?.isEmpty ?? true) {
-        if (CacheHelper.firstTime == false) {
+        if (CacheHelper.firstTime == true) {
           GoRouter.of(context).go(AppRouter.kOnBoard);
         } else {
           GoRouter.of(context).go(AppRouter.kLoginView);

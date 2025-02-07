@@ -9,7 +9,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AdaptiveLayout(
-        mobileLayout: (context) => const MobileLoginViewBody(),
+        mobileLayout: (context) => MobileLoginViewBody(),
         tabletLayout: (context) => const SizedBox(),
         desktopLayout: (context) => const SizedBox(),
       ),

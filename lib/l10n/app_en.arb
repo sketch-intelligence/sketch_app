@@ -74,7 +74,9 @@
          "choose_lang":"Choose Language",
          "english":"English",
          "arabic":"Arabic",
-         "save":"Save"
+         "save":"Save",
+         "logout":"Logout",
+         "confirm_logout":"are you sure you want to logout ?"
 
 
 
