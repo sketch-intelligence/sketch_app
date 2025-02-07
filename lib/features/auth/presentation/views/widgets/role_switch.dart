@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/features/auth/domain/use_case/register_use.case.dart';
+import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:sketch/translations.dart';
 
 class RoleSwitch extends StatefulWidget {
@@ -23,6 +26,8 @@ class RoleSwitchState extends State<RoleSwitch> {
             groupValue: _selectedRole,
             onChanged: (value) {
               setState(() {
+                context.read<AuthCubit>().registerParams.role = "USER";
+                
                 _selectedRole = value!;
               });
             },
@@ -40,6 +45,9 @@ class RoleSwitchState extends State<RoleSwitch> {
             groupValue: _selectedRole,
             onChanged: (value) {
               setState(() {
+                context.read<AuthCubit>().registerParams.role =
+                    "ARCHITECT";
+                
                 _selectedRole = value!;
               });
             },

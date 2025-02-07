@@ -9,7 +9,7 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AdaptiveLayout(
-        mobileLayout: (context) => const MobileRegisterViewBody(),
+        mobileLayout: (context) => MobileRegisterViewBody(),
         tabletLayout: (context) => const SizedBox(),
         desktopLayout: (context) => const SizedBox(),
       ),

@@ -7,10 +7,16 @@ import 'package:sketch/features/auth/data/repos/auth_repository.dart';
 class RegisterParams extends BaseParams {
   String? email;
   String? password;
+  String? confirmedPassword;
   String? userName;
   String? role;
 
-  RegisterParams({this.email, this.password, this.role, this.userName});
+  RegisterParams(
+      {this.email,
+      this.password,
+      this.confirmedPassword,
+      this.role,
+      this.userName});
 
   toJson() {
     return {

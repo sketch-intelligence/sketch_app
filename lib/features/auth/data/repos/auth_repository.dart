@@ -12,7 +12,7 @@ class AuthRepository extends CoreRepository {
     final result = await RemoteDataSource.request(
       withAuthentication: false,
       data: params.toJson(),
-      url: 'http://localhost:8080/auth/authenticate',
+      url: loginUrl,
       method: HttpMethod.POST,
       responseStr: 'LoginResponse',
       converter: (json) => LoginModel.fromJson(json),
@@ -22,10 +22,10 @@ class AuthRepository extends CoreRepository {
 
   Future<Result<LoginModel>> signupRequest(
       {required RegisterParams params}) async {
-    final result = await RemoteDataSource.request<LoginModel>(
+    final result = await RemoteDataSource.request(
         withAuthentication: false,
         data: params.toJson(),
-        url: registerUrl,
+        url: 'http://localhost:8080/auth/register/user',
         method: HttpMethod.POST,
         responseStr: 'SignupResponse',
         converter: (json) => LoginModel.fromJson(json));

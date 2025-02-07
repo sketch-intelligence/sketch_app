@@ -14,7 +14,7 @@ class AppValidators {
     if (password == null || password.isEmpty) {
       return "This field is required";
     } else if (AppRegexp.passwordRegex.hasMatch(password) == false) {
-      return "in password use 6 characters with a mix of numbers,at least one of upper case characters and symbols.";
+      return "Password must be 10 characters with a mix of numbers,upper case characters and symbols.";
     }
     return null;
   }
