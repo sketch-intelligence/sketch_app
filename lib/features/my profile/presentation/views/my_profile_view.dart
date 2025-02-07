@@ -12,11 +12,6 @@ class MyProfilePage extends StatelessWidget {
   // Create an instance of ProfileModel
 
   @override
-  final ProfileModel user = ProfileModel(
-    person: PersonModel(userName: "Beshir"),
-    bio: "Coding is my life",
-  );
-
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
@@ -25,7 +20,7 @@ class MyProfilePage extends StatelessWidget {
         appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
             ? AppBar(
                 backgroundColor: Colors.white,
-                title: Text(user.person.userName), // Use username here
+                title: Text("My Profile"), // Use username here
                 centerTitle: true,
               )
             : null,

@@ -13,8 +13,6 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _socialMediaController = TextEditingController();
   File? _profileImage;
   File? _coverImage;
 

@@ -12,7 +12,7 @@ import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
-import 'package:sketch/network_view.dart';
+import 'package:sketch/features/follows/presentation/views/network_view.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});

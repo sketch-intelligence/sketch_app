@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/edit_profile.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/my%20profile/presentation/views/edit_profile.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/views/architect_project.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
@@ -15,18 +16,22 @@ class MyProfileBodyContent extends StatelessWidget {
     super.key,
     required this.profile,
   });
+  final ProfileModel user = ProfileModel(
+    person: PersonModel(userName: "Beshir"),
+    bio: "Coding and watching movies",
+  );
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          profile.person.userName,
+          user.person.userName,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         Text(
-          profile.bio,
+          user.bio,
           style: const TextStyle(fontSize: 16, color: Colors.grey),
         ),
         const SizedBox(height: 16),
