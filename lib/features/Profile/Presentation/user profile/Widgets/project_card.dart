@@ -63,6 +63,12 @@ class ProjectCard extends StatelessWidget {
                     borderSideColor: AppColors.primary,
                     textStyle:
                         AppTextStyle.getLightStyle(color: AppColors.primary),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ProjectDetailsPage(project: project);
+                      }));
+                    },
                   ),
                 ],
               ),

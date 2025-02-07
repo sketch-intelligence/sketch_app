@@ -18,6 +18,7 @@ class ProjectDetailsPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
         elevation: 0,
@@ -27,8 +28,9 @@ class ProjectDetailsPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
+        centerTitle: true,
         title: Text(
-          project.title,
+          "Project Details",
           style: AppTextStyle.getBoldStyle(
             fontSize: 20,
             color: AppColors.black,
@@ -37,37 +39,42 @@ class ProjectDetailsPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(screenWidth < 350 ? 12.0 : 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Project Image
-            Center(
-              child: SvgPicture.asset(
-                project.imageUrl,
-                height: screenHeight * 0.3,
-                width: screenWidth * 0.8,
-                fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Project Image
+              Center(
+                child: SvgPicture.asset(
+                  project.imageUrl,
+                  height: screenHeight * 0.3,
+                  width: screenWidth * 0.4,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(height: screenHeight < 600 ? 16 : 24),
-            // Project Title
-            Text(
-              project.title,
-              style: AppTextStyle.getBoldStyle(
-                fontSize: screenWidth < 350 ? 20 : 24,
-                color: AppColors.black,
+              SizedBox(height: screenHeight < 600 ? 16 : 24),
+              // Project Title
+              Center(
+                child: Text(
+                  project.title,
+                  style: AppTextStyle.getBoldStyle(
+                    fontSize: screenWidth < 350 ? 20 : 24,
+                    color: AppColors.black,
+                  ),
+                ),
               ),
-            ),
-            SizedBox(height: screenHeight < 600 ? 8 : 12),
-            // Project Description
-            Text(
-              project.description,
-              style: AppTextStyle.getRegularStyle(
-                fontSize: screenWidth < 350 ? 14 : 16,
-                color: AppColors.white,
+              SizedBox(height: screenHeight < 600 ? 8 : 12),
+              // Project Description
+              Text(
+                project.description,
+                style: AppTextStyle.getRegularStyle(
+                  fontSize: screenWidth < 350 ? 14 : 16,
+                  color: AppColors.black,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
