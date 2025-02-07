@@ -26,24 +26,18 @@ class FollowsBody extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // Responsive text size
               Text(
                 "Sorted by Date Followed : Latest",
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width < 350
-                      ? AppFontSize
-                          .size_12 // Smaller font size for smaller screens
-                      : AppFontSize.size_14, // Regular font size
+                      ? AppFontSize.size_12
+                      : AppFontSize.size_14,
                 ),
               ),
               SvgPicture.asset(
                 Assets.imagesFunnel,
-                width: MediaQuery.of(context).size.width < 350
-                    ? 16
-                    : 20, // Smaller icon size for smaller screens
-                height: MediaQuery.of(context).size.width < 350
-                    ? 16
-                    : 20, // Keep the height proportional
+                width: MediaQuery.of(context).size.width < 350 ? 16 : 20,
+                height: MediaQuery.of(context).size.width < 350 ? 16 : 20,
               ),
             ],
           ),

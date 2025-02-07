@@ -15,14 +15,13 @@ class CustomTabBar extends StatelessWidget {
       labelColor: AppColors.primary,
       onTap: (index) {
         if (index == 2) {
-          // Assuming 2 is the index for the Follows tab
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => FollowsView(), // Navigate to FollowsView
+              builder: (context) => FollowsView(),
             ),
           );
         } else {
-          tabController.animateTo(index); // Change the tab if it's not Follows
+          tabController.animateTo(index);
         }
       },
       tabs: const [
