@@ -1,25 +1,24 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:collection/collection.dart';
 import 'package:sketch/features/home/data/models/comment_model.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/home/data/models/reaction_model.dart';
 import 'package:sketch/features/home/data/models/share_model.dart';
+import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 
 class PostModel {
   final String? text;
   final String? image;
-  final PersonModel postOwner;
+  final ProfileModel postOwner; // Changed to ProfileModel
   List<CommentModel> postComments;
   List<ReactionModel> reactions;
   List<ShareModel> shares;
   bool isPublic;
   final DateTime postDate;
+
   PostModel({
     this.text,
     this.image,
-    required this.postOwner,
+    required this.postOwner, // ProfileModel here
     required this.postComments,
     required this.reactions,
     required this.shares,
@@ -30,7 +29,7 @@ class PostModel {
   PostModel copyWith({
     String? text,
     String? image,
-    PersonModel? postOwner,
+    ProfileModel? postOwner, // ProfileModel here
     List<CommentModel>? postComments,
     List<ReactionModel>? reactions,
     List<ShareModel>? shares,
@@ -53,7 +52,7 @@ class PostModel {
     return <String, dynamic>{
       'text': text,
       'image': image,
-      'postOwner': postOwner.toMap(),
+      'postOwner': postOwner.toMap(), // Use ProfileModel's toMap()
       'postComments': postComments.map((x) => x.toMap()).toList(),
       'reactions': reactions.map((x) => x.toMap()).toList(),
       'shares': shares.map((x) => x.toMap()).toList(),
@@ -66,7 +65,8 @@ class PostModel {
     return PostModel(
       text: map['text'] != null ? map['text'] as String : null,
       image: map['image'] != null ? map['image'] as String : null,
-      postOwner: PersonModel.fromMap(map['postOwner'] as Map<String, dynamic>),
+      postOwner: ProfileModel.fromMap(
+          map['postOwner'] as Map<String, dynamic>), // Parse as ProfileModel
       postComments: List<CommentModel>.from(
         (map['postComments'] as List<int>).map<CommentModel>(
           (x) => CommentModel.fromMap(x as Map<String, dynamic>),

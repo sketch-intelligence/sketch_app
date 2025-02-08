@@ -8,7 +8,9 @@ import 'package:sketch/features/home/presentation/views/widgets/post_reactions.d
 
 class PostListViewItem extends StatelessWidget {
   const PostListViewItem({super.key, required this.postModel});
+
   final PostModel postModel;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,7 +26,7 @@ class PostListViewItem extends StatelessWidget {
             children: [
               PostHeader(postModel: postModel),
               PostBody(postModel: postModel),
-              PostReactions(postModel: postModel)
+              PostReactions(postModel: postModel),
             ],
           ),
         ),

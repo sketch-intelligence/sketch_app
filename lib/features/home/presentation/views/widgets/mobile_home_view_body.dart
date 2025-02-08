@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/utils/app_styles.dart';
+import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/home/data/models/comment_model.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/home/data/models/post_model.dart';
@@ -14,7 +15,8 @@ class HomeViewBody extends StatelessWidget {
   static final List<PostModel> posts = [
     PostModel(
       text: 'this is post number 1',
-      postOwner: PersonModel(userName: 'a'),
+      postOwner: ProfileModel(
+          person: PersonModel(userName: "omar"), bio: "hello World"),
       postComments: [
         CommentModel(
           text: 'comment for post 1',
@@ -64,7 +66,8 @@ class HomeViewBody extends StatelessWidget {
     ),
     PostModel(
       text: 'this is post number 2',
-      postOwner: PersonModel(userName: 'a'),
+      postOwner:
+          ProfileModel(person: PersonModel(userName: "beshir"), bio: "coding"),
       postComments: [
         CommentModel(
           text: 'comment for post 2',

@@ -28,6 +28,7 @@ abstract class AppRouter {
   static const kOnBoard = '/onBoard';
 
   static final router = GoRouter(
+    initialLocation: kHomeView, // Set HomeView as the initial route
     routes: [
       GoRoute(
         path: kSplash,

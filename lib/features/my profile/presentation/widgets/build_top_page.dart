@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_cover_image.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_profile_image.dart';
+import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
 
 class BuildTopPage extends StatelessWidget {
-  const BuildTopPage({super.key});
+  final ProfileModel person; // Accept ProfileModel dynamically
+
+  const BuildTopPage({super.key, required this.person});
 
   @override
   Widget build(BuildContext context) {
-    double coverHeight = MediaQuery.of(context).size.height *
-        0.22; // Slightly smaller cover height
-    double profilePictureTop =
-        coverHeight - (MediaQuery.of(context).size.width * 0.18);
-
-    double profilePictureOffset = 10.0;
+    double coverHeight =
+        MediaQuery.of(context).size.height * 0.25; // 25% of screen height
+    double profilePictureTop = coverHeight -
+        (MediaQuery.of(context).size.width *
+            0.15); // Adjust based on profile picture size
+    double profilePictureOffset =
+        10.0; // Adjust the offset for the profile picture
 
     return Stack(
       clipBehavior: Clip.none,
@@ -21,15 +26,16 @@ class BuildTopPage extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(bottom: profilePictureTop / 2),
           child: CoverImageWidget(
-            imageUrl:
-                "https://www.ultrasawt.com/sites/default/files/%D8%A7%D9%84%D8%B3%D8%A7%D8%B1%D9%88%D8%AA-2.png",
+            imageUrl: person.coverImage?.isNotEmpty == true
+                ? person.coverImage!
+                : null, // Pass cover image dynamically
           ),
         ),
         Positioned(
-          top: profilePictureTop - profilePictureOffset,
+          top: profilePictureTop - profilePictureOffset, // Apply the offset
           child: ProfileImageWidget(
-              imageUrl:
-                  "https://www.ultrasawt.com/sites/default/files/%D8%A7%D9%84%D8%B3%D8%A7%D8%B1%D9%88%D8%AA-2.png"),
+            person: person, // Pass the person data to display profile image
+          ),
         ),
       ],
     );
