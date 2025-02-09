@@ -76,10 +76,10 @@ class PostComments extends StatelessWidget {
 enum ReactionType { like, love, laugh, wow, sad, angry }
 
 class Reaction {
-  final ReactionType? type;
-  final String? asset;
+  final ReactionType type;
+  final String asset;
 
-  Reaction({this.type, this.asset});
+  Reaction({required this.type, required this.asset});
 }
 
 class PostLikes extends StatefulWidget {
@@ -104,26 +104,21 @@ class _PostLikesState extends State<PostLikes>
   late Animation<double> _scaleAnimation;
   bool _showReactions = false;
   ReactionType? _selectedReaction;
-  int _currentLikes = 0;
+  late int _currentLikes;
+  bool _isLongPressing = false;
 
   final List<Reaction> _reactions = [
-    Reaction(
-      type: ReactionType.like,
-      asset: Assets.imagesLike,
-    ),
-    Reaction(
-      type: ReactionType.love,
-      asset: Assets.imagesLove,
-    ),
-    Reaction(
-      type: ReactionType.wow,
-      asset: Assets.imagesWow,
-    ),
+    Reaction(type: ReactionType.like, asset: Assets.imagesLike),
+    Reaction(type: ReactionType.love, asset: Assets.imagesLove),
+    Reaction(type: ReactionType.wow, asset: Assets.imagesWow),
   ];
 
   @override
   void initState() {
     super.initState();
+    _selectedReaction = widget.initialReaction;
+    _currentLikes = widget.initialLikes;
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -139,15 +134,23 @@ class _PostLikesState extends State<PostLikes>
     );
   }
 
-  void _toggleReactions() {
+  void _handleLike() {
+    if (_isLongPressing) return; // Prevent tap from interfering with long press
+
+    final isSameReaction = _selectedReaction == ReactionType.like;
     setState(() {
-      _showReactions = !_showReactions;
-      if (_showReactions) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
+      _selectedReaction = isSameReaction ? null : ReactionType.like;
+      _currentLikes += isSameReaction ? -1 : 1;
     });
+
+    widget.onReactionChanged(_selectedReaction);
+  }
+
+  void _showReactionsMenu() {
+    setState(() {
+      _showReactions = true;
+    });
+    _controller.forward();
   }
 
   void _handleReaction(ReactionType type) {
@@ -157,56 +160,81 @@ class _PostLikesState extends State<PostLikes>
       _currentLikes += isSameReaction ? -1 : 1;
       _showReactions = false;
     });
+
     widget.onReactionChanged(_selectedReaction);
     _controller.reverse();
   }
 
+  void _hideReactionsMenu() {
+    if (_showReactions) {
+      _controller.reverse();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _toggleReactions,
-      onLongPress: _toggleReactions,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        GestureDetector(
+          onTap: _handleLike,
+          onLongPressStart: (_) {
+            _isLongPressing = true;
+            _showReactionsMenu();
+          },
+          onLongPressEnd: (_) {
+            _isLongPressing = false;
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildMainReaction(),
+              const SizedBox(width: 8),
+              Text(_currentLikes.toString()),
+            ],
+          ),
+        ),
+        if (_showReactions)
           GestureDetector(
-            onTap: _toggleReactions,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildMainReaction(),
-                const SizedBox(width: 8),
-                Text(_currentLikes.toString()),
-              ],
+            behavior: HitTestBehavior.opaque,
+            onTap: _hideReactionsMenu,
+            child: Container(
+              color: Colors.transparent,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  Positioned(
+                      bottom: 550, left: 10, child: _buildReactionsMenu()),
+                ],
+              ),
             ),
           ),
-          if (_showReactions) _buildReactionsMenu(),
-        ],
-      ),
+      ],
     );
   }
 
   Widget _buildReactionsMenu() {
-    return Positioned(
-      bottom: 40,
-      left: 0, // Add horizontal positioning
-      child: GestureDetector(
-        onTap: () {}, // Capture taps on the menu area
-        child: ScaleTransition(
-          scale: _scaleAnimation,
-          child: Material(
-            color: Colors.transparent,
-            child: Container(
-              // ... existing container styling ...
-              child: Row(
-                children: _reactions.map((reaction) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: _buildReactionButton(reaction),
-                  );
-                }).toList(),
-              ),
-            ),
+    return ScaleTransition(
+      scale: _scaleAnimation,
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(color: Colors.black26, blurRadius: 6, spreadRadius: 1),
+            ],
+          ),
+          child: Row(
+            children: _reactions.map((reaction) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: _buildReactionButton(reaction),
+              );
+            }).toList(),
           ),
         ),
       ),
@@ -214,47 +242,35 @@ class _PostLikesState extends State<PostLikes>
   }
 
   Widget _buildMainReaction() {
-    final reaction = _getReaction(_selectedReaction);
+    final reaction = _reactions.firstWhere((r) => r.type == _selectedReaction,
+        orElse: () => _reactions[0]);
     return IconButton(
       iconSize: 24,
       icon: Image.asset(
         height: 24,
         width: 24,
-        reaction?.asset ?? Assets.imagesLike,
+        reaction.asset,
       ),
-      onPressed: _toggleReactions,
+      onPressed: _handleLike,
     );
   }
 
   Widget _buildReactionButton(Reaction reaction) {
     return GestureDetector(
-      behavior: HitTestBehavior.opaque, // Add this
       onTap: () {
-        _handleReaction(reaction.type ?? ReactionType.like);
-        _controller.reverse();
+        _handleReaction(reaction.type);
       },
       child: SizedBox(
         width: 36,
         height: 36,
         child: Image.asset(
-          reaction.asset ?? Assets.imagesArtificialBrain,
+          reaction.asset,
           width: 24,
           height: 24,
-          errorBuilder: (context, error, stackTrace) {
-            return const Icon(Icons.error);
-          },
+          errorBuilder: (context, error, stackTrace) => const Icon(Icons.error),
         ),
       ),
     );
-  }
-
-  Reaction? _getReaction(ReactionType? type) {
-    if (type == null) return null;
-    try {
-      return _reactions.firstWhere((r) => r.type == type);
-    } catch (e) {
-      return null;
-    }
   }
 
   @override
