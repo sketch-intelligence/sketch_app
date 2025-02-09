@@ -159,7 +159,9 @@ class _MyProfileBodyState extends State<MyProfileBody>
     return SingleChildScrollView(
       child: Column(
         children: [
-          const BuildTopPage(),
+          BuildTopPage(
+            person: visitor,
+          ),
           MyProfileBodyContent(profile: visitor),
           const Divider(),
           CustomTabBar(tabController: _tabController),

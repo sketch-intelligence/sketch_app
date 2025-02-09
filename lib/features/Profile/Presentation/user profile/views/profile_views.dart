@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'package:sketch/core/utils/adaptive_layout.dart';
-
 import 'package:sketch/core/utils/size_config.dart';
-
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/profile_body.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final ProfileModel profile;
+
+  const ProfilePage({super.key, required this.profile});
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,8 +19,8 @@ class ProfilePage extends StatelessWidget {
         appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
             ? AppBar(
                 backgroundColor: Colors.white,
-                title: const Text(
-                  "Kattie Lee",
+                title: Text(
+                  profile.person.userName, // Dynamic profile name
                 ),
                 centerTitle: true,
               )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sketch/edit_profile.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
-import 'package:sketch/features/my%20profile/presentation/views/edit_profile.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/views/architect_project.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
