@@ -3,7 +3,6 @@ import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/size_config.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/profile_body.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
 
 class ProfilePage extends StatelessWidget {
   final ProfileModel profile;
@@ -20,13 +19,13 @@ class ProfilePage extends StatelessWidget {
             ? AppBar(
                 backgroundColor: Colors.white,
                 title: Text(
-                  profile.person.userName, // Dynamic profile name
+                  profile.person.name ?? '', // Dynamic profile name
                 ),
                 centerTitle: true,
               )
             : null,
         body: AdaptiveLayout(
-          mobileLayout: (context) => ProfileBody(),
+          mobileLayout: (context) => const ProfileBody(),
           tabletLayout: (context) => const SizedBox(),
           desktopLayout: (context) => const SizedBox(),
         ),

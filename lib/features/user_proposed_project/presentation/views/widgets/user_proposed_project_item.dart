@@ -40,7 +40,7 @@ class UserProposedProjectItem extends StatelessWidget {
               child: Row(
                 children: [
                   ProjectDetailsInfo(
-                    name: project.author.userName,
+                    name: project.author.name ?? '',
                     iconPath: Assets.imagesUserPenSolid,
                   ),
                   ProjectDetailsInfo(

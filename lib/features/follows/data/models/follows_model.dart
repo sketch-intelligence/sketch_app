@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 
 class FollowModel {
   final PersonModel person;
@@ -36,7 +36,7 @@ class FollowModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'person': person.toMap(),
+      'person': person.toJson(),
       'dateFollowed': dateFollowed?.millisecondsSinceEpoch,
       'isFollowingBack': isFollowingBack,
       'isMuted': isMuted,
@@ -46,7 +46,7 @@ class FollowModel {
 
   factory FollowModel.fromMap(Map<String, dynamic> map) {
     return FollowModel(
-      person: PersonModel.fromMap(map['person'] as Map<String, dynamic>),
+      person: PersonModel.fromJson(map['person'] as Map<String, dynamic>),
       dateFollowed: map['dateFollowed'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['dateFollowed'] as int)
           : null,

@@ -7,6 +7,7 @@ import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/Profile/data/models/project_model.dart';
 import 'package:sketch/features/follows/presentation/views/follows_view.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 import 'package:sketch/features/my%20profile/presentation/widgets/my_profile_body_content.dart';
 
 class MyProfileBody extends StatefulWidget {
@@ -43,7 +44,7 @@ class _MyProfileBodyState extends State<MyProfileBody>
   ];
 
   ProfileModel visitor = ProfileModel(
-    person: PersonModel(userName: "omar"),
+    person: PersonModel(name: "omar"),
     bio: "Coding and Watching Movies",
     isConnected: false,
     followersCount: 20,

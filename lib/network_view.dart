@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/features/follows/data/models/follows_model.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
 
 class SuggestedForYouPage extends StatefulWidget {
   SuggestedForYouPage({super.key});
@@ -13,23 +16,41 @@ class SuggestedForYouPage extends StatefulWidget {
   // Initialize with suggested FollowModel instances
   final List<FollowModel> suggestedUsers = [
     FollowModel(
-        person: PersonModel(userName: "Omar", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Omar",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Beshir", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Beshir",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     FollowModel(
-        person: PersonModel(userName: "Quotish", image: Assets.imagesAvatar13)),
+        person: PersonModel(
+            name: "Quotish",
+            profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13))),
     // Add more users as needed
   ];
 
@@ -52,9 +73,8 @@ class _SuggestedForYouPageState extends State<SuggestedForYouPage> {
     setState(() {
       // Filter by userName from the FollowModel's person
       filteredUsers = widget.suggestedUsers
-          .where((follow) => follow.person.userName
-              .toLowerCase()
-              .contains(query.toLowerCase()))
+          .where((follow) =>
+              follow.person.name!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -107,13 +127,14 @@ class _SuggestedForYouPageState extends State<SuggestedForYouPage> {
                   child: ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: SvgPicture.asset(
-                      followModel.person.image!, // Accessing the person's image
+                      followModel.person.profileImage?.downloadUrl ??
+                          dummyProfileImage, // Accessing the person's image
                       width: 40,
                       height: 40,
                     ),
                     title: Text(
-                      followModel
-                          .person.userName, // Accessing the person's username
+                      followModel.person.name ??
+                          '', // Accessing the person's username
                       style: TextStyle(
                         fontSize: isSmallScreen
                             ? AppFontSize.size_12
@@ -142,7 +163,7 @@ class _SuggestedForYouPageState extends State<SuggestedForYouPage> {
                             borderSideColor: AppColors.primary,
                             onPressed: () {
                               // Handle follow action, could update state or call a service
-                              print("Following ${followModel.person.userName}");
+                              // print("Following ${followModel.person.userName}");
                             },
                           ),
                         ),

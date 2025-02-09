@@ -3,22 +3,14 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_top_page.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/custom_tab_bar.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/profile_body_content.dart';
-import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/project_card.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/Profile/data/models/project_model.dart';
 import 'package:sketch/features/follows/presentation/views/follows_view.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
-import 'package:sketch/features/home/presentation/views/widgets/mobile_home_view_body.dart';
-import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
 
 class ProfileBody extends StatefulWidget {
-<<<<<<< HEAD
   const ProfileBody({super.key});
-=======
-  ProfileBody({
-    super.key,
-  });
->>>>>>> 7613813d15eba02fe73f001a02c26797a579b2fa
 
   @override
   _ProfileBodyState createState() => _ProfileBodyState();
@@ -29,7 +21,9 @@ class _ProfileBodyState extends State<ProfileBody>
   late TabController _tabController;
   int _selectedIndex = 0;
   final ProfileModel omar = ProfileModel(
-      person: PersonModel(userName: "omar", image: Assets.imagesAvatar13),
+      person: PersonModel(
+          name: "omar",
+          profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar13)),
       bio: "hello"); // Accepting PersonModel here
 
   final List<ProjectModel> projects = [
@@ -81,70 +75,40 @@ class _ProfileBodyState extends State<ProfileBody>
     return SingleChildScrollView(
       child: Column(
         children: [
-<<<<<<< HEAD
-          const BuildTopPage(),
-          ProfileBodyContent(
-            profile: visitoe,
-          ),
-          const Divider(),
-=======
           // Pass the 'person' to BuildTopPage dynamically
           BuildTopPage(
             person: omar,
           ),
           ProfileBodyContent(profile: omar), // Pass person to the content
-          Divider(),
->>>>>>> 7613813d15eba02fe73f001a02c26797a579b2fa
+          const Divider(),
           CustomTabBar(tabController: _tabController),
-          Column(
+          const Column(
             children: [
-              if (_selectedIndex == 0) ...[
-<<<<<<< HEAD
-                // Posts
-                // ListView.builder(
-                //   physics:
-                //       NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
-                //   shrinkWrap: true,
-                //   itemCount: HomeViewBody.posts.length,
-                //   itemBuilder: (context, index) {
-                //     return PostListViewItem(
-                //         postModel: HomeViewBody.posts[index]);
-                //   },
-                // ),
-=======
-                ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: HomeViewBody.posts.length,
-                  itemBuilder: (context, index) {
-                    return PostListViewItem(
-                      postModel: HomeViewBody.posts[index],
-                    );
-                  },
-                ),
->>>>>>> 7613813d15eba02fe73f001a02c26797a579b2fa
-              ] else if (_selectedIndex == 1) ...[
-                ListView.builder(
-<<<<<<< HEAD
-                  physics:
-                      const NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
-=======
-                  physics: NeverScrollableScrollPhysics(),
->>>>>>> 7613813d15eba02fe73f001a02c26797a579b2fa
-                  shrinkWrap: true,
-                  itemCount: projects.length,
-                  itemBuilder: (context, index) {
-                    return ProjectCard(project: projects[index]);
-                  },
-                ),
-              ],
+              // if (_selectedIndex == 0) ...[
+              //   ListView.builder(
+              //     physics: const NeverScrollableScrollPhysics(),
+              //     shrinkWrap: true,
+              //     itemCount: HomeViewBody.posts.length,
+              //     itemBuilder: (context, index) {
+              //       return PostListViewItem(
+              //         postModel: HomeViewBody.posts[index],
+              //       );
+              //     },
+              //   ),
+              // ] else if (_selectedIndex == 1) ...[
+              //   ListView.builder(
+              //     physics:
+              //         const NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
+              //     shrinkWrap: true,
+              //     itemCount: projects.length,
+              //     itemBuilder: (context, index) {
+              //       return ProjectCard(project: projects[index]);
+              //     },
+              //   ),
+              // ],
             ],
           ),
-<<<<<<< HEAD
           const SizedBox(height: 20), // Add some space after the projects
-=======
-          SizedBox(height: 20),
->>>>>>> 7613813d15eba02fe73f001a02c26797a579b2fa
         ],
       ),
     );

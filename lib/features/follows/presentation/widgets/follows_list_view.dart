@@ -30,7 +30,7 @@ class FollowsListView extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             leading: SvgPicture.asset(Assets.imagesAvatar23),
             title: Text(
-              users[index].person.userName,
+              users[index].person.name ?? '',
               style: TextStyle(
                 fontSize: screenWidth < 350
                     ? AppFontSize.size_12

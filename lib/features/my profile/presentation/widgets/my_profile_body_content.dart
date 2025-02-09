@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sketch/edit_profile.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
-import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/views/architect_project.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/edit_profile.dart';
+import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/views/architect_project.dart';
 import 'package:sketch/features/Post/presentation/views/post_view.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 
 class MyProfileBodyContent extends StatelessWidget {
   final ProfileModel profile;
@@ -17,7 +17,7 @@ class MyProfileBodyContent extends StatelessWidget {
     required this.profile,
   });
   final ProfileModel user = ProfileModel(
-    person: PersonModel(userName: "Beshir"),
+    person: PersonModel(name: "Beshir"),
     bio: "Coding and watching movies",
   );
 
@@ -26,7 +26,7 @@ class MyProfileBodyContent extends StatelessWidget {
     return Column(
       children: [
         Text(
-          user.person.userName,
+          user.person.name ?? '',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
@@ -105,7 +105,7 @@ class MyProfileBodyContent extends StatelessWidget {
       items: [
         PopupMenuItem<String>(
           value: 'Post',
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.41,
             height: MediaQuery.of(context).size.height * 0.03,
             child: Row(
@@ -123,7 +123,7 @@ class MyProfileBodyContent extends StatelessWidget {
         ),
         PopupMenuItem<String>(
           value: 'Project',
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.41,
             height: MediaQuery.of(context).size.height * 0.03,
             child: Row(
@@ -144,12 +144,12 @@ class MyProfileBodyContent extends StatelessWidget {
     ).then((value) {
       if (value != null) {
         if (value == 'Post') {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddPost()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddPost()));
         } else if (value == 'Project') {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ArchitectProject()),
+            MaterialPageRoute(builder: (context) => const ArchitectProject()),
           );
         }
       }

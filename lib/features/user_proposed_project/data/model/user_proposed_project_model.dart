@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:sketch/core/data_source/model.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 
 enum ProjectState { Open, Closed }
 
@@ -72,7 +73,7 @@ class UserProposedProjectModel extends BaseModel {
       title: map['title'] as String,
       description: map['description'] as String,
       numberOfBids: map['numberOfBids'] as String,
-      author: PersonModel.fromMap(map['author'] as Map<String, dynamic>),
+      author: PersonModel.fromJson(map['author'] as Map<String, dynamic>),
       postDate: DateTime.fromMillisecondsSinceEpoch(map['postDate'] as int),
       budget: map['budget'] as String,
       duration: map['duration'] as String,

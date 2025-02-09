@@ -14,7 +14,7 @@ class ProfileBodyContent extends StatelessWidget {
     return Column(
       children: [
         Text(
-          profile.person.userName,
+          profile.person.name ?? '',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),

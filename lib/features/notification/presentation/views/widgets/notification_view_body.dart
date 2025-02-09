@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
 import 'package:sketch/features/notification/data/model/notificatioin_model.dart';
 import 'package:sketch/features/notification/data/model/notification_type.dart';
 import 'package:sketch/features/notification/presentation/views/widgets/custom_selected_text_button.dart';
@@ -15,12 +17,24 @@ class NotificationViewBody extends StatefulWidget {
 
 class _NotificationViewBodyState extends State<NotificationViewBody> {
   static final List<PersonModel> people = [
-    PersonModel(userName: 'Jennie Ponce', image: Assets.imagesAvatar23),
-    PersonModel(userName: 'Sally Rooney', image: Assets.imagesAvatar23),
-    PersonModel(userName: 'Liam Pham', image: Assets.imagesAvatar23),
-    PersonModel(userName: 'Kristin Watson', image: Assets.imagesAvatar23),
-    PersonModel(userName: 'Jena Nguyen', image: Assets.imagesAvatar23),
-    PersonModel(userName: 'Anja O\'Connor', image: Assets.imagesAvatar23),
+    PersonModel(
+        name: 'Jennie Ponce',
+        profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar23)),
+    PersonModel(
+        name: 'Sally Rooney',
+        profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar23)),
+    PersonModel(
+        name: 'Liam Pham',
+        profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar23)),
+    PersonModel(
+        name: 'Kristin Watson',
+        profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar23)),
+    PersonModel(
+        name: 'Jena Nguyen',
+        profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar23)),
+    PersonModel(
+        name: 'Anja O\'Connor',
+        profileImage: ProfileImage(downloadUrl: Assets.imagesAvatar23)),
   ];
 
   final List<NotificationModel> notifications = [

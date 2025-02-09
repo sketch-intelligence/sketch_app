@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 import 'package:sketch/features/notification/data/model/notification_type.dart';
 
 class NotificationModel {
@@ -40,7 +41,7 @@ class NotificationModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'person': person.toMap(),
+      'person': person.toJson(),
       'message': message,
       'description': description,
       'date': date.millisecondsSinceEpoch,
@@ -51,7 +52,7 @@ class NotificationModel {
 
   factory NotificationModel.fromMap(Map<String, dynamic> map) {
     return NotificationModel(
-      person: PersonModel.fromMap(map['person'] as Map<String, dynamic>),
+      person: PersonModel.fromJson(map['person'] as Map<String, dynamic>),
       message: map['message'] as String,
       description:
           map['description'] != null ? map['description'] as String : null,

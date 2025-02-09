@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:sketch/features/home/data/models/person_model.dart';
+import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 
 class ProfileModel {
   final PersonModel person;
@@ -46,7 +47,7 @@ class ProfileModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'person': person.toMap(),
+      'person': person.toJson(),
       'coverImage': coverImage, // Nullable field
       'profileImage': profileImage, // Nullable field
       'bio': bio,
@@ -59,7 +60,7 @@ class ProfileModel {
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
-      person: PersonModel.fromMap(map['person']),
+      person: PersonModel.fromJson(map['person']),
       coverImage: map['coverImage'], // Nullable field
       profileImage: map['profileImage'], // Nullable field
       bio: map['bio'],

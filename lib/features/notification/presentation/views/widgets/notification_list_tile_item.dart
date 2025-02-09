@@ -13,14 +13,14 @@ class NotificationTileItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        child: SvgPicture.asset(
-            notification.person.image ?? Assets.imagesAvatar22),
+        child: SvgPicture.asset(notification.person.profileImage?.downloadUrl ??
+            Assets.imagesAvatar22),
       ),
       title: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: '${notification.person.userName} ',
+              text: '${notification.person.name} ',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             TextSpan(text: notification.message),
