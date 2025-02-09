@@ -17,7 +17,7 @@ class PostListViewItem extends StatelessWidget {
       // },
       child: Card(
         color: Colors.white,
-        elevation: 0,
+        elevation: 1,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
           child: Column(

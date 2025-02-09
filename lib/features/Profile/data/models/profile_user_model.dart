@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:sketch/features/home/data/models/person_model.dart';
+
+import 'package:sketch/core/data_source/model.dart';
 import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 
-class ProfileModel {
+class ProfileModel extends BaseModel {
   final PersonModel person;
   final String? coverImage; // Made optional (nullable)
   final String? profileImage; // Made optional (nullable)

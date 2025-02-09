@@ -5,3 +5,7 @@ const loginUrl = '$authUrl/authenticate';
 const registerUrl = '$authUrl/register/user';
 
 const postsUrl = '${baseUrl}posts/all';
+
+//get profile url
+
+const getProfileUrl = '${baseUrl}users';

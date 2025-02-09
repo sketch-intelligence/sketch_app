@@ -1,64 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
-import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
-import 'package:sketch/features/home/data/models/person_model/person_model.dart';
-import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
+import 'package:sketch/features/Profile/Presentation/user%20profile/views/profile_views.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 
 class PostHeader extends StatelessWidget {
-  PostHeader({
+  const PostHeader({
     super.key,
     required this.postModel,
   });
 
   final PostModel postModel;
-  List<ProfileModel> users = [
-    ProfileModel(
-      person: PersonModel(
-          name: "Omar",
-          profileImage: ProfileImage(
-            downloadUrl: Assets.imagesAvatar13,
-          )),
-      bio: "Architect | Designer | Innovator",
-      followersCount: 120,
-      followingCount: 80,
-      isConnected: false,
-    ),
-    ProfileModel(
-      person: PersonModel(
-          name: "Omar",
-          profileImage: ProfileImage(
-            downloadUrl: Assets.imagesAvatar13,
-          )),
-      bio: "Urban Planner | Engineer",
-      followersCount: 200,
-      followingCount: 150,
-      isConnected: true,
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // GestureDetector(
-        //   onTap: () {
-        //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-        //       return ProfilePage(profile: users[0]);
-        //     }));
-        //   },
-        //   // child: const CircleAvatar(
-        //   //   backgroundImage:// NetworkImage(dummyProfileImage),
-        //   //   //radius: 20,//
-        //   // ),
-        // ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ProfilePage(uid: postModel.ownerId ?? 0);
+            }));
+          },
+          child: CircleAvatar(
+            radius: 26,
+            foregroundImage: const NetworkImage(dummyProfileImage),
+            backgroundColor: Colors.grey,
+            child: ClipOval(
+              child: Image.network(
+                dummyProfileImage,
+                fit: BoxFit.cover,
+                width: 100,
+                height: 100,
+              ),
+            ),
+          ),
+        ),
         const SizedBox(width: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(users[0].person.name ?? ''),
+            Text(postModel.owner?.name ?? ''),
             Row(
               children: [
                 Text(formatTime(DateTime(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/comment_item.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
-import 'package:sketch/features/home/presentation/views/widgets/user_image_container.dart';
 import 'package:sketch/translations.dart';
 
 class PostDetailsView extends StatelessWidget {
@@ -67,7 +67,19 @@ class AddComment extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        const UserImageContainer(imagePath: Assets.imagesAvatar13),
+        CircleAvatar(
+          radius: 26,
+          foregroundImage: const NetworkImage(dummyProfileImage),
+          backgroundColor: Colors.grey,
+          child: ClipOval(
+            child: Image.network(
+              dummyProfileImage,
+              fit: BoxFit.cover,
+              width: 100,
+              height: 100,
+            ),
+          ),
+        ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
