@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/utils/app_styles.dart';
-import 'package:sketch/features/home/data/models/comment_model.dart';
+import 'package:sketch/features/home/data/models/post_model/comment.dart';
 import 'package:sketch/translations.dart';
 
 class CommentItem extends StatelessWidget {
   const CommentItem({super.key, required this.commentModel});
-  final CommentModel commentModel;
+  final Comment commentModel;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,8 +17,8 @@ class CommentItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
         child: Row(
           children: [
-            SvgPicture.asset(
-                commentModel.commentOwner.image ?? Assets.imagesAvatar13),
+            // SvgPicture.asset(
+            //     commentModel.userId.image ?? Assets.imagesAvatar13),
             const SizedBox(
               width: 10,
             ),
@@ -29,7 +28,7 @@ class CommentItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      commentModel.commentOwner.userName,
+                      commentModel.userId.toString(),
                       style: AppStyles.styleBold14(context),
                     ),
                     const SizedBox(
@@ -43,15 +42,15 @@ class CommentItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(
-                      formatTime(commentModel.commentDate),
-                    ),
+                    // Text(
+                    //   formatTime(commentModel.),
+                    // ),
                     Row(
                       children: [
                         const SizedBox(
                           width: 16,
                         ),
-                        Text(commentModel.reactions.length.toString()),
+                        // Text(commentModel.reactions.length.toString()),
                         Text(
                           AppLocalizations.of(context)!.like,
                         ),

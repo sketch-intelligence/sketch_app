@@ -27,7 +27,7 @@ class RoleSwitchState extends State<RoleSwitch> {
             onChanged: (value) {
               setState(() {
                 context.read<AuthCubit>().registerParams.role = "USER";
-                
+
                 _selectedRole = value!;
               });
             },
@@ -45,9 +45,8 @@ class RoleSwitchState extends State<RoleSwitch> {
             groupValue: _selectedRole,
             onChanged: (value) {
               setState(() {
-                context.read<AuthCubit>().registerParams.role =
-                    "ARCHITECT";
-                
+                context.read<AuthCubit>().registerParams.role = "ARCHITECT";
+
                 _selectedRole = value!;
               });
             },

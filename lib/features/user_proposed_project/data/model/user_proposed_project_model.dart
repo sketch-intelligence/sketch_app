@@ -58,7 +58,7 @@ class UserProposedProjectModel extends BaseModel {
       'title': title,
       'description': description,
       'numberOfBids': numberOfBids,
-      'author': author.toMap(),
+      // 'author': author.toMap(),
       'postDate': postDate.millisecondsSinceEpoch,
       'budget': budget,
       'duration': duration,

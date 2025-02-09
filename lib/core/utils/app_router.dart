@@ -4,7 +4,7 @@ import 'package:sketch/core/ui/screens/splash_screen.dart';
 import 'package:sketch/features/auth/presentation/views/login_view.dart';
 import 'package:sketch/features/auth/presentation/views/register_view.dart';
 import 'package:sketch/features/design/presentation/views/generate_design_page.dart';
-import 'package:sketch/features/home/data/models/post_model.dart';
+import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_details_view.dart';
 import 'package:sketch/features/notification/presentation/views/notification_view.dart';

@@ -15,7 +15,7 @@ class AuthRepository extends CoreRepository {
       url: loginUrl,
       method: HttpMethod.POST,
       responseStr: 'LoginResponse',
-      converter: (json) => LoginModel.fromJson(json),
+      converter: (json) => LoginModel.fromJson(json["data"]),
     );
     return call(result: result);
   }
@@ -28,7 +28,7 @@ class AuthRepository extends CoreRepository {
         url: 'http://localhost:8080/auth/register/user',
         method: HttpMethod.POST,
         responseStr: 'SignupResponse',
-        converter: (json) => LoginModel.fromJson(json));
+        converter: (json) => LoginModel.fromJson(json["data"]));
     return call(result: result);
   }
 }

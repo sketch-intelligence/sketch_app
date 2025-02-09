@@ -70,6 +70,10 @@ class Assets {
   /// assets/images/GlobeHemisphereEast.svg
   static const String imagesGlobeHemisphereEast = "assets/images/GlobeHemisphereEast.svg";
 
+  /// Assets for imagesHeartEyes
+  /// assets/images/heart_eyes.png
+  static const String imagesHeartEyes = "assets/images/heart_eyes.png";
+
   /// Assets for imagesHome
   /// assets/images/Home.svg
   static const String imagesHome = "assets/images/Home.svg";
@@ -95,8 +99,12 @@ class Assets {
   static const String imagesLang = "assets/images/lang.svg";
 
   /// Assets for imagesLike
-  /// assets/images/Like.svg
-  static const String imagesLike = "assets/images/Like.svg";
+  /// assets/images/like.png
+  static const String imagesLike = "assets/images/like.png";
+
+  /// Assets for imagesLikeS
+  /// assets/images/LikeS.svg
+  static const String imagesLikeS = "assets/images/LikeS.svg";
 
   /// Assets for imagesList
   /// assets/images/List.svg
@@ -109,6 +117,10 @@ class Assets {
   /// Assets for imagesLogout
   /// assets/images/logout.svg
   static const String imagesLogout = "assets/images/logout.svg";
+
+  /// Assets for imagesLove
+  /// assets/images/love.png
+  static const String imagesLove = "assets/images/love.png";
 
   /// Assets for imagesMail
   /// assets/images/Mail.svg
@@ -197,5 +209,9 @@ class Assets {
   /// Assets for imagesUserPenSolid
   /// assets/images/user_pen_solid.svg
   static const String imagesUserPenSolid = "assets/images/user_pen_solid.svg";
+
+  /// Assets for imagesWow
+  /// assets/images/wow.png
+  static const String imagesWow = "assets/images/wow.png";
 }
 

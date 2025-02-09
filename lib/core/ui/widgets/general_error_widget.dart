@@ -33,7 +33,7 @@ class GeneralErrorWidget extends StatelessWidget {
               color: AppColors.grey9A, fontSize: AppFontSize.size_16)),
       // buttonText: AppLocalizations.of(context)!.try_again,
       buttonText: "try again",
-      image: Assets.imagesBell,
+      image: Assets.imagesImages,
       onTap: onTap,
       description: '',
     );

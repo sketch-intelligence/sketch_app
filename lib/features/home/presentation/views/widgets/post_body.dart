@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/features/home/data/models/post_model.dart';
+import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 
 class PostBody extends StatelessWidget {
   const PostBody({
@@ -13,22 +12,19 @@ class PostBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
           height: 16,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(postModel.text ?? ''),
-          ],
-        ),
+        Text(postModel.text ?? ''),
         SizedBox(
           height: postModel.text != null ? 6 : 0,
         ),
-        postModel.image != null
-            ? Image.asset(postModel.image!)
-            : Image.asset(Assets.imagesImage)
+        // postModel.images?[0] != null
+        //     ? Image.asset(postModel.images!.elementAt(0).downloadUrl ??
+        //         Assets.imagesImage)
+        //     : Image.asset(Assets.imagesImage)
       ],
     );
   }

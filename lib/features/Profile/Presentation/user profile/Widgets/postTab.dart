@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/home/data/models/post_model.dart';
+import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
 
 class PostsTab extends StatelessWidget {

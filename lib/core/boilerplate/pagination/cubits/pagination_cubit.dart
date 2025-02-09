@@ -15,11 +15,11 @@ class PaginationCubit<ListModel> extends Cubit<PaginationState> {
   List<ListModel> list = [];
   Map<String, dynamic> params = {};
   int results = 10;
-  int page = 1;
+  int page = 0;
 
   getList({bool loadMore = false}) async {
     if (!loadMore) {
-      page = 1;
+      page = 0;
       emit(Loading());
     } else {
       page++;

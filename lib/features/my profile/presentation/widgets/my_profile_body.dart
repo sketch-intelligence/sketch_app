@@ -5,10 +5,8 @@ import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/cust
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/project_card.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/Profile/data/models/project_model.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
-import 'package:sketch/features/home/presentation/views/widgets/mobile_home_view_body.dart';
-import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
 import 'package:sketch/features/follows/presentation/views/follows_view.dart';
+import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/my%20profile/presentation/widgets/my_profile_body_content.dart';
 
 class MyProfileBody extends StatefulWidget {
@@ -117,11 +115,11 @@ class _MyProfileBodyState extends State<MyProfileBody>
                     Navigator.pop(context);
                     print("Add Post");
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 16.0),
+                  child: const Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.post_add, color: Colors.black),
                         SizedBox(width: 8),
                         Text("Post", style: TextStyle(color: Colors.black)),
@@ -135,11 +133,11 @@ class _MyProfileBodyState extends State<MyProfileBody>
                     Navigator.pop(context);
                     print("Add Project");
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 16.0),
+                  child: const Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.business, color: Colors.black),
                         SizedBox(width: 8),
                         Text("Project", style: TextStyle(color: Colors.black)),
@@ -161,23 +159,23 @@ class _MyProfileBodyState extends State<MyProfileBody>
     return SingleChildScrollView(
       child: Column(
         children: [
-          BuildTopPage(),
+          const BuildTopPage(),
           MyProfileBodyContent(profile: visitor),
           const Divider(),
           CustomTabBar(tabController: _tabController),
           Column(
             children: [
               if (_selectedIndex == 0) ...[
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: HomeViewBody.posts.length,
-                  itemBuilder: (context, index) {
-                    return PostListViewItem(
-                      postModel: HomeViewBody.posts[index],
-                    );
-                  },
-                ),
+                // ListView.builder(
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   shrinkWrap: true,
+                //   itemCount: HomeViewBody.posts.length,
+                //   itemBuilder: (context, index) {
+                //     return PostListViewItem(
+                //       postModel: HomeViewBody.posts[index],
+                //     );
+                //   },
+                // ),
               ] else if (_selectedIndex == 1) ...[
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),

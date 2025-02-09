@@ -187,19 +187,27 @@ class ApiProvider {
         if (e.response?.statusCode == 500) {
           errors = ['Something went wrong , try again later.'];
         } else {
-          var message = e.response?.data['description'];
-          if (message is String) {
-            errors = [message];
-          } else if (message is List && message.isNotEmpty) {
-            errors = [message.first ?? 'Unknown error occurred.'];
-          } else if (message is Map && message.isNotEmpty) {
-            var firstKey = message.keys.first;
-            var firstValue = message[firstKey];
-            if (firstValue is List && firstValue.isNotEmpty) {
-              errors = [firstValue.first ?? 'Unknown error occurred.'];
+          var responseData = e.response?.data;
+
+          if (responseData is Map) {
+            var message = responseData['description'];
+            if (message is String) {
+              errors = [message];
+            } else if (message is List && message.isNotEmpty) {
+              errors = [message.first ?? 'Unknown error occurred.'];
+            } else if (message is Map && message.isNotEmpty) {
+              var firstKey = message.keys.first;
+              var firstValue = message[firstKey];
+              if (firstValue is List && firstValue.isNotEmpty) {
+                errors = [firstValue.first ?? 'Unknown error occurred.'];
+              } else {
+                errors = [firstValue.toString()];
+              }
             } else {
-              errors = [firstValue.toString()];
+              errors = ['An unexpected error occurred'];
             }
+          } else if (responseData is String) {
+            errors = [responseData]; // Directly assign the string error message
           } else {
             errors = ['An unexpected error occurred'];
           }

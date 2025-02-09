@@ -12,7 +12,7 @@ import 'package:sketch/features/home/presentation/views/widgets/post_list_view_i
 import 'package:sketch/features/follows/presentation/views/follows_view.dart'; // Import the FollowsView
 
 class ProfileBody extends StatefulWidget {
-  ProfileBody({super.key});
+  const ProfileBody({super.key});
 
   @override
   _ProfileBodyState createState() => _ProfileBodyState();
@@ -70,7 +70,7 @@ class _ProfileBodyState extends State<ProfileBody>
     if (index == 2) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => FollowsView(),
+          builder: (context) => const FollowsView(),
         ),
       );
     } else {
@@ -83,11 +83,11 @@ class _ProfileBodyState extends State<ProfileBody>
     return SingleChildScrollView(
       child: Column(
         children: [
-          BuildTopPage(),
+          const BuildTopPage(),
           ProfileBodyContent(
             profile: visitoe,
           ),
-          Divider(),
+          const Divider(),
           CustomTabBar(tabController: _tabController),
           // Main scrollable content
           Column(
@@ -95,21 +95,21 @@ class _ProfileBodyState extends State<ProfileBody>
               // Display content based on the selected tab
               if (_selectedIndex == 0) ...[
                 // Posts
-                ListView.builder(
-                  physics:
-                      NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
-                  shrinkWrap: true,
-                  itemCount: HomeViewBody.posts.length,
-                  itemBuilder: (context, index) {
-                    return PostListViewItem(
-                        postModel: HomeViewBody.posts[index]);
-                  },
-                ),
+                // ListView.builder(
+                //   physics:
+                //       NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
+                //   shrinkWrap: true,
+                //   itemCount: HomeViewBody.posts.length,
+                //   itemBuilder: (context, index) {
+                //     return PostListViewItem(
+                //         postModel: HomeViewBody.posts[index]);
+                //   },
+                // ),
               ] else if (_selectedIndex == 1) ...[
                 // Projects
                 ListView.builder(
                   physics:
-                      NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
+                      const NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
                   shrinkWrap: true,
                   itemCount: projects.length,
                   itemBuilder: (context, index) {
@@ -119,7 +119,7 @@ class _ProfileBodyState extends State<ProfileBody>
               ],
             ],
           ),
-          SizedBox(height: 20), // Add some space after the projects
+          const SizedBox(height: 20), // Add some space after the projects
         ],
       ),
     );

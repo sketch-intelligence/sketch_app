@@ -24,7 +24,7 @@ import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart
 import 'package:sketch/translations.dart';
 
 class MobileRegisterViewBody extends StatelessWidget {
-   MobileRegisterViewBody({super.key});
+  MobileRegisterViewBody({super.key});
 
   final _formKey = GlobalKey<FormState>();
   @override
