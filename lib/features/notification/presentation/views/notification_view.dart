@@ -13,7 +13,8 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
           ? AppBar(
               leading: IconButton(
@@ -34,6 +35,6 @@ class NotificationView extends StatelessWidget {
         tabletLayout: (context) => const SizedBox(),
         desktopLayout: (context) => const SizedBox(),
       ),
-    );
+    ));
   }
 }

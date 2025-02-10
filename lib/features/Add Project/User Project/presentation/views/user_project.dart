@@ -3,6 +3,7 @@ import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
+
 import '../../../../../core/constant/text_styles/font_size.dart'; // Import your CustomButton widget
 
 class UserProject extends StatelessWidget {
@@ -17,7 +18,8 @@ class UserProject extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -100,7 +102,7 @@ class UserProject extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
   Widget _buildLabel(String text) {

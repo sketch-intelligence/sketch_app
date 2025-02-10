@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
@@ -7,8 +8,8 @@ import 'package:sketch/features/Add Project/Architect Project/data/models/archit
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/widgets/date_picker.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/widgets/file_upload_widget.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/widgets/label_widget.dart';
+
 import '../../../../../core/constant/text_styles/font_size.dart';
-import 'package:file_picker/file_picker.dart';
 
 class ArchitectProject extends StatefulWidget {
   final ArchitectProjectModel? project;
@@ -64,7 +65,8 @@ class _ArchitectProjectState extends State<ArchitectProject> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -134,6 +136,6 @@ class _ArchitectProjectState extends State<ArchitectProject> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

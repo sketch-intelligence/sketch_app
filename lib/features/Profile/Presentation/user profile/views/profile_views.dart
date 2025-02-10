@@ -23,7 +23,8 @@ class ProfilePage extends StatelessWidget {
             );
           },
           modelBuilder: (model) {
-            return Scaffold(
+            return SafeArea(
+                child: Scaffold(
               backgroundColor: Colors.white,
               appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
                   ? AppBar(
@@ -39,7 +40,7 @@ class ProfilePage extends StatelessWidget {
                 tabletLayout: (context) => const SizedBox(),
                 desktopLayout: (context) => const SizedBox(),
               ),
-            );
+            ));
           },
         ));
   }

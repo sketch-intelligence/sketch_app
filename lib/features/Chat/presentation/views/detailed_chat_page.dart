@@ -14,7 +14,8 @@ class DetailedChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -47,7 +48,7 @@ class DetailedChatPage extends StatelessWidget {
           const buildMessageInput(),
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildMessageTile(Message message, bool isMe, BuildContext context) {

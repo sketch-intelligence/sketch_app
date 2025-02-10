@@ -24,9 +24,9 @@ import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart
 import 'package:sketch/translations.dart';
 
 class MobileRegisterViewBody extends StatelessWidget {
-  MobileRegisterViewBody({super.key});
+  const MobileRegisterViewBody({super.key});
 
-  final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(

@@ -7,8 +7,9 @@ class UserProposedProjectDetailsView extends StatelessWidget {
   final UserProposedProjectModel project;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       body: UserProposedProjectDetailsBody(project: project),
-    );
+    ));
   }
 }

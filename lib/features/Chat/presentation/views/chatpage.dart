@@ -30,7 +30,8 @@ class _ChatPageState extends State<ChatPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -40,7 +41,7 @@ class _ChatPageState extends State<ChatPage>
         centerTitle: true,
       ),
       body: ChatBody(tabController: _tabController),
-    );
+    ));
   }
 }
 

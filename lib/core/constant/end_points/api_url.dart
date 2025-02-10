@@ -1,11 +1,14 @@
-const baseUrl = 'http://localhost:8080/'; //base_url
+const baseUrl = 'http://192.168.1.90:8080/'; //base_url
 
 const authUrl = '${baseUrl}auth';
 const loginUrl = '$authUrl/authenticate';
-const registerUrl = '$authUrl/register/user';
-
+const userRegisterUrl = '$authUrl/register/user';
+const archRegisterUrl = '$authUrl/register/architect';
 const postsUrl = '${baseUrl}posts/all';
 
-//get profile url
+//profile
 
 const getProfileUrl = '${baseUrl}users';
+
+//blance
+const balanceUrl = '${baseUrl}balance';

@@ -26,11 +26,11 @@ import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart
 import 'package:sketch/translations.dart';
 
 class MobileLoginViewBody extends StatelessWidget {
-  MobileLoginViewBody({super.key});
+  const MobileLoginViewBody({super.key});
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(
@@ -38,9 +38,9 @@ class MobileLoginViewBody extends StatelessWidget {
         return Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: AppPaddingSize.padding_30),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -104,6 +104,7 @@ class MobileLoginViewBody extends StatelessWidget {
                       CacheHelper.setToken(model.token);
                       CacheHelper.setUserId(model.user!.id);
                       CacheHelper.setUserInfo(model);
+                      CacheHelper.setBalance(model.user!.balance);
                       GoRouter.of(context).go(AppRouter.kRootView);
                     },
                     child: CustomButton(

@@ -6,6 +6,6 @@ class QuestionPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: QuestionPagesBody());
+    return const SafeArea(child: Scaffold(body: QuestionPagesBody()));
   }
 }

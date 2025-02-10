@@ -7,11 +7,13 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AdaptiveLayout(
-        mobileLayout: (context) => MobileRegisterViewBody(),
-        tabletLayout: (context) => const SizedBox(),
-        desktopLayout: (context) => const SizedBox(),
+    return SafeArea(
+      child: Scaffold(
+        body: AdaptiveLayout(
+          mobileLayout: (context) => const MobileRegisterViewBody(),
+          tabletLayout: (context) => const SizedBox(),
+          desktopLayout: (context) => const SizedBox(),
+        ),
       ),
     );
   }

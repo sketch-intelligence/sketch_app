@@ -6,7 +6,6 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/features/follows/data/models/follows_model.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
 
@@ -85,7 +84,8 @@ class _SuggestedForYouPageState extends State<SuggestedForYouPage> {
     final screenHeight = MediaQuery.of(context).size.height;
     final isSmallScreen = screenWidth < 350;
 
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: const Text("Suggested for You"),
@@ -182,6 +182,6 @@ class _SuggestedForYouPageState extends State<SuggestedForYouPage> {
           ),
         ],
       ),
-    );
+    ));
   }
 }

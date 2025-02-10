@@ -21,7 +21,8 @@ class RootOnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       body: BlocConsumer<OnBoardingCubit, OnBoardingStates>(
         listener: (context, state) {},
         builder: (context, state) => Column(
@@ -71,7 +72,7 @@ class RootOnBoardingScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
   String _getImageForIndex(int index) {

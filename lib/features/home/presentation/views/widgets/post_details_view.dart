@@ -13,12 +13,13 @@ class PostDetailsView extends StatelessWidget {
   final PostModel post;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(),
       body: PostDetailsViewBody(
         post: post,
       ),
-    );
+    ));
   }
 }
 

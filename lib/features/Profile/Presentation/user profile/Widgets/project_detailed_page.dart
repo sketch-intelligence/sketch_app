@@ -8,22 +8,23 @@ class ProjectDetailsPage extends StatelessWidget {
   final ProjectModel project;
 
   const ProjectDetailsPage({
-    Key? key,
+    super.key,
     required this.project,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.black),
+          icon: const Icon(Icons.arrow_back, color: AppColors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -77,6 +78,6 @@ class ProjectDetailsPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

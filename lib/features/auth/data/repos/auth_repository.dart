@@ -25,7 +25,7 @@ class AuthRepository extends CoreRepository {
     final result = await RemoteDataSource.request(
         withAuthentication: false,
         data: params.toJson(),
-        url: 'http://localhost:8080/auth/register/user',
+        url: params.role == 'USER' ? userRegisterUrl : archRegisterUrl,
         method: HttpMethod.POST,
         responseStr: 'SignupResponse',
         converter: (json) => LoginModel.fromJson(json["data"]));

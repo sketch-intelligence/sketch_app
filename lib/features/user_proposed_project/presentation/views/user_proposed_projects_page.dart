@@ -6,8 +6,10 @@ class UserProposedProjectsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: UserProposedProjectsPageBody(),
+    return const SafeArea(
+      child: Scaffold(
+        body: UserProposedProjectsPageBody(),
+      ),
     );
   }
 }

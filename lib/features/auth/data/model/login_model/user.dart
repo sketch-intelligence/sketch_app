@@ -39,6 +39,8 @@ class User {
 
   @HiveField(10)
   List<Authority>? authorities;
+  @HiveField(11)
+  dynamic balance;
 
   User({
     this.id,
@@ -50,6 +52,7 @@ class User {
     this.credentialsNonExpired,
     this.accountNonExpired,
     this.accountNonLocked,
+    this.balance,
     this.username,
     this.authorities,
   });
@@ -58,6 +61,7 @@ class User {
         id: json['id'] as int?,
         name: json['name'] as String?,
         email: json['email'] as String?,
+        balance: json['balance'] as dynamic,
         password: json['password'] as String?,
         roles: (json['roles'] as List<dynamic>?)
             ?.map((e) => Role.fromJson(e as Map<String, dynamic>))

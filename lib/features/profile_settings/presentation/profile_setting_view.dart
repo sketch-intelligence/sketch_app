@@ -16,7 +16,8 @@ class ProfileSettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppPaddingSize.padding_16,
@@ -55,6 +56,10 @@ class ProfileSettingScreen extends StatelessWidget {
               onTap: () => GoRouter.of(context).push(AppRouter.kLangView),
             ),
             ProfileCard(
+                title: AppLocalizations.of(context)!.balance,
+                iconUrl: Assets.imagesBalanceIcon,
+                onTap: () => GoRouter.of(context).push(AppRouter.kAddBalance)),
+            ProfileCard(
                 title: AppLocalizations.of(context)!.logout,
                 iconUrl: Assets.imagesLogout,
                 onTap: () {
@@ -72,6 +77,6 @@ class ProfileSettingScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

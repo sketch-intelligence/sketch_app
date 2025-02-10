@@ -26,6 +26,7 @@ class UserAdapter extends TypeAdapter<User> {
       credentialsNonExpired: fields[6] as bool?,
       accountNonExpired: fields[7] as bool?,
       accountNonLocked: fields[8] as bool?,
+      balance: fields[11] as dynamic,
       username: fields[9] as String?,
       authorities: (fields[10] as List?)?.cast<Authority>(),
     );
@@ -34,7 +35,7 @@ class UserAdapter extends TypeAdapter<User> {
   @override
   void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,7 +57,9 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(9)
       ..write(obj.username)
       ..writeByte(10)
-      ..write(obj.authorities);
+      ..write(obj.authorities)
+      ..writeByte(11)
+      ..write(obj.balance);
   }
 
   @override

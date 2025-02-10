@@ -7,14 +7,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: AdaptiveLayout(
-        mobileLayout: (context) => const HomeViewBody(),
-        tabletLayout: (context) => const SizedBox(),
-        desktopLayout: (context) => const SizedBox(),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: AdaptiveLayout(
+          mobileLayout: (context) => const HomeViewBody(),
+          tabletLayout: (context) => const SizedBox(),
+          desktopLayout: (context) => const SizedBox(),
+        ),
+        // bottomNavigationBar: const CustomBottomNavigationBar(),
       ),
-      // bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

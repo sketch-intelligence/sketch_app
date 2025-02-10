@@ -20,7 +20,7 @@ class CacheHelper {
   static Future<void> setLang(String value) => box.put(languageValue, value);
   static Future<void> setToken(String? value) =>
       box.put(accessToken, value ?? '');
-  static Future<void> setBalance(double? value) =>
+  static Future<void> setBalance(dynamic value) =>
       box.put(balanceKey, value ?? '');
   static Future<void> setUserId(int? value) => box.put(userId, value ?? 0);
   static Future<void> setFirstTime(bool value) => box.put(isFirstTime, value);
@@ -31,7 +31,7 @@ class CacheHelper {
     return "${box.get(accessToken)}";
   }
 
-  static double? get balance {
+  static dynamic get balance {
     if (!box.containsKey(balanceKey)) return null;
     return box.get(balanceKey);
   }

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/di/di.dart';
+import 'package:sketch/core/payment/stripe_widget.dart';
 import 'package:sketch/core/utils/app_router.dart';
+import 'package:sketch/features/Profile/data/cubit/profile_cubit.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:sketch/features/language/cubit/language_cubit.dart';
 import 'package:sketch/features/language/cubit/language_states.dart';
@@ -16,6 +19,10 @@ import 'package:sketch/translations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  Stripe.publishableKey = StripeManager.publishableKey;
+  // print("Stripe publishable key: ${Stripe.publishableKey}");
+  //
+  await Stripe.instance.applySettings();
   setUp();
   runApp(const Sketch());
 }
@@ -31,6 +38,7 @@ class Sketch extends StatelessWidget {
         BlocProvider(create: (context) => getIt<AuthCubit>()),
         BlocProvider(create: (context) => getIt<LanguageCubit>()),
         BlocProvider(create: (context) => getIt<OnBoardingCubit>()),
+        BlocProvider(create: (context) => getIt<ProfileCubit>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(429, 932),

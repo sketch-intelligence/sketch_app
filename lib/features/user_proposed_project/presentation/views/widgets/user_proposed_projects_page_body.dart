@@ -11,6 +11,7 @@ import 'package:sketch/features/home/data/models/person_model/person_model.dart'
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/widgets/user_proposed_project_item.dart';
+import 'package:sketch/translations.dart';
 
 class UserProposedProjectsPageBody extends StatelessWidget {
   const UserProposedProjectsPageBody({super.key});
@@ -52,7 +53,7 @@ class UserProposedProjectsPageBody extends StatelessWidget {
               context.read<RootPageCubit>().changePageIndex(0);
               GoRouter.of(context).go(AppRouter.kRootView);
             },
-            title: "Latest Projects",
+            title: AppLocalizations.of(context)!.latestProjects,
           ),
           const SizedBox(
             height: 12,
