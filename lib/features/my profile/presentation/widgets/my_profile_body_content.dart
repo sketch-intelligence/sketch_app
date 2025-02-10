@@ -5,8 +5,10 @@ import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/edit_profile.dart';
 import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/views/architect_project.dart';
 import 'package:sketch/features/Post/presentation/views/post_view.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/home/data/models/person_model/person_model.dart';
+import 'package:sketch/translations.dart';
 
 class MyProfileBodyContent extends StatelessWidget {
   final ProfileModel profile;
@@ -16,23 +18,14 @@ class MyProfileBodyContent extends StatelessWidget {
     super.key,
     required this.profile,
   });
-  final ProfileModel user = ProfileModel(
-    person: PersonModel(name: "Beshir"),
-    bio: "Coding and watching movies",
-  );
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          user.person.name ?? '',
+          profile.name ?? '',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          user.bio,
-          style: const TextStyle(fontSize: 16, color: Colors.grey),
         ),
         const SizedBox(height: 16),
         Padding(
@@ -44,7 +37,7 @@ class MyProfileBodyContent extends StatelessWidget {
                 child: CustomButton(
                   key: _addButtonKey,
                   icon: Assets.imagesCheckDouble,
-                  text: "Add",
+                  text: AppLocalizations.of(context)!.add,
                   h: MediaQuery.of(context).size.height * 0.05,
                   w: MediaQuery.of(context).size.width * 0.35,
                   color: Colors.white,
@@ -62,7 +55,7 @@ class MyProfileBodyContent extends StatelessWidget {
               Expanded(
                 child: CustomButton(
                   icon: Assets.imagesChatCircleDots,
-                  text: "Edit Profile",
+                  text: AppLocalizations.of(context)!.editProfile,
                   h: MediaQuery.of(context).size.height * 0.05,
                   w: MediaQuery.of(context).size.width * 0.35,
                   borderSideColor: const Color(0xff408bc1),
@@ -73,7 +66,7 @@ class MyProfileBodyContent extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return EditProfilePage();
+                      return const EditProfilePage();
                     }));
                   },
                 ),
@@ -134,7 +127,8 @@ class MyProfileBodyContent extends StatelessWidget {
                   height: 24,
                 ),
                 const SizedBox(width: 8),
-                const Text("Project", style: TextStyle(fontSize: 16)),
+                Text(AppLocalizations.of(context)!.project,
+                    style: const TextStyle(fontSize: 16)),
               ],
             ),
           ),

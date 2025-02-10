@@ -3,16 +3,15 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_top_page.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/custom_tab_bar.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/project_card.dart';
-import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/Profile/data/models/project_model.dart';
 import 'package:sketch/features/follows/presentation/views/follows_view.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
-import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 import 'package:sketch/features/my%20profile/presentation/widgets/my_profile_body_content.dart';
+import 'package:sketch/translations.dart';
 
 class MyProfileBody extends StatefulWidget {
-  const MyProfileBody({super.key});
-
+  MyProfileBody({super.key, required this.profileModel});
+  ProfileModel profileModel;
   @override
   _MyProfileBodyState createState() => _MyProfileBodyState();
 }
@@ -42,14 +41,6 @@ class _MyProfileBodyState extends State<MyProfileBody>
       imageUrl: Assets.imagesAvatar13,
     ),
   ];
-
-  ProfileModel visitor = ProfileModel(
-    person: PersonModel(name: "omar"),
-    bio: "Coding and Watching Movies",
-    isConnected: false,
-    followersCount: 20,
-    followingCount: 2,
-  );
 
   final GlobalKey _addButtonKey = GlobalKey();
 
@@ -116,14 +107,15 @@ class _MyProfileBodyState extends State<MyProfileBody>
                     Navigator.pop(context);
                     print("Add Post");
                   },
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 16.0),
                     child: Row(
                       children: [
-                        Icon(Icons.post_add, color: Colors.black),
-                        SizedBox(width: 8),
-                        Text("Post", style: TextStyle(color: Colors.black)),
+                        const Icon(Icons.post_add, color: Colors.black),
+                        const SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.post,
+                            style: const TextStyle(color: Colors.black)),
                       ],
                     ),
                   ),
@@ -134,14 +126,15 @@ class _MyProfileBodyState extends State<MyProfileBody>
                     Navigator.pop(context);
                     print("Add Project");
                   },
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 16.0),
                     child: Row(
                       children: [
-                        Icon(Icons.business, color: Colors.black),
-                        SizedBox(width: 8),
-                        Text("Project", style: TextStyle(color: Colors.black)),
+                        const Icon(Icons.business, color: Colors.black),
+                        const SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.project,
+                            style: const TextStyle(color: Colors.black)),
                       ],
                     ),
                   ),
@@ -161,9 +154,9 @@ class _MyProfileBodyState extends State<MyProfileBody>
       child: Column(
         children: [
           BuildTopPage(
-            person: visitor,
+            person: widget.profileModel,
           ),
-          MyProfileBodyContent(profile: visitor),
+          MyProfileBodyContent(profile: widget.profileModel),
           const Divider(),
           CustomTabBar(tabController: _tabController),
           Column(

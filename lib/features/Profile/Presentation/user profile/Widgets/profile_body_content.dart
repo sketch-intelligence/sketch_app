@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 
 class ProfileBodyContent extends StatelessWidget {
@@ -14,13 +15,8 @@ class ProfileBodyContent extends StatelessWidget {
     return Column(
       children: [
         Text(
-          profile.person.name ?? '',
+          profile.name ?? '',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          profile.bio,
-          style: const TextStyle(fontSize: 16, color: Colors.grey),
         ),
         const SizedBox(height: 16),
         Padding(
@@ -31,7 +27,8 @@ class ProfileBodyContent extends StatelessWidget {
               Expanded(
                 child: CustomButton(
                   icon: Assets.imagesCheckDouble,
-                  text: profile.isConnected ? "Connected" : "Connect",
+                  text:
+                      'conttec', // profile.isConnected ? "Connected" : "Connect",
                   h: MediaQuery.of(context).size.height * 0.06,
                   w: MediaQuery.of(context).size.width * 0.42,
                   color: Colors.white,

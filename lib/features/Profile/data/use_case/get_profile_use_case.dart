@@ -2,6 +2,7 @@
 import 'package:sketch/core/params/base_params.dart';
 import 'package:sketch/core/results/result.dart';
 import 'package:sketch/core/usecase/usecase.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/Profile/data/repository/profile_repository.dart';
 

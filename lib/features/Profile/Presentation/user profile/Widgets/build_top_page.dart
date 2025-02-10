@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sketch/constants.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_cover_image.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_profile_image.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/home/data/models/person_model.dart';
 
@@ -25,10 +27,18 @@ class BuildTopPage extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(bottom: profilePictureTop / 3.0),
-          child: CoverImageWidget(
-            imageUrl: person.coverImage?.isNotEmpty == true
-                ? person.coverImage!
-                : null, // Pass cover image dynamically
+          child: CircleAvatar(
+            radius: 26,
+            foregroundImage: const NetworkImage(dummyProfileImage),
+            backgroundColor: Colors.grey,
+            child: ClipOval(
+              child: Image.network(
+                dummyProfileImage,
+                fit: BoxFit.cover,
+                width: 100,
+                height: 100,
+              ),
+            ),
           ),
         ),
         Positioned(

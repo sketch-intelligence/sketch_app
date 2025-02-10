@@ -3,6 +3,7 @@ import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/size_config.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/profile_body.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/Profile/data/repository/profile_repository.dart';
 import 'package:sketch/features/Profile/data/use_case/get_profile_use_case.dart';
@@ -30,13 +31,15 @@ class ProfilePage extends StatelessWidget {
                   ? AppBar(
                       backgroundColor: Colors.white,
                       title: Text(
-                        model.person.name ?? '', // Dynamic profile name
+                        model.name ?? '', // Dynamic profile name
                       ),
                       centerTitle: true,
                     )
                   : null,
               body: AdaptiveLayout(
-                mobileLayout: (context) => const ProfileBody(),
+                mobileLayout: (context) => ProfileBody(
+                  profileModel: model,
+                ),
                 tabletLayout: (context) => const SizedBox(),
                 desktopLayout: (context) => const SizedBox(),
               ),
