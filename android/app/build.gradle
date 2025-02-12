@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -32,11 +33,16 @@ if (keystorePropertiesFile.exists()) {
 
 android {
 
-    namespace = "com.example.sketch"
+    namespace "com.example.sketch"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
-
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -44,19 +50,12 @@ android {
 
     defaultConfig {
         applicationId = "com.example.sketch"
-        minSdk = localProperties.getProperty("flutter.minSdkVersion", "21").toInteger()
+        minSdk = localProperties.getProperty("flutter.minSdkVersion", "23").toInteger()
         targetSdk = localProperties.getProperty("flutter.targetSdkVersion", "33").toInteger()
         versionCode = flutterVersionCode
         versionName = flutterVersionName
     }
 
-        kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
 
     buildTypes {
         release {
@@ -79,3 +78,12 @@ flutter {
 // }
 
 // apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+dependencies {
+    // implementation platform('com.google.firebase:firebase-bom:31.1.1')
+    // implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0' // Add this line
+
+}

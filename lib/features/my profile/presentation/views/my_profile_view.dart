@@ -16,38 +16,37 @@ class MyProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 3,
-        child: GetModel<ProfileModel>(
-          useCaseCallBack: () {
+      length: 3,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+              ? AppBar(
+                  backgroundColor: Colors.white,
+                  title: Text(
+                    AppLocalizations.of(context)!
+                        .myProfile, // Dynamic profile name
+                  ),
+                  centerTitle: true,
+                )
+              : null,
+          body: GetModel<ProfileModel>(useCaseCallBack: () {
             return GetProfileUseCase(
               repository: ProfileRepository(),
             ).call(
               params: GetProfileParams(userId: userId),
             );
-          },
-          modelBuilder: (model) {
-            return SafeArea(
-                child: Scaffold(
-              backgroundColor: Colors.white,
-              appBar: MediaQuery.sizeOf(context).width < SizeConfig.tablet
-                  ? AppBar(
-                      backgroundColor: Colors.white,
-                      title: Text(
-                        AppLocalizations.of(context)!
-                            .myProfile, // Dynamic profile name
-                      ),
-                      centerTitle: true,
-                    )
-                  : null,
-              body: AdaptiveLayout(
-                mobileLayout: (context) => MyProfileBody(
-                  profileModel: model,
-                ),
-                tabletLayout: (context) => const SizedBox(),
-                desktopLayout: (context) => const SizedBox(),
+          }, modelBuilder: (model) {
+            return AdaptiveLayout(
+              mobileLayout: (context) => MyProfileBody(
+                profileModel: model,
               ),
-            ));
-          },
-        ));
+              tabletLayout: (context) => const SizedBox(),
+              desktopLayout: (context) => const SizedBox(),
+            );
+          }),
+        ),
+      ),
+    );
   }
 }

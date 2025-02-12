@@ -1,6 +1,7 @@
 class Owner {
   int? id;
   String? name;
+
   String? imageUrl;
   Owner({this.id, this.name, this.imageUrl});
 

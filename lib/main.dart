@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,6 +15,7 @@ import 'package:sketch/features/language/cubit/language_cubit.dart';
 import 'package:sketch/features/language/cubit/language_states.dart';
 import 'package:sketch/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
+import 'package:sketch/firebase_options.dart';
 import 'package:sketch/translations.dart';
 
 void main() async {
@@ -23,6 +25,15 @@ void main() async {
   // print("Stripe publishable key: ${Stripe.publishableKey}");
   //
   await Stripe.instance.applySettings();
+  try {
+    // await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print("Firebase connected successfully!");
+  } catch (e) {
+    print("Firebase initialization error: $e");
+  }
   setUp();
   runApp(const Sketch());
 }

@@ -21,7 +21,8 @@ class PostHeader extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ProfilePage(uid: postModel.ownerId ?? 0);
+              print('${postModel.ownerId}');
+              return ProfilePage(userId: postModel.ownerId ?? 0);
             }));
           },
           child: CircleAvatar(

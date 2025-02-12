@@ -15,8 +15,8 @@ class LoginModel extends BaseModel {
 
   @HiveField(2)
   User? user;
-
-  LoginModel({this.token, this.expiresAt, this.user});
+  bool? isGoogle;
+  LoginModel({this.token, this.isGoogle, this.expiresAt, this.user});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
         token: json['token'] as String?,

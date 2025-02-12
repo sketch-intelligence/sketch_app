@@ -5,6 +5,7 @@ import 'following.dart';
 
 class ProfileModel extends BaseModel {
   int? id;
+  String? email;
   String? name;
   String? imageUrl;
   List<Follower>? followers;
@@ -12,6 +13,7 @@ class ProfileModel extends BaseModel {
 
   ProfileModel({
     this.id,
+    this.email,
     this.name,
     this.imageUrl,
     this.followers,
@@ -20,7 +22,8 @@ class ProfileModel extends BaseModel {
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
         id: json['id'] as int?,
-        name: json['name'] as String?,
+        name: json['userName'] as String?,
+        email: json['name'] as String?,
         imageUrl: json['imageUrl'] as String?,
         followers: (json['followers'] as List<dynamic>?)
             ?.map((e) => Follower.fromJson(e as Map<String, dynamic>))
@@ -32,7 +35,7 @@ class ProfileModel extends BaseModel {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'name': name,
+        'name': email,
         'imageUrl': imageUrl,
         'followers': followers?.map((e) => e.toJson()).toList(),
         'following': following?.map((e) => e.toJson()).toList(),

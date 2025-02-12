@@ -12,3 +12,6 @@ const getProfileUrl = '${baseUrl}users';
 
 //blance
 const balanceUrl = '${baseUrl}balance';
+
+//follow
+const addFollowUrl = '${baseUrl}api/followers/add';

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17171228074",
+    "project_id": "sketch-f5ced",
+    "storage_bucket": "sketch-f5ced.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17171228074:android:5418be3dc12864916537d3",
+        "android_client_info": {
+          "package_name": "com.example.sketch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTpvkXAIEQm5SPZnad32fOizn0WyWS9HA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
