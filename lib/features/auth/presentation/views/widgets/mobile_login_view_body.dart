@@ -18,7 +18,6 @@ import 'package:sketch/features/auth/data/repos/auth_repository.dart';
 import 'package:sketch/features/auth/domain/use_case/login_use_case.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_states.dart';
-import 'package:sketch/features/auth/presentation/views/widgets/custom_or_divider.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/social_login.dart';
@@ -113,7 +112,7 @@ class MobileLoginViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomOrDivider(),
+                  // const CustomOrDivider(),
                   const SizedBox(
                     height: 22,
                   ),
