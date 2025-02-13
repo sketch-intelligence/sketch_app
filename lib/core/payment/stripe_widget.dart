@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
+import 'package:sketch/core/constant/end_points/api_url.dart';
 import 'package:sketch/core/ui/dialogs/dialogs.dart';
 
 class StripeManager {
@@ -138,7 +139,7 @@ class StripeManager {
 
       Dio dio = Dio();
       final response = await dio.post(
-        'http://192.168.1.90:8080/balance/add',
+        '$baseUrl/balance/add',
         data: body,
         options: Options(headers: {
           'Authorization': 'Bearer ${CacheHelper.token!}',
