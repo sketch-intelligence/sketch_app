@@ -139,7 +139,7 @@ class StripeManager {
 
       Dio dio = Dio();
       final response = await dio.post(
-        '$baseUrl/balance/add',
+        '${baseUrl}balance/add',
         data: body,
         options: Options(headers: {
           'Authorization': 'Bearer ${CacheHelper.token!}',
