@@ -1,4 +1,4 @@
-const baseUrl = 'https://6786-149-34-244-157.ngrok-free.app/'; //base_url
+const baseUrl = 'https://e460-149-34-244-131.ngrok-free.app/'; //base_url
 
 const authUrl = '${baseUrl}auth';
 const loginUrl = '$authUrl/authenticate';

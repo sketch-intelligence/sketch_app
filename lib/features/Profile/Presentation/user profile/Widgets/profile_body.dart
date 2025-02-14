@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/build_top_page.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/custom_tab_bar.dart';
 import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/profile_body_content.dart';
+import 'package:sketch/features/Profile/Presentation/user%20profile/Widgets/project_card.dart';
 import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
-import 'package:sketch/features/Profile/data/models/profile_user_model.dart';
 import 'package:sketch/features/Profile/data/models/project_model.dart';
+import 'package:sketch/features/Profile/data/use_case/get_user_posts_use_case.dart';
 import 'package:sketch/features/follows/presentation/views/follows_view.dart';
-import 'package:sketch/features/home/data/models/person_model/person_model.dart';
-import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
+import 'package:sketch/features/home/data/models/post_model/post_model.dart';
+import 'package:sketch/features/home/presentation/repository/home_repository.dart';
+import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
 
 class ProfileBody extends StatefulWidget {
   ProfileBody({super.key, required this.profileModel});
@@ -79,31 +82,40 @@ class _ProfileBodyState extends State<ProfileBody>
               profile: widget.profileModel), // Pass person to the content
           const Divider(),
           CustomTabBar(tabController: _tabController),
-          const Column(
+          Column(
             children: [
               //get user posts
-              // if (_selectedIndex == 0) ...[
-              //   ListView.builder(
-              //     physics: const NeverScrollableScrollPhysics(),
-              //     shrinkWrap: true,
-              //     itemCount: HomeViewBody.posts.length,
-              //     itemBuilder: (context, index) {
-              //       return PostListViewItem(
-              //         postModel: HomeViewBody.posts[index],
-              //       );
-              //     },
-              //   ),
-              // ] else if (_selectedIndex == 1) ...[
-              //   ListView.builder(
-              //     physics:
-              //         const NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
-              //     shrinkWrap: true,
-              //     itemCount: projects.length,
-              //     itemBuilder: (context, index) {
-              //       return ProjectCard(project: projects[index]);
-              //     },
-              //   ),
-              // ],
+              if (_selectedIndex == 0) ...[
+                GetModel<ListUserPostModelModel>(
+                  useCaseCallBack: () {
+                    return GetUserPostsUseCase(homeRepository: HomeRepository())
+                        .call(
+                            params: GetUserPostsParams(
+                                id: widget.profileModel.id ?? 0));
+                  },
+                  withAnimation: true,
+                  modelBuilder: (model) => ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: model.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return PostListViewItem(
+                        postModel: model.data![index],
+                      );
+                    },
+                  ),
+                ),
+              ] else if (_selectedIndex == 1) ...[
+                ListView.builder(
+                  physics:
+                      const NeverScrollableScrollPhysics(), // Disable scrolling for internal ListView
+                  shrinkWrap: true,
+                  itemCount: projects.length,
+                  itemBuilder: (context, index) {
+                    return ProjectCard(project: projects[index]);
+                  },
+                ),
+              ],
             ],
           ),
           const SizedBox(height: 20), // Add some space after the projects

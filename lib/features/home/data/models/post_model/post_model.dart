@@ -15,6 +15,17 @@ class ListPostModelModel extends BaseModel {
                   json["content"]!.map((x) => PostModel.fromJson(x))));
 }
 
+class ListUserPostModelModel extends BaseModel {
+  List<PostModel>? data;
+  ListUserPostModelModel({this.data});
+  factory ListUserPostModelModel.fromJson(Map<String, dynamic> json) =>
+      ListUserPostModelModel(
+          data: json["data"] == []
+              ? []
+              : List<PostModel>.from(
+                  json["data"]!.map((x) => PostModel.fromJson(x))));
+}
+
 class PostModel extends BaseModel {
   int? id;
   String? text;

@@ -18,6 +18,7 @@ class ApiProvider {
   static Future<Either<String, T>> sendObjectRequest<T>({
     required HttpMethod method,
     required String url,
+    bool isImageResponse = false,
     Map<String, dynamic>? data,
     required Function(Map<String, dynamic>) converter,
     Map<String, String>? headers,
@@ -101,7 +102,7 @@ class ApiProvider {
         case HttpMethod.POST:
           response = await dio.post(
             url,
-            data: dataMap,
+            data: file == null ? dataMap : FormData.fromMap(dataMap),
             queryParameters: queryParameters ?? {},
             onSendProgress: (int sent, int total) {
               debugPrint(
@@ -136,7 +137,9 @@ class ApiProvider {
 
       var decodedJson =
           response.data is String ? json.decode(response.data) : response.data;
-
+      // if (isImageResponse) {
+      //   return Right(response.data);
+      // }
       if (decodedJson == null) {
         return const Left('An unexpected error occurred.');
       }
