@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
@@ -8,7 +9,10 @@ import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
-import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model.dart';
+import 'package:sketch/features/Profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/Profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/Profile/data/use_case/get_profile_use_case.dart';
+import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 
 class UserProposedProjectItem extends StatelessWidget {
   const UserProposedProjectItem({super.key, required this.project});
@@ -24,14 +28,14 @@ class UserProposedProjectItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              project.title,
+              project.title ?? '',
               style: AppStyles.styleBold18(context),
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
-              project.description,
+              project.description ?? '',
               style: AppStyles.styleRegular18(context)
                   .copyWith(color: AppColors.grey3B),
             ),
@@ -39,17 +43,25 @@ class UserProposedProjectItem extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Row(
                 children: [
-                  ProjectDetailsInfo(
-                    name: project.author.name ?? '',
-                    iconPath: Assets.imagesUserPenSolid,
+                  GetModel<ProfileModel>(
+                    useCaseCallBack: () {
+                      return GetProfileUseCase(repository: ProfileRepository())
+                          .call(
+                              params: GetProfileParams(
+                                  userId: project.architectId ?? 0));
+                    },
+                    modelBuilder: (model) => ProjectDetailsInfo(
+                      name: model.name ?? '',
+                      iconPath: Assets.imagesUserPenSolid,
+                    ),
                   ),
                   ProjectDetailsInfo(
                     name: "Bids",
-                    numberOfBids: project.numberOfBids,
+                    numberOfBids: project.bidDtos?.length.toString() ?? '0',
                     iconPath: Assets.imagesUserGroupSolid,
                   ),
                   ProjectDetailsInfo(
-                    date: project.postDate,
+                    date: DateTime(2020), //project.budget ?? '3',
                     iconPath: Assets.imagesClockRegular,
                   ),
                 ],

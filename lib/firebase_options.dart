@@ -64,8 +64,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '17171228074',
     projectId: 'sketch-f5ced',
     storageBucket: 'sketch-f5ced.firebasestorage.app',
-    androidClientId: '17171228074-v1cqhhb9f8th3jju89o8po5fgcnec001.apps.googleusercontent.com',
-    iosClientId: '17171228074-cppti91lmutmnn7emovp790lmv6iejoc.apps.googleusercontent.com',
+    androidClientId:
+        '17171228074-v1cqhhb9f8th3jju89o8po5fgcnec001.apps.googleusercontent.com',
+    iosClientId:
+        '17171228074-cppti91lmutmnn7emovp790lmv6iejoc.apps.googleusercontent.com',
     iosBundleId: 'com.example.sketch',
   );
 
@@ -75,8 +77,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '17171228074',
     projectId: 'sketch-f5ced',
     storageBucket: 'sketch-f5ced.firebasestorage.app',
-    androidClientId: '17171228074-v1cqhhb9f8th3jju89o8po5fgcnec001.apps.googleusercontent.com',
-    iosClientId: '17171228074-cppti91lmutmnn7emovp790lmv6iejoc.apps.googleusercontent.com',
+    androidClientId:
+        '17171228074-v1cqhhb9f8th3jju89o8po5fgcnec001.apps.googleusercontent.com',
+    iosClientId:
+        '17171228074-cppti91lmutmnn7emovp790lmv6iejoc.apps.googleusercontent.com',
     iosBundleId: 'com.example.sketch',
   );
 

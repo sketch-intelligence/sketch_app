@@ -76,9 +76,9 @@ class RootScreen extends StatelessWidget {
                         fit: BoxFit.fill,
                       )),
                   //
-                  isUser ?? false
+                  isUser
                       ? BottomNavigationBarItem(
-                          label: AppLocalizations.of(context)!.projects,
+                          label: AppLocalizations.of(context)!.add,
                           icon: SvgPicture.asset(
                             Assets.imagesConfigurationTool,
                             color: context.read<RootPageCubit>().rootIndex == 2
@@ -87,10 +87,10 @@ class RootScreen extends StatelessWidget {
                             fit: BoxFit.fill,
                           ))
                       : BottomNavigationBarItem(
-                          label: AppLocalizations.of(context)!.add,
+                          label: AppLocalizations.of(context)!.projects,
                           icon: SvgPicture.asset(
                             Assets.imagesConfigurationTool,
-                            color: context.read<RootPageCubit>().rootIndex == 3
+                            color: context.read<RootPageCubit>().rootIndex == 2
                                 ? AppColors.primary
                                 : AppColors.grey9A,
                             fit: BoxFit.fill,
