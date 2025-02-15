@@ -5,8 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
-import 'package:sketch/features/profile/features/profile/Presentation/Widgets/project_detailed_page.dart';
-import 'package:sketch/features/profile/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
+import 'package:sketch/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/project_detailed_page.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 
 class ProjectCard extends StatelessWidget {

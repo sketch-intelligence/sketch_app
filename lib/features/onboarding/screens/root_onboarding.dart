@@ -23,12 +23,11 @@ class RootOnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.white,
       body: BlocConsumer<OnBoardingCubit, OnBoardingStates>(
         listener: (context, state) {},
         builder: (context, state) => Column(
           children: [
-            SizedBox(height: 50.h),
-            // Common header with back button and logo
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: BackWidget(
@@ -51,6 +50,7 @@ class RootOnBoardingScreen extends StatelessWidget {
 
             // PageView with onboarding screens
             Expanded(
+              flex: 4,
               child: PageView.builder(
                 onPageChanged: (int index) {
                   context.read<OnBoardingCubit>().changeIndex(index);
@@ -68,7 +68,7 @@ class RootOnBoardingScreen extends StatelessWidget {
               ),
             ),
 
-            Expanded(child: _BottomSection()),
+            Expanded(flex: 2, child: _BottomSection()),
           ],
         ),
       ),
@@ -78,33 +78,33 @@ class RootOnBoardingScreen extends StatelessWidget {
   String _getImageForIndex(int index) {
     switch (index) {
       case 0:
-        return Assets.imagesOnBb2;
+        return Assets.imagesFirst;
       case 1:
-        return Assets.imagesOnB2;
+        return Assets.imagesSecond;
       default:
-        return Assets.imagesOnB3;
+        return Assets.imagesThrid;
     }
   }
 
   String _getTitleForIndex(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "onboarding1_title";
+        return "Showcase Your Architectural Designs";
       case 1:
-        return "onboarding2_title";
+        return "Generate & Enhance Designs with AI";
       default:
-        return "onboarding3_title";
+        return " Chat, Collaborate & Get Hired";
     }
   }
 
   String _getSubTitleForIndex(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "onboarding1_subtitle";
+        return " Share your work with a community of architects and design enthusiasts. Get recognized and connect with potential clients.";
       case 1:
-        return "onboarding2_subtitle";
+        return "Turn your ideas into stunning architectural visuals with AI. Generate new designs and discover similar concepts effortlessly.";
       default:
-        return "onboarding3_subtitle";
+        return "Engage with architects, receive feedback, and explore career opportunities—all in one platform.";
     }
   }
 }
@@ -144,10 +144,10 @@ class _BottomSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          const Expanded(flex: 2, child: SizedBox(height: 20)),
+          // const Expanded(flex: 2, child: SizedBox(height: 20)),
           // Page indicators
           Expanded(
             flex: 1,
@@ -186,7 +186,7 @@ class _BottomSection extends StatelessWidget {
           ),
           // Title and subtitle
           Expanded(
-            flex: 3,
+            flex: 5,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: BlocBuilder<OnBoardingCubit, OnBoardingStates>(
@@ -205,6 +205,7 @@ class _BottomSection extends StatelessWidget {
                       Text(
                         _getSubtitle(context, currentIndex),
                         textAlign: TextAlign.center,
+                        maxLines: 2,
                         style: AppTextStyle.getRegularStyle(
                           color: AppColors.black1c,
                           fontSize: AppFontSize.size_12,
@@ -217,34 +218,34 @@ class _BottomSection extends StatelessWidget {
             ),
           ),
           // Buttons
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 18.0),
-            child: InkWell(
-              onTap: () async {
-                if (context.read<OnBoardingCubit>().index != 2) {
-                  context.read<OnBoardingCubit>().pageController.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn);
-                } else {
-                  await CacheHelper.setFirstTime(false);
-                  GoRouter.of(context).go(AppRouter.kLoginView);
-                }
+          InkWell(
+            onTap: () async {
+              if (context.read<OnBoardingCubit>().index != 2) {
+                context.read<OnBoardingCubit>().pageController.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn);
+              } else {
+                await CacheHelper.setFirstTime(false);
+                GoRouter.of(context).go(AppRouter.kLoginView);
+              }
+            },
+            child: BlocBuilder<OnBoardingCubit, OnBoardingStates>(
+              builder: (context, state) {
+                return CustomButton(
+                  color: Theme.of(context).colorScheme.primaryColor,
+                  text: context.read<OnBoardingCubit>().index != 2
+                      ? AppLocalizations.of(context)!.next
+                      : "Get Started",
+                  textStyle: AppTextStyle.getMediumStyle(
+                    color: Theme.of(context).colorScheme.secondaryColor,
+                    fontSize: AppFontSize.size_16,
+                  ),
+                );
               },
-              child: BlocBuilder<OnBoardingCubit, OnBoardingStates>(
-                builder: (context, state) {
-                  return CustomButton(
-                    color: Theme.of(context).colorScheme.primaryColor,
-                    text: context.read<OnBoardingCubit>().index != 2
-                        ? AppLocalizations.of(context)!.next
-                        : "Get Started",
-                    textStyle: AppTextStyle.getMediumStyle(
-                      color: Theme.of(context).colorScheme.secondaryColor,
-                      fontSize: AppFontSize.size_16,
-                    ),
-                  );
-                },
-              ),
             ),
+          ),
+          const SizedBox(
+            height: 12,
           ),
           InkWell(
             onTap: () async {
@@ -259,6 +260,9 @@ class _BottomSection extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );
@@ -267,22 +271,22 @@ class _BottomSection extends StatelessWidget {
   String _getTitle(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "onboarding1_title";
+        return "Showcase Your Architectural Designs";
       case 1:
-        return "onboarding2_title";
+        return "Generate & Enhance Designs with AI";
       default:
-        return "onboarding3_title";
+        return " Chat, Collaborate & Get Hired";
     }
   }
 
   String _getSubtitle(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return "onboarding1_subtitle";
+        return " Share your work with a community of architects and design enthusiasts. Get recognized and connect with potential clients.";
       case 1:
-        return "onboarding2_subtitle";
+        return "Turn your ideas into stunning architectural visuals with AI. Generate new designs and discover similar concepts effortlessly.";
       default:
-        return "onboarding3_subtitle";
+        return "Engage with architects, receive feedback, and explore career opportunities—all in one platform.";
     }
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/utils/adaptive_layout.dart';
-import 'package:sketch/features/profile/features/profile/Presentation/Widgets/profile_body.dart';
-import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
-import 'package:sketch/features/profile/features/profile/data/repository/profile_repository.dart';
-import 'package:sketch/features/profile/features/profile/data/use_case/get_profile_use_case.dart';
+import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/data/use_case/get_profile_use_case.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/profile_body.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key, required this.userId});

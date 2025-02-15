@@ -6,8 +6,8 @@ import 'package:sketch/core/constant/end_points/cashe_helper_constant.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
 import 'package:sketch/features/payment_imp/ui/payment_method.dart';
-import 'package:sketch/features/profile/features/profile/data/cubit/profile_cubit.dart';
-import 'package:sketch/features/profile/features/profile/data/cubit/profile_states.dart';
+import 'package:sketch/features/profile/data/cubit/profile_cubit.dart';
+import 'package:sketch/features/profile/data/cubit/profile_states.dart';
 import 'package:sketch/translations.dart';
 
 import '../../../core/constant/app_colors/app_colors.dart';
@@ -71,7 +71,7 @@ class AddBalanceScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: AppPaddingSize.padding_16),
                             child: Text(
-                                '${AppLocalizations.of(context)!.yourBalance} (${context.watch<ProfileCubit>().balance.toStringAsFixed(2)}) $currency',
+                                '${AppLocalizations.of(context)!.yourBalance} (${context.watch<ProfileCubit>().balance}) $currency',
                                 textAlign: TextAlign.center,
                                 style: AppTextStyle.getMediumStyle(
                                     color: AppColors.black1c.withOpacity(0.8),

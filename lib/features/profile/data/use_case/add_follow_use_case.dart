@@ -2,7 +2,7 @@
 import 'package:sketch/core/params/base_params.dart';
 import 'package:sketch/core/results/result.dart';
 import 'package:sketch/core/usecase/usecase.dart';
-import 'package:sketch/features/profile/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/data/repository/profile_repository.dart';
 
 class AddFollowParams extends BaseParams {
   int followerId;

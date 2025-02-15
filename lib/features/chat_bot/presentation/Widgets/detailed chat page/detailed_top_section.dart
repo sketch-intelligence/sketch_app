@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/features/Chat/data/models/chat_model.dart';
+import 'package:sketch/features/chat_bot/data/models/chat_model.dart';
 import 'package:sketch/translations.dart';
 
 class DetailedTopSection extends StatelessWidget {

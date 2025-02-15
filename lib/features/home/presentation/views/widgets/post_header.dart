@@ -4,7 +4,7 @@ import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
-import 'package:sketch/features/profile/features/profile/Presentation/views/profile_views.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/views/profile_views.dart';
 
 class PostHeader extends StatelessWidget {
   const PostHeader({

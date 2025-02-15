@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/Chat/presentation/Widgets/chat%20page/chat_listview.dart';
-import 'package:sketch/features/Chat/presentation/views/chatpage.dart';
+import 'package:sketch/features/chat_bot/presentation/Widgets/chat%20page/chat_listview.dart';
+import 'package:sketch/features/chat_bot/presentation/views/chatpage.dart';
 
 class ChatTabBarView extends StatelessWidget {
   const ChatTabBarView({

@@ -3,12 +3,12 @@ import 'package:sketch/core/data_source/remote_data_source.dart';
 import 'package:sketch/core/http/http_method.dart';
 import 'package:sketch/core/repository/core_repository.dart';
 import 'package:sketch/core/results/result.dart';
-import 'package:sketch/features/profile/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
-import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
-import 'package:sketch/features/profile/features/profile/data/use_case/add_follow_use_case.dart';
-import 'package:sketch/features/profile/features/profile/data/use_case/add_portfolio_project_use_case.dart';
-import 'package:sketch/features/profile/features/profile/data/use_case/get_arch_protfolio_projects_use_case.dart';
-import 'package:sketch/features/profile/features/profile/data/use_case/get_profile_use_case.dart';
+import 'package:sketch/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
+import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/data/use_case/add_follow_use_case.dart';
+import 'package:sketch/features/profile/data/use_case/add_portfolio_project_use_case.dart';
+import 'package:sketch/features/profile/data/use_case/get_arch_protfolio_projects_use_case.dart';
+import 'package:sketch/features/profile/data/use_case/get_profile_use_case.dart';
 
 class ProfileRepository extends CoreRepository {
   Future<Result<ProfileModel>> getProfile(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/profile/features/profile/Presentation/Widgets/build_cover_image.dart';
-import 'package:sketch/features/profile/features/profile/Presentation/Widgets/build_profile_image.dart';
-import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/build_cover_image.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/build_profile_image.dart';
 
 class BuildTopPage extends StatelessWidget {
   final ProfileModel person; // Accept ProfileModel dynamically

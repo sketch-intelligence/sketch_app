@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/Chat/data/models/chat_model.dart';
-import 'package:sketch/features/Chat/presentation/views/detailed_chat_page.dart';
+import 'package:sketch/features/chat_bot/data/models/chat_model.dart';
+import 'package:sketch/features/chat_bot/presentation/views/detailed_chat_page.dart';
 
 class ChatListView extends StatelessWidget {
   final List<Chat> chats;

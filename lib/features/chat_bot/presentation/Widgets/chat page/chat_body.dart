@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
-import 'package:sketch/features/Chat/presentation/Widgets/chat%20page/Chat_Tabar_view.dart';
-import 'package:sketch/features/Chat/presentation/Widgets/chat%20page/chat_tab_bar.dart';
+import 'package:sketch/features/chat_bot/presentation/Widgets/chat%20page/Chat_Tabar_view.dart';
+import 'package:sketch/features/chat_bot/presentation/Widgets/chat%20page/chat_tab_bar.dart';
 
 class ChatBody extends StatelessWidget {
   const ChatBody({
