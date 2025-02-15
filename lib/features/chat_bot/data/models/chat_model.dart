@@ -1,4 +1,4 @@
-import 'package:sketch/features/Chat/data/models/message_model.dart';
+import 'package:sketch/features/chat_bot/data/models/message_model.dart';
 
 class Chat {
   final String userName;

@@ -6,7 +6,7 @@ import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
-import 'package:sketch/features/Chat/presentation/views/chatpage.dart';
+import 'package:sketch/features/chat_bot/presentation/views/chatpage.dart';
 import 'package:sketch/features/profile/features/my%20profile/presentation/views/my_profile_view.dart';
 
 class CustomAppBar extends StatelessWidget {

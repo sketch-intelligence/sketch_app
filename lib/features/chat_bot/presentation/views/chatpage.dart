@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/Chat/data/models/chat_model.dart';
-import 'package:sketch/features/Chat/data/models/message_model.dart';
-import 'package:sketch/features/Chat/presentation/Widgets/chat%20page/chat_body.dart';
+import 'package:sketch/features/chat_bot/data/models/chat_model.dart';
+import 'package:sketch/features/chat_bot/data/models/message_model.dart';
+import 'package:sketch/features/chat_bot/presentation/Widgets/chat%20page/chat_body.dart';
 import 'package:sketch/translations.dart';
 
 class ChatPage extends StatefulWidget {
