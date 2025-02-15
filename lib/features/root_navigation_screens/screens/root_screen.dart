@@ -11,10 +11,10 @@ import 'package:sketch/core/ui/widgets/action_alert_dialog.dart';
 import 'package:sketch/features/design/presentation/views/question_pages.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
 import 'package:sketch/features/network/presentation/screen/network_view.dart';
-import 'package:sketch/features/profile/profile/profile_settings/presentation/profile_setting_view.dart';
+import 'package:sketch/features/profile/features/profile_settings/presentation/profile_setting_view.dart';
+import 'package:sketch/features/project/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_state.dart';
-import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_projects_page.dart';
 import 'package:sketch/translations.dart';
 
 class RootScreen extends StatelessWidget {

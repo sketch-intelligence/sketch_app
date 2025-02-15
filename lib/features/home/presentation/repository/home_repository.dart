@@ -5,9 +5,9 @@ import 'package:sketch/core/repository/core_repository.dart';
 import 'package:sketch/core/results/result.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/use_case/get_posts_use_case.dart';
-import 'package:sketch/features/profile/profile/Profile/data/use_case/get_user_posts_use_case.dart';
-import 'package:sketch/features/profile/profile/Profile/data/use_case/get_user_projects_use_case.dart';
-import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
+import 'package:sketch/features/profile/features/Profile/data/use_case/get_user_posts_use_case.dart';
+import 'package:sketch/features/profile/features/Profile/data/use_case/get_user_projects_use_case.dart';
+import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 
 class HomeRepository extends CoreRepository {
   Future<Result<List<PostModel>>> getAllPosts(

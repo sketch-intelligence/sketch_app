@@ -7,7 +7,7 @@ import 'package:sketch/core/constant/text_styles/font_size.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
-import 'package:sketch/features/profile/profile/follows/data/models/follows_model.dart';
+import 'package:sketch/features/profile/features/follows/data/models/follows_model.dart';
 
 class SuggestedForYouPage extends StatefulWidget {
   SuggestedForYouPage({super.key});

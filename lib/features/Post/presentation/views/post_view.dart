@@ -6,14 +6,12 @@ import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
-import 'package:sketch/features/project/presentation/widgets/label_widget.dart';
+import 'package:sketch/features/project/arch_project/presentation/widgets/label_widget.dart';
 
 import '../../../../../core/constant/text_styles/font_size.dart';
 
 class AddPost extends StatefulWidget {
-  final ArchitectProjectModel? project;
-
-  const AddPost({super.key, this.project});
+  const AddPost({super.key});
 
   @override
   _AddPostState createState() => _AddPostState();
