@@ -17,7 +17,7 @@ class DetailedTopSection extends StatelessWidget {
     return Row(
       children: [
         // User's Image Placeholder
-        SvgPicture.asset(Assets.imagesAvatar22),
+        SvgPicture.asset(Assets.imagesArtificialBrain),
         const SizedBox(width: 10),
         // User's Name
         Column(

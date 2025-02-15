@@ -11,17 +11,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   PaginationCubit? getBalanceCubit;
 
-  double balance = CacheHelper.balance ?? 0.0; // Add a balance property
+  dynamic balance = CacheHelper.balance;
 
   ProfileCubit() : super(ProfileInitialState());
   // Balance update logic
-  void updateBalance(double amount) {
+  void updateBalance(dynamic amount) {
     balance += amount; // Update the local balance
     CacheHelper.setBalance(balance); // Persist balance
     emit(UpdateState()); // Emit state to rebuild the UI
   }
 
-  void setBalance(double newBalance) {
+  void setBalance(dynamic newBalance) {
     balance = newBalance; // Set a new balance value
     CacheHelper.setBalance(balance); // Persist balance
     emit(UpdateState()); // Emit state to rebuild the UI

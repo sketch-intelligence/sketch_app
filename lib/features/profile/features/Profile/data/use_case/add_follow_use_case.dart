@@ -19,6 +19,7 @@ class AddFollowUseCase extends UseCase<String, AddFollowParams> {
   AddFollowUseCase({
     required this.repository,
   });
+
   @override
   Future<Result<String>> call({required AddFollowParams params}) {
     return repository.addFollow(params: params);
