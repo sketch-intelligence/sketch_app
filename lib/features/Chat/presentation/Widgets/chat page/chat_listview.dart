@@ -36,7 +36,6 @@ class ChatListView extends StatelessWidget {
             ],
           ),
           onTap: () {
-            // Navigate to Chat Detail Page
             Navigator.push(
               context,
               MaterialPageRoute(

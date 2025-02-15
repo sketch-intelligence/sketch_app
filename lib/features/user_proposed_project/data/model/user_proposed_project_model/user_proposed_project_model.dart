@@ -17,21 +17,27 @@ class UserProposedProjectModel extends BaseModel {
   int? id;
   int? architectId;
   String? title;
-  String? description;
+  dynamic description;
+  String? userName;
   List<dynamic>? projectImage;
   dynamic budget;
   dynamic deadLine;
   List<BidDto>? bidDtos;
+  dynamic status;
+  int? publishedSince;
 
   UserProposedProjectModel({
     this.id,
     this.architectId,
     this.title,
     this.description,
+    this.userName,
     this.projectImage,
     this.budget,
     this.deadLine,
     this.bidDtos,
+    this.status,
+    this.publishedSince,
   });
 
   factory UserProposedProjectModel.fromJson(Map<String, dynamic> json) {
@@ -39,13 +45,16 @@ class UserProposedProjectModel extends BaseModel {
       id: json['id'] as int?,
       architectId: json['architectId'] as int?,
       title: json['title'] as String?,
-      description: json['description'] as String?,
+      description: json['description'] as dynamic,
+      userName: json['userName'] as String?,
       projectImage: json['projectImage'] as List<dynamic>?,
       budget: json['budget'] as dynamic,
       deadLine: json['deadLine'] as dynamic,
       bidDtos: (json['bidDtos'] as List<dynamic>?)
           ?.map((e) => BidDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      status: json['status'] as dynamic,
+      publishedSince: json['publishedSince'] as int?,
     );
   }
 
@@ -54,9 +63,12 @@ class UserProposedProjectModel extends BaseModel {
         'architectId': architectId,
         'title': title,
         'description': description,
+        'userName': userName,
         'projectImage': projectImage,
         'budget': budget,
         'deadLine': deadLine,
         'bidDtos': bidDtos?.map((e) => e.toJson()).toList(),
+        'status': status,
+        'publishedSince': publishedSince,
       };
 }

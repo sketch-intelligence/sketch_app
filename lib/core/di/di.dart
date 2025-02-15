@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:sketch/features/Profile/data/cubit/profile_cubit.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:sketch/features/language/cubit/language_cubit.dart';
 import 'package:sketch/features/onboarding/cubit/onboarding_cubit.dart';
+import 'package:sketch/features/profile/profile/Profile/data/cubit/profile_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 
 final getIt = GetIt.instance;

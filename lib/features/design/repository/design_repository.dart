@@ -12,11 +12,12 @@ class DesignRepository extends CoreRepository {
         responseStr: 'GenerateDesignRes',
         // data: params.toJson(),
         file: params.image,
+        fileKey: 'file',
         withAuthentication: false,
         // isImageResponse:true;
         converter: (json) => ListSimilarDesign.fromJson(json),
         method: HttpMethod.POST,
-        url: 'https://ac46-34-23-227-33.ngrok-free.app/predict');
+        url: 'https://521b-34-23-227-33.ngrok-free.app/predict');
 
     return call(result: result);
   }

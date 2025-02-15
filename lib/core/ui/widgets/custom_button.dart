@@ -17,7 +17,6 @@ class CustomButton extends StatelessWidget {
     this.rowChild,
     this.onPressed,
     this.icon,
-    // New icon parameter
   });
 
   final double? w;
@@ -28,7 +27,7 @@ class CustomButton extends StatelessWidget {
   final TextStyle? textStyle;
   final String? text;
   final Widget? rowChild;
-  final String? icon; // Optional icon
+  final String? icon;
   final VoidCallback? onPressed;
 
   @override
@@ -55,7 +54,7 @@ class CustomButton extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10),
                       child: SvgPicture.asset(icon!),
                     ),
-                    const SizedBox(width: 8), // Space between icon and text
+                    const SizedBox(width: 8),
                   ],
                   Expanded(
                     child: Center(

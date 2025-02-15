@@ -6,8 +6,7 @@ import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
-import 'package:sketch/features/Add Project/Architect Project/data/models/architect_model.dart';
-import 'package:sketch/features/Add%20Project/Architect%20Project/presentation/widgets/label_widget.dart';
+import 'package:sketch/features/project/presentation/widgets/label_widget.dart';
 
 import '../../../../../core/constant/text_styles/font_size.dart';
 
@@ -27,18 +26,6 @@ class _AddPostState extends State<AddPost> {
       TextEditingController();
   String? selectedFile;
   bool _isLoading = false; // For loading state
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.project != null) {
-      _titleController.text = widget.project!.title;
-      _descriptionController.text = widget.project!.description;
-      _completionDateController.text = widget.project!.completionDate.isNotEmpty
-          ? widget.project!.completionDate[0]
-          : '';
-    }
-  }
 
   Future<void> _chooseImage() async {
     try {

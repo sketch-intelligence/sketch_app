@@ -10,7 +10,7 @@ import 'package:sketch/features/home/presentation/views/widgets/post_details_vie
 import 'package:sketch/features/notification/presentation/views/notification_view.dart';
 import 'package:sketch/features/onboarding/screens/root_onboarding.dart';
 import 'package:sketch/features/payment_imp/ui/add_balance_screen.dart';
-import 'package:sketch/features/profile_settings/presentation/widgets/change_lang.dart';
+import 'package:sketch/features/profile/profile/profile_settings/presentation/widgets/change_lang.dart';
 import 'package:sketch/features/root_navigation_screens/screens/root_screen.dart';
 import 'package:sketch/features/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 import 'package:sketch/features/user_proposed_project/presentation/views/user_proposed_project_details_view.dart';

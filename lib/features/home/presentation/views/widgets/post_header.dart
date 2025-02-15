@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
-import 'package:sketch/features/Profile/Presentation/user%20profile/views/profile_views.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
+import 'package:sketch/features/profile/profile/Profile/Presentation/user%20profile/views/profile_views.dart';
 
 class PostHeader extends StatelessWidget {
   const PostHeader({

@@ -41,7 +41,6 @@ class QuestionPagesBody extends StatelessWidget {
           isSelected: false,
           onTap: () {},
         ),
-        // Add other options similarly
       ],
     ),
     QuestionItem(
@@ -65,14 +64,12 @@ class QuestionPagesBody extends StatelessWidget {
           isSelected: false,
           onTap: () {},
         ),
-        // Add other options similarly
       ],
     ),
   ];
 
   void _goToNextPage(BuildContext context, {bool isSkip = false}) {
     if (isSkip) {
-      // Immediately navigate to GenerateDesignPage if isSkip is true
       GoRouter.of(context).go(AppRouter.kDesignView);
       return;
     }
@@ -83,10 +80,8 @@ class QuestionPagesBody extends StatelessWidget {
             : 0;
 
     if (currentPage == _questionData.length - 1) {
-      // Navigate to GenerateDesignPage when on the last page
       GoRouter.of(context).go(AppRouter.kDesignView);
     } else {
-      // Otherwise, go to the next page
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,

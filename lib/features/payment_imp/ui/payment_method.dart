@@ -6,9 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/app_padding/app_padding.dart';
 import 'package:sketch/core/payment/stripe_widget.dart';
-import 'package:sketch/features/Profile/data/cubit/profile_cubit.dart';
 import 'package:sketch/features/payment_imp/repository/payment_repository.dart';
 import 'package:sketch/features/payment_imp/use_case/add_to_balance_use_case.dart';
+import 'package:sketch/features/profile/profile/Profile/data/cubit/profile_cubit.dart';
 
 import '../../../core/classes/cashe_helper.dart';
 import '../../../core/constant/app_colors/app_colors.dart';

@@ -15,9 +15,7 @@ class ChatTabBarView extends StatelessWidget {
     return TabBarView(
       controller: _tabController,
       children: [
-        // Primary Chats Tab
         ChatListView(dummyChats),
-        // Chatbot Chats Tab
         ChatListView(dummyChatbots),
       ],
     );

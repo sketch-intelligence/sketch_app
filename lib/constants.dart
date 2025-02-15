@@ -4,3 +4,5 @@ const dummyProfileImage =
     'https://staging-api.rentchicken.net/storage/images/profile.jpg';
 
 bool isUser = CacheHelper.userInfo!.user!.roles!.elementAt(0).name == 'USER';
+
+const baseImageUrl = 'C:\\Users\\Beshr\\Desktop\\s_back\\s_back\\uploads\\';

@@ -12,7 +12,6 @@ class buildMessageInput extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          // Icons before the TextField
           Row(
             children: [
               SvgPicture.asset(Assets.imagesShareNetwork),
@@ -22,34 +21,31 @@ class buildMessageInput extends StatelessWidget {
               SvgPicture.asset(Assets.imagesImage59)
             ],
           ),
-          const SizedBox(width: 8.0), // Space between icons and TextField
+          const SizedBox(width: 8.0),
           Expanded(
             child: TextField(
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.message,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0), // Rounded corners
-                  borderSide: BorderSide.none, // Remove border line
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: Colors.grey[200], // Match the background color
+                fillColor: Colors.grey[200],
                 contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 16.0), // Adjust padding
+                    vertical: 10.0, horizontal: 16.0),
               ),
             ),
           ),
-          const SizedBox(width: 8.0), // Space between TextField and IconButton
+          const SizedBox(width: 8.0),
           Container(
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.blue, // Change this to your desired color
+              color: Colors.blue,
             ),
             child: IconButton(
-              icon: const Icon(Icons.send,
-                  color: Colors.white), // White icon color
-              onPressed: () {
-                // Handle sending message logic here
-              },
+              icon: const Icon(Icons.send, color: Colors.white),
+              onPressed: () {},
             ),
           ),
         ],

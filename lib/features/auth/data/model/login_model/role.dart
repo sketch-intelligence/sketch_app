@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'role.g.dart';
 
-@HiveType(typeId: 2) // Unique ID for Role
+@HiveType(typeId: 2)
 class Role {
   @HiveField(0)
   final int? id;

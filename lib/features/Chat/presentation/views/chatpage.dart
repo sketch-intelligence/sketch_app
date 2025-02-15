@@ -4,7 +4,6 @@ import 'package:sketch/features/Chat/data/models/message_model.dart';
 import 'package:sketch/features/Chat/presentation/Widgets/chat%20page/chat_body.dart';
 import 'package:sketch/translations.dart';
 
-// Chat Page
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 

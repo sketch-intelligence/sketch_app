@@ -10,110 +10,6 @@ import 'package:sketch/features/home/presentation/views/widgets/post_list_view_i
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
-  // static final List<PostModel> posts = [
-  //   PostModel(
-  //     text: 'this is post number 1',
-  //     postOwner: PersonModel(userName: 'a'),
-  //     postComments: [
-  //       CommentModel(
-  //         text: 'comment for post 1',
-  //         commentOwner: PersonModel(userName: 'a'),
-  //         reactions: [
-  //           ReactionModel(
-  //             reactedOwner: PersonModel(userName: 'a'),
-  //             reactionType: 's',
-  //           )
-  //         ],
-  //         commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //       ),
-  //       CommentModel(
-  //         text: 'second comment for post 1',
-  //         commentOwner: PersonModel(userName: 'a'),
-  //         reactions: [
-  //           ReactionModel(
-  //             reactedOwner: PersonModel(userName: 'a'),
-  //             reactionType: 's',
-  //           )
-  //         ],
-  //         commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //       ),
-  //       CommentModel(
-  //         text: 'third comment for post 1',
-  //         commentOwner: PersonModel(userName: 'a'),
-  //         reactions: [
-  //           ReactionModel(
-  //             reactedOwner: PersonModel(userName: 'a'),
-  //             reactionType: 's',
-  //           )
-  //         ],
-  //         commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //       )
-  //     ],
-  //     reactions: [
-  //       ReactionModel(
-  //           reactedOwner: PersonModel(userName: 'a'), reactionType: 's')
-  //     ],
-  //     shares: [
-  //       ShareModel(
-  //         shareOwner: PersonModel(userName: 'a'),
-  //       ),
-  //     ],
-  //     isPublic: true,
-  //     postDate: DateTime.now().subtract(const Duration(hours: 10)),
-  //   ),
-  //   PostModel(
-  //     text: 'this is post number 2',
-  //     postOwner: PersonModel(userName: 'a'),
-  //     postComments: [
-  //       CommentModel(
-  //         text: 'comment for post 2',
-  //         commentOwner: PersonModel(userName: 'a'),
-  //         reactions: [
-  //           ReactionModel(
-  //             reactedOwner: PersonModel(userName: 'a'),
-  //             reactionType: 's',
-  //           )
-  //         ],
-  //         commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //       ),
-  //       CommentModel(
-  //         text: 'second comment for post 2',
-  //         commentOwner: PersonModel(userName: 'a'),
-  //         reactions: [
-  //           ReactionModel(
-  //             reactedOwner: PersonModel(userName: 'a'),
-  //             reactionType: 's',
-  //           )
-  //         ],
-  //         commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //       ),
-  //       CommentModel(
-  //         text: 'third comment for post 2',
-  //         commentOwner: PersonModel(userName: 'a'),
-  //         reactions: [
-  //           ReactionModel(
-  //             reactedOwner: PersonModel(userName: 'a'),
-  //             reactionType: 's',
-  //           )
-  //         ],
-  //         commentDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //       )
-  //     ],
-  //     reactions: [
-  //       ReactionModel(
-  //         reactedOwner: PersonModel(userName: 'a'),
-  //         reactionType: 's',
-  //       )
-  //     ],
-  //     shares: [
-  //       ShareModel(
-  //         shareOwner: PersonModel(userName: 'a'),
-  //       ),
-  //     ],
-  //     isPublic: true,
-  //     postDate: DateTime.now().subtract(const Duration(minutes: 10)),
-  //   ),
-  // ];
   @override
   Widget build(BuildContext context) {
     print(isUser);
@@ -129,7 +25,6 @@ class HomeViewBody extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
           Expanded(
-            // Take remaining space
             child: PaginationList<PostModel>(
               withPagination: true,
               repositoryCallBack: (model) =>

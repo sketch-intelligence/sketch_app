@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/app_padding/app_padding.dart';
@@ -18,6 +19,10 @@ import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
+import 'package:sketch/features/design/data/model/similar_desgin.dart';
+import 'package:sketch/features/design/data/use_case/get_similar_designs_use_case.dart';
+import 'package:sketch/features/design/presentation/views/widget/similar_design_item.dart';
+import 'package:sketch/features/design/repository/design_repository.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/translations.dart';
 
@@ -30,7 +35,7 @@ class GenerateDesignPageBody extends StatefulWidget {
 
 class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
   final TextEditingController promptController = TextEditingController();
-  Uint8List? _imageData; // To store image data
+  Uint8List? _imageData;
   bool _isLoading = false;
   Future<File> convertUint8ListToFile(Uint8List imageData) async {
     final tempDir = await getTemporaryDirectory();
@@ -39,9 +44,10 @@ class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
     return file;
   }
 
-  Future<void> generateImage(String description) async {
+  Future<void> generateImage(
+      {required String description, required VoidCallback onSuccess}) async {
     setState(() {
-      _isLoading = true; // Start loading
+      _isLoading = true;
     });
 
     final url =
@@ -54,17 +60,25 @@ class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
 
     if (response.statusCode == 200) {
       setState(() {
-        _imageData = response.bodyBytes; // Store the image bytes
+        _imageData = response.bodyBytes;
       });
-      //get similar designs
+      onSuccess();
     } else {
       print("Error: ${response.statusCode}");
     }
 
     setState(() {
-      _isLoading = false; // Stop loading
+      _isLoading = false;
     });
   }
+
+  void fetchSimilarDesigns() {
+    if (_imageData != null) {
+      setState(() {});
+    }
+  }
+
+  bool _shouldFetchSimilarDesigns = false;
 
   void _showTipDialog(BuildContext context) {
     AppCustomAlertDialog.alertDialog(
@@ -89,7 +103,7 @@ class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
+                  Navigator.of(context).pop();
                 },
                 child: Text(
                   'OK',
@@ -149,7 +163,7 @@ class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
           if (!_isLoading && _imageData != null)
             Expanded(
               child: Image.memory(
-                _imageData!, // Display the image from bytes
+                _imageData!,
                 fit: BoxFit.cover,
               ),
             ),
@@ -162,7 +176,13 @@ class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
                     : CustomButton(
                         text: '',
                         onPressed: () {
-                          generateImage(promptController.text);
+                          generateImage(
+                              description: promptController.text,
+                              onSuccess: () {
+                                setState(() {
+                                  _shouldFetchSimilarDesigns = true;
+                                });
+                              });
                         },
                         rowChild: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -188,6 +208,28 @@ class _GenerateDesignPageBodyState extends State<GenerateDesignPageBody> {
               )
             ],
           ),
+          if (_shouldFetchSimilarDesigns && _imageData != null)
+            Expanded(
+              child: GetModel<ListSimilarDesign>(
+                useCaseCallBack: () async {
+                  File imageFile = await convertUint8ListToFile(_imageData!);
+                  print('the file file is : $imageFile');
+                  return GetSimilarDesignsUseCase(
+                    designRepository: DesignRepository(),
+                  ).call(
+                    params: GetSimilarDesignParams(image: imageFile),
+                  );
+                },
+                modelBuilder: (model) {
+                  return ListView.builder(
+                    itemCount: model.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return SimilarDesignItem(design: model.data![index]);
+                    },
+                  );
+                },
+              ),
+            )
         ],
       ),
     );

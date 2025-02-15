@@ -1,7 +1,7 @@
 class BidDto {
   int? id;
   dynamic projectId;
-  num? price;
+  int? price;
   int? expectedDuration;
   String? description;
 
@@ -16,7 +16,7 @@ class BidDto {
   factory BidDto.fromJson(Map<String, dynamic> json) => BidDto(
         id: json['id'] as int?,
         projectId: json['projectId'] as dynamic,
-        price: json['price'] as num?,
+        price: json['price'] as int?,
         expectedDuration: json['expectedDuration'] as int?,
         description: json['description'] as String?,
       );

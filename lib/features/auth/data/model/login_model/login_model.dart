@@ -3,9 +3,9 @@ import 'package:sketch/core/data_source/model.dart';
 
 import 'user.dart';
 
-part 'login_model.g.dart'; // Required for Hive TypeAdapter generation
+part 'login_model.g.dart';
 
-@HiveType(typeId: 0) // Unique type ID for Hive
+@HiveType(typeId: 0)
 class LoginModel extends BaseModel {
   @HiveField(0)
   String? token;

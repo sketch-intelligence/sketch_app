@@ -6,7 +6,6 @@ import 'package:sketch/features/Chat/data/models/message_model.dart';
 import 'package:sketch/features/Chat/presentation/Widgets/detailed%20chat%20page/detailed_top_section.dart';
 import 'package:sketch/features/Chat/presentation/Widgets/detailed%20chat%20page/message_input.dart';
 
-// Chat Detail Page
 class DetailedChatPage extends StatelessWidget {
   final Chat chat;
 
@@ -22,13 +21,9 @@ class DetailedChatPage extends StatelessWidget {
         elevation: 0,
         title: DetailedTopSection(chat: chat),
         actions: [
-          // Phone icon for calling
           IconButton(
-            icon: SvgPicture.asset(
-                Assets.imagesPhone), // Replace with the correct asset path
-            onPressed: () {
-              // Handle phone call action
-            },
+            icon: SvgPicture.asset(Assets.imagesPhone),
+            onPressed: () {},
           ),
         ],
       ),
@@ -39,8 +34,7 @@ class DetailedChatPage extends StatelessWidget {
               itemCount: chat.messages.length,
               itemBuilder: (context, index) {
                 final message = chat.messages[index];
-                bool isMe =
-                    message.senderName == "You"; // Change logic as needed
+                bool isMe = message.senderName == "You";
                 return _buildMessageTile(message, isMe, context);
               },
             ),
@@ -58,16 +52,13 @@ class DetailedChatPage extends StatelessWidget {
         mainAxisAlignment:
             isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-          // Profile image for the sender/receiver
           if (!isMe) SvgPicture.asset(Assets.imagesAvatar22),
           const SizedBox(width: 8),
-          // Message bubble
           Flexible(
             child: Container(
               padding: const EdgeInsets.all(12),
               constraints: BoxConstraints(
-                maxWidth:
-                    MediaQuery.of(context).size.width * 0.75, // Limit max width
+                maxWidth: MediaQuery.of(context).size.width * 0.75,
               ),
               decoration: BoxDecoration(
                 color: isMe ? Colors.blue[200] : Colors.grey[300],
@@ -76,13 +67,11 @@ class DetailedChatPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Message content
                   Text(
                     message.content,
                     style: const TextStyle(color: Colors.black),
                   ),
                   const SizedBox(height: 5),
-                  // Message timestamp
                   Text(
                     message.time,
                     style: const TextStyle(fontSize: 10, color: Colors.black54),
@@ -92,7 +81,6 @@ class DetailedChatPage extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Profile image for the sender/receiver
           if (isMe) SvgPicture.asset(Assets.imagesAvatar13),
         ],
       ),

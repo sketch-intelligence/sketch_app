@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
-import 'package:sketch/features/home/data/models/person_model.dart';
 import 'package:sketch/features/home/data/models/person_model/person_model.dart';
 import 'package:sketch/features/home/data/models/person_model/profile_image.dart';
 import 'package:sketch/features/notification/data/model/notificatioin_model.dart';

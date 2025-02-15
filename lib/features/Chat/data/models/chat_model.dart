@@ -3,9 +3,9 @@ import 'package:sketch/features/Chat/data/models/message_model.dart';
 class Chat {
   final String userName;
   final String lastMessage;
-  final String time; // Time of the last message
-  final bool isOnline; // Online status indicator
-  final List<Message> messages; // List of messages
+  final String time;
+  final bool isOnline;
+  final List<Message> messages;
 
   Chat({
     required this.userName,
