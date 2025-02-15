@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/profile/features/Profile/Presentation/user%20profile/Widgets/project_card.dart';
+import 'package:sketch/features/profile/features/Profile/Presentation/Widgets/project_card.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 
 class ProjectsView extends StatelessWidget {
