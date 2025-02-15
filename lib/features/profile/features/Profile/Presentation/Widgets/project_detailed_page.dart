@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/portfolio_project_model/portfolio_project_model.dart';
+import 'package:sketch/features/profile/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 
 class ProjectDetailsPage extends StatelessWidget {

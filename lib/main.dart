@@ -13,7 +13,7 @@ import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart'
 import 'package:sketch/features/language/cubit/language_cubit.dart';
 import 'package:sketch/features/language/cubit/language_states.dart';
 import 'package:sketch/features/onboarding/cubit/onboarding_cubit.dart';
-import 'package:sketch/features/profile/features/Profile/data/cubit/profile_cubit.dart';
+import 'package:sketch/features/profile/features/profile/data/cubit/profile_cubit.dart';
 import 'package:sketch/features/root_navigation_screens/data/cubit/root_page_cubit.dart';
 import 'package:sketch/firebase_options.dart';
 import 'package:sketch/translations.dart';

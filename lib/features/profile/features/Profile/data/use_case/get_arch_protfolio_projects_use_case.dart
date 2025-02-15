@@ -2,8 +2,8 @@
 import 'package:sketch/core/params/base_params.dart';
 import 'package:sketch/core/results/result.dart';
 import 'package:sketch/core/usecase/usecase.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/portfolio_project_model/portfolio_project_model.dart';
-import 'package:sketch/features/profile/features/Profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
+import 'package:sketch/features/profile/features/profile/data/repository/profile_repository.dart';
 
 class GetArchProtfolioProjectsParams extends BaseParams {
   int? archId;

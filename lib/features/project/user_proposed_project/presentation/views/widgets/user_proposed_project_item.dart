@@ -9,9 +9,9 @@ import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
-import 'package:sketch/features/profile/features/Profile/data/repository/profile_repository.dart';
-import 'package:sketch/features/profile/features/Profile/data/use_case/get_profile_use_case.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/features/profile/data/use_case/get_profile_use_case.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 
 class UserProposedProjectItem extends StatelessWidget {

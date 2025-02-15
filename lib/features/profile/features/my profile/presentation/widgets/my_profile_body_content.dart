@@ -4,7 +4,7 @@ import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/features/Post/presentation/views/post_view.dart';
 import 'package:sketch/features/profile/edit_profile.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/project/arch_project/presentation/views/architect_project.dart';
 import 'package:sketch/translations.dart';
 

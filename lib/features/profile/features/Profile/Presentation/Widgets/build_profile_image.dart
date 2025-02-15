@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/constants.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   final ProfileModel person; // Expect a ProfileModel here

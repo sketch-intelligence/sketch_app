@@ -6,8 +6,8 @@ import 'package:sketch/core/constant/end_points/cashe_helper_constant.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
 import 'package:sketch/features/payment_imp/ui/payment_method.dart';
-import 'package:sketch/features/profile/features/Profile/data/cubit/profile_cubit.dart';
-import 'package:sketch/features/profile/features/Profile/data/cubit/profile_states.dart';
+import 'package:sketch/features/profile/features/profile/data/cubit/profile_cubit.dart';
+import 'package:sketch/features/profile/features/profile/data/cubit/profile_states.dart';
 import 'package:sketch/translations.dart';
 
 import '../../../core/constant/app_colors/app_colors.dart';

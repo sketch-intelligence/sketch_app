@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/utils/adaptive_layout.dart';
 import 'package:sketch/core/utils/size_config.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
-import 'package:sketch/features/profile/features/Profile/data/repository/profile_repository.dart';
-import 'package:sketch/features/profile/features/Profile/data/use_case/get_profile_use_case.dart';
 import 'package:sketch/features/profile/features/my%20profile/presentation/widgets/my_profile_body.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/features/profile/data/use_case/get_profile_use_case.dart';
 import 'package:sketch/translations.dart';
 
 class MyProfilePage extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/profile/features/Profile/Presentation/Widgets/build_cover_image.dart';
-import 'package:sketch/features/profile/features/Profile/Presentation/Widgets/build_profile_image.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/Presentation/Widgets/build_cover_image.dart';
+import 'package:sketch/features/profile/features/profile/Presentation/Widgets/build_profile_image.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
 
 class BuildTopPage extends StatelessWidget {
   final ProfileModel person;

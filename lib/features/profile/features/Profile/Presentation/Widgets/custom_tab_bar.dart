@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sketch/constants.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/profile/features/follows/presentation/views/follows_view.dart'; // Import the FollowsView
 
 class CustomTabBar extends StatelessWidget {

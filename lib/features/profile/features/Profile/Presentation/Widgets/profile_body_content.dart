@@ -6,9 +6,9 @@ import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/dialogs/dialogs.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/profile_model.dart';
-import 'package:sketch/features/profile/features/Profile/data/repository/profile_repository.dart';
-import 'package:sketch/features/profile/features/Profile/data/use_case/add_follow_use_case.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/features/profile/data/use_case/add_follow_use_case.dart';
 
 class ProfileBodyContent extends StatelessWidget {
   final ProfileModel profile;

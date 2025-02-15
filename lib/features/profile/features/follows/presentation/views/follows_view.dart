@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/follower.dart';
-import 'package:sketch/features/profile/features/Profile/data/models/profile_model/following.dart';
 import 'package:sketch/features/profile/features/follows/presentation/widgets/FollowsBody.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/follower.dart';
+import 'package:sketch/features/profile/features/profile/data/models/profile_model/following.dart';
 import 'package:sketch/translations.dart';
 
 class FollowsView extends StatefulWidget {
