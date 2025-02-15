@@ -24,7 +24,7 @@ class UserProposedProjectModel extends BaseModel {
   dynamic deadLine;
   List<BidDto>? bidDtos;
   dynamic status;
-  int? publishedSince;
+  num? publishedSince;
 
   UserProposedProjectModel({
     this.id,
@@ -54,7 +54,7 @@ class UserProposedProjectModel extends BaseModel {
           ?.map((e) => BidDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       status: json['status'] as dynamic,
-      publishedSince: json['publishedSince'] as int?,
+      publishedSince: json['publishedSince'] as num?,
     );
   }
 
