@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 
 class PostBody extends StatelessWidget {
@@ -17,7 +19,12 @@ class PostBody extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        Text(postModel.text ?? ''),
+        GestureDetector(
+            onTap: () {
+              GoRouter.of(context)
+                  .push(AppRouter.kPostDetailsView, extra: postModel);
+            },
+            child: Text(postModel.text ?? '')),
         SizedBox(
           height: postModel.text != null ? 6 : 0,
         ),

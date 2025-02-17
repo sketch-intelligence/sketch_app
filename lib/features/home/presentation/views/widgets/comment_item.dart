@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sketch/constants.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/utils/app_styles.dart';
@@ -17,8 +18,19 @@ class CommentItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
         child: Row(
           children: [
-            // SvgPicture.asset(
-            //     commentModel.userId.image ?? Assets.imagesAvatar13),
+            CircleAvatar(
+              radius: 26,
+              foregroundImage: const NetworkImage(dummyProfileImage),
+              backgroundColor: Colors.grey,
+              child: ClipOval(
+                child: Image.network(
+                  dummyProfileImage,
+                  fit: BoxFit.cover,
+                  width: 100,
+                  height: 100,
+                ),
+              ),
+            ),
             const SizedBox(
               width: 10,
             ),

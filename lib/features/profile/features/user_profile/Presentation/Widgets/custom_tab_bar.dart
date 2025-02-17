@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/constants.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
@@ -35,13 +34,14 @@ class CustomTabBar extends StatelessWidget {
       tabs: [
         const Tab(text: "Posts"),
         Tab(
-            text: isUser && CacheHelper.userID == profileModel.id
-                ? "my projects"
+            text: profileModel.role == 'USER' &&
+                    CacheHelper.userID == profileModel.id
+                ? "My projects"
                 : CacheHelper.userID == profileModel.id
-                    ? "my portfolio"
-                    : isUser
-                        ? "projects"
-                        : 'portfolio'),
+                    ? "My portfolio"
+                    : profileModel.role == 'USER'
+                        ? "Projects"
+                        : 'Portfolio'),
         const Tab(text: "Follows"),
       ],
     );

@@ -3,7 +3,9 @@ import 'package:sketch/core/data_source/remote_data_source.dart';
 import 'package:sketch/core/http/http_method.dart';
 import 'package:sketch/core/repository/core_repository.dart';
 import 'package:sketch/core/results/result.dart';
+import 'package:sketch/features/home/data/models/post_model/comment.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
+import 'package:sketch/features/home/presentation/use_case/get_post_comments_use_case.dart';
 import 'package:sketch/features/home/presentation/use_case/get_posts_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/get_user_posts_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/get_user_projects_use_case.dart';
@@ -37,6 +39,30 @@ class HomeRepository extends CoreRepository {
           return ListUserPostModelModel.fromJson(json);
         });
     return call(result: result);
+  }
+
+  Future<Result<ListComment>> getPostComments(
+      {required GetPostCommentsParams params}) async {
+    final result = await RemoteDataSource.request(
+        withAuthentication: true,
+        url: "${baseUrl}comments/post/comments",
+        method: HttpMethod.GET,
+        queryParameters: params.toJson(),
+        responseStr: 'commentsResponse',
+        converter: (json) {
+          return ListComment.fromJson(json);
+        });
+    return call(result: result);
+  }
+
+  Future<Result<String>> addComment({required AddCommentParams params}) async {
+    final result = await RemoteDataSource.noModelRequest(
+      withAuthentication: true,
+      url: "${baseUrl}comments/comment/add",
+      data: params.toJson(),
+      method: HttpMethod.POST,
+    );
+    return noModelCall(result: result);
   }
 
   Future<Result<ListUserProposedProjectModel>> getUserProjects(

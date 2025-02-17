@@ -1,6 +1,18 @@
-class Comment {
+import 'package:sketch/core/data_source/model.dart';
+
+class ListComment extends BaseModel {
+  List<Comment>? data;
+  ListComment({this.data});
+  factory ListComment.fromJson(Map<String, dynamic> json) => ListComment(
+      data: json["data"] == []
+          ? []
+          : List<Comment>.from(json["data"]!.map((x) => Comment.fromJson(x))));
+}
+
+class Comment extends BaseModel {
   int? id;
   String? text;
+
   int? postId;
   int? userId;
 
