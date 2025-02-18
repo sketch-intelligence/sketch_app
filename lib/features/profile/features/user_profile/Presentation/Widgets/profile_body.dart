@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/constants.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
@@ -99,7 +98,7 @@ class _ProfileBodyState extends State<ProfileBody>
                   ),
                 ),
               ] else if (_selectedIndex == 1) ...[
-                isUser
+                widget.profileModel.role == 'USER'
                     ? GetModel<ListUserProposedProjectModel>(
                         useCaseCallBack: () {
                           return GetUserProjectsUseCase(

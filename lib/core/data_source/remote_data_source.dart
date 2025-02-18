@@ -12,7 +12,7 @@ import 'model.dart';
 abstract class RemoteDataSource {
   static Future<Either<String, Data>> request<Data extends BaseModel>({
     required String responseStr,
-    required Function(Map<String, dynamic>) converter,
+    required Function(dynamic) converter,
     required HttpMethod method,
     required String url,
     File? file,

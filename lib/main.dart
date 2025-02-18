@@ -10,6 +10,7 @@ import 'package:sketch/core/di/di.dart';
 import 'package:sketch/core/payment/stripe_widget.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:sketch/features/home/data/cubit/post_cubit.dart';
 import 'package:sketch/features/language/cubit/language_cubit.dart';
 import 'package:sketch/features/language/cubit/language_states.dart';
 import 'package:sketch/features/onboarding/cubit/onboarding_cubit.dart';
@@ -50,6 +51,7 @@ class Sketch extends StatelessWidget {
         BlocProvider(create: (context) => getIt<LanguageCubit>()),
         BlocProvider(create: (context) => getIt<OnBoardingCubit>()),
         BlocProvider(create: (context) => getIt<ProfileCubit>()),
+        BlocProvider(create: (context) => getIt<PostCubit>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(429, 932),

@@ -20,7 +20,8 @@ class DatePickerField extends StatelessWidget {
             lastDate: DateTime(2101),
             fieldLabelText: "enter a date");
         if (pickedDate != null) {
-          controller.text = DateFormat('dd MMM yyyy').format(pickedDate);
+          controller.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+          print(controller.text);
         }
       },
       child: AbsorbPointer(

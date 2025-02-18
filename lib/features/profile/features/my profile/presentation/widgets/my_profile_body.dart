@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/constants.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
@@ -116,8 +115,8 @@ class _MyProfileBodyState extends State<MyProfileBody>
                 const Divider(height: 1, color: Colors.grey),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
-                    print("Add Project");
+                    // Navigator.pop(context);
+                    // print("Add Project");
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -178,7 +177,7 @@ class _MyProfileBodyState extends State<MyProfileBody>
                   ),
                 ),
               ] else if (_selectedIndex == 1) ...[
-                isUser
+                widget.profileModel.role == 'USER'
                     ? GetModel<ListUserProposedProjectModel>(
                         useCaseCallBack: () {
                           return GetUserProjectsUseCase(

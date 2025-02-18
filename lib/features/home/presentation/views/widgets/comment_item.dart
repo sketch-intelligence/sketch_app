@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sketch/constants.dart';
-import 'package:sketch/core/constant/app_colors/app_colors.dart';
-import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
+import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/utils/app_styles.dart';
 import 'package:sketch/features/home/data/models/post_model/comment.dart';
+import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/data/use_case/get_profile_use_case.dart';
 import 'package:sketch/translations.dart';
 
 class CommentItem extends StatelessWidget {
@@ -34,57 +35,63 @@ class CommentItem extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      commentModel.userId.toString(),
-                      style: AppStyles.styleBold14(context),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(commentModel.text ?? '')
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    // Text(
-                    //   formatTime(commentModel.),
-                    // ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        // Text(commentModel.reactions.length.toString()),
-                        Text(
-                          AppLocalizations.of(context)!.like,
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                      ],
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.reply,
-                    ),
-                  ],
-                )
-              ],
+            GetModel(
+              useCaseCallBack: () {
+                return GetProfileUseCase(repository: ProfileRepository()).call(
+                    params: GetProfileParams(userId: commentModel.userId ?? 0));
+              },
+              modelBuilder: (ProfileModel model) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        model.name ?? '',
+                        style: AppStyles.styleBold14(context),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(commentModel.text ?? '')
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      // Text(
+                      //   formatTime(commentModel.),
+                      // ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          // Text(commentModel.reactions.length.toString()),
+                          Text(
+                            AppLocalizations.of(context)!.like,
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                        ],
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.reply,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
             const Spacer(),
-            SvgPicture.asset(
-              Assets.imagesLike,
-              height: 20,
-              width: 20,
-              color: AppColors.grey3C,
-            )
+            // SvgPicture.asset(
+            //   Assets.imagesLike,
+            //   height: 20,
+            //   width: 20,
+            //   color: AppColors.grey3C,
+            // )
           ],
         ),
       ),

@@ -1,4 +1,4 @@
-
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -149,15 +149,15 @@ class _VillaDesignScreenState extends State<VillaDesignScreen> {
                 ),
                 const SizedBox(height: 20),
                 ..._options.map((option) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: ElevatedButton(
-                    onPressed: () => _fetchQuestion(option),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(16),
-                    ),
-                    child: Text(option),
-                  ),
-                )),
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: ElevatedButton(
+                        onPressed: () => _fetchQuestion(option),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(16),
+                        ),
+                        child: Text(option),
+                      ),
+                    )),
               ] else if (_currentQuestion == "end") ...[
                 Card(
                   child: Padding(

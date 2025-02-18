@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
+import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/features/Post/presentation/views/post_view.dart';
 import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/profile/edit_profile.dart';
@@ -139,10 +141,13 @@ class MyProfileBodyContent extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const AddPost()));
         } else if (value == 'Project') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ArchitectProject()),
-          );
+          profile.role == 'USER'
+              ? GoRouter.of(context).push(AppRouter.kAddUserProject)
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ArchitectProject()),
+                );
         }
       }
     });

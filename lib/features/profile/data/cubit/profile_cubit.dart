@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketch/core/boilerplate/create_model/cubits/create_model_cubit.dart';
 import 'package:sketch/core/boilerplate/pagination/cubits/pagination_cubit.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 
@@ -10,7 +11,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   TextEditingController amount = TextEditingController();
 
   PaginationCubit? getBalanceCubit;
-
+  CreateModelCubit? add;
   dynamic balance = CacheHelper.balance;
 
   ProfileCubit() : super(ProfileInitialState());

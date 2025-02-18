@@ -1,11 +1,17 @@
 import 'dart:io';
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:sketch/core/boilerplate/create_model/widgets/create_model.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
+import 'package:sketch/core/ui/dialogs/dialogs.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
+import 'package:sketch/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/data/use_case/add_post_use_case.dart';
 import 'package:sketch/features/project/arch_project/presentation/widgets/label_widget.dart';
 
 import '../../../../../core/constant/text_styles/font_size.dart';
@@ -18,63 +24,21 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
-  final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _completionDateController =
-      TextEditingController();
-  String? selectedFile;
-  bool _isLoading = false; // For loading state
+
+  File? selectedFile;
+  final _formKey = GlobalKey<FormState>();
 
   Future<void> _chooseImage() async {
-    try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.image,
-      );
-
-      if (result != null) {
-        setState(() {
-          selectedFile = result.files.single.path;
-        });
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to pick image: ${e.toString()}')),
-      );
-    }
-  }
-
-  Future<void> _submitForm() async {
-    if (_descriptionController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a description')),
-      );
-      return;
-    }
-
-    if (selectedFile == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select an image')),
-      );
-      return;
-    }
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    // Simulate a network call or form submission
-    await Future.delayed(const Duration(seconds: 2));
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Post submitted successfully!')),
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
     );
 
-    // Navigate back or reset the form
-    Navigator.pop(context);
+    if (result != null && result.files.single.path != null) {
+      setState(() {
+        selectedFile = File(result.files.single.path!);
+      });
+    }
   }
 
   @override
@@ -101,81 +65,102 @@ class _AddPostState extends State<AddPost> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const LabelWidget(text: "Post Description"),
-            const SizedBox(height: 8),
-            CustomTextFormField(
-              controller: _descriptionController,
-              borderColor: AppColors.greyDD,
-              fillColor: Colors.white,
-              height: MediaQuery.of(context).size.height * 0.15,
-              maxLines: 8,
-              hintText: "What's in your mind...",
-            ),
-            const SizedBox(height: 20),
-            const LabelWidget(text: "Add Image"),
-            const SizedBox(height: 8),
-            GestureDetector(
-              onTap: _chooseImage,
-              child: Container(
-                width: double.infinity,
-                height: 150,
-                decoration: BoxDecoration(
-                  color: AppColors.greyDD.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: AppColors.greyDD,
-                    width: 1,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const LabelWidget(text: "Post Description"),
+              const SizedBox(height: 8),
+              CustomTextFormField(
+                controller: _descriptionController,
+                borderColor: AppColors.greyDD,
+                fillColor: Colors.white,
+                height: MediaQuery.of(context).size.height * 0.15,
+                maxLines: 8,
+                hintText: "What's in your mind...",
+              ),
+              const SizedBox(height: 20),
+              const LabelWidget(text: "Add Image"),
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: _chooseImage,
+                child: Container(
+                  width: double.infinity,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: AppColors.greyDD.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.greyDD,
+                      width: 1,
+                    ),
+                  ),
+                  child: selectedFile == null
+                      ? const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.image,
+                                size: 40, color: AppColors.babyBlue),
+                            SizedBox(height: 8),
+                            Text(
+                              'Tap to upload an image',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.babyBlue,
+                              ),
+                            ),
+                          ],
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.file(
+                            selectedFile!,
+                            width: double.infinity,
+                            height: 150,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                ),
+              ),
+              const SizedBox(height: 60),
+              CreateModel(
+                withValidation: true,
+                onTap: () => _formKey.currentState?.validate() ?? false,
+                useCaseCallBack: (model) {
+                  return AddPostUseCase(profileRepository: ProfileRepository())
+                      .call(
+                          params: AddPostParams(
+                    image: selectedFile,
+                    ownerId: CacheHelper.userID,
+                    text: _descriptionController.text,
+                    timeStamp: DateTime.now(),
+                  ));
+                },
+                onError: (val) {
+                  Dialogs.showErrorSnackBar(message: val, context: context);
+                },
+                onSuccess: (model) {
+                  Dialogs.showSnackBar(
+                      message: "Post added successfully",
+                      context: context,
+                      typeSnackBar: AnimatedSnackBarType.success);
+                },
+                child: CustomButton(
+                  text: "Submit",
+                  w: MediaQuery.of(context).size.width * 0.85,
+                  h: MediaQuery.of(context).size.height * 0.06,
+                  color: AppColors.primary,
+                  textStyle: AppTextStyle.getBoldStyle(
+                    fontSize: AppFontSize.size_16,
+                    color: Colors.white,
                   ),
                 ),
-                child: selectedFile == null
-                    ? const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.image,
-                              size: 40, color: AppColors.babyBlue),
-                          SizedBox(height: 8),
-                          Text(
-                            'Tap to upload an image',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.babyBlue,
-                            ),
-                          ),
-                        ],
-                      )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(
-                          File(selectedFile!),
-                          width: double.infinity,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
               ),
-            ),
-            const SizedBox(height: 60),
-            Center(
-              child: _isLoading
-                  ? const CircularProgressIndicator(color: AppColors.white)
-                  : CustomButton(
-                      text: "Submit",
-                      w: MediaQuery.of(context).size.width * 0.85,
-                      h: MediaQuery.of(context).size.height * 0.06,
-                      color: AppColors.primary,
-                      textStyle: AppTextStyle.getBoldStyle(
-                        fontSize: AppFontSize.size_16,
-                        color: Colors.white,
-                      ),
-                      onPressed: _submitForm,
-                    ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ));

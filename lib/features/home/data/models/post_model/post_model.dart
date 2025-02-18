@@ -1,4 +1,5 @@
 import 'package:sketch/core/data_source/model.dart';
+import 'package:sketch/features/home/data/models/post_model/image.dart';
 
 import 'comment.dart';
 import 'owner.dart';
@@ -30,7 +31,7 @@ class PostModel extends BaseModel {
   int? id;
   String? text;
   List<dynamic>? timeStamp;
-  // List<Image>? images;
+  List<Image>? images;
   List<Comment>? comments;
   List<Reaction>? reactions;
   int? ownerId;
@@ -40,7 +41,7 @@ class PostModel extends BaseModel {
     this.id,
     this.text,
     this.timeStamp,
-    // this.images,
+    this.images,
     this.comments,
     this.reactions,
     this.ownerId,
@@ -51,9 +52,9 @@ class PostModel extends BaseModel {
         id: json['id'] as int?,
         text: json['text'] as String?,
         timeStamp: json['timeStamp'] as List<dynamic>?,
-        // images: (json['images'] as List<dynamic>?)
-        //     ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
-        //     .toList(),
+        images: (json['images'] as List<dynamic>?)
+            ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
+            .toList(),
         comments: (json['comments'] as List<dynamic>?)
             ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -70,7 +71,7 @@ class PostModel extends BaseModel {
         'id': id,
         'text': text,
         'timeStamp': timeStamp,
-        // 'images': images?.map((e) => e.toJson()).toList(),
+        'images': images?.map((e) => e.toJson()).toList(),
         'comments': comments?.map((e) => e.toJson()).toList(),
         'reactions': reactions?.map((e) => e.toJson()).toList(),
         'ownerId': ownerId,

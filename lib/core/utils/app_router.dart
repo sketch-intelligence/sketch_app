@@ -11,6 +11,7 @@ import 'package:sketch/features/notification/presentation/views/notification_vie
 import 'package:sketch/features/onboarding/screens/root_onboarding.dart';
 import 'package:sketch/features/payment_imp/ui/add_balance_screen.dart';
 import 'package:sketch/features/profile/features/profile_settings/presentation/widgets/change_lang.dart';
+import 'package:sketch/features/project/arch_project/presentation/views/user_project.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 import 'package:sketch/features/project/user_proposed_project/presentation/views/user_proposed_project_details_view.dart';
 import 'package:sketch/features/root_navigation_screens/screens/root_screen.dart';
@@ -28,12 +29,17 @@ abstract class AppRouter {
   static const kUserProposedProjectDetails = '/userProposedProjectDetails';
   static const kOnBoard = '/onBoard';
   static const kAddBalance = '/addBalance';
+  static const kAddUserProject = '/addUser';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: kSplash,
         builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: kAddUserProject,
+        builder: (context, state) => UserProject(),
       ),
       GoRoute(
         path: kAddBalance,

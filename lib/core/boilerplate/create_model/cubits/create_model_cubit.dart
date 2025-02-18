@@ -35,6 +35,7 @@ class CreateModelCubit<Model> extends Cubit<CreateModelState> {
       }
     } catch (e) {
       // Emit error if exception occurs
+      print('in catch catch ${e.toString()}');
       String errorMessage = e.toString();
       emit(Error(message: errorMessage));
     }

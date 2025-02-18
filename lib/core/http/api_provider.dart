@@ -20,7 +20,7 @@ class ApiProvider {
     required String url,
     bool isImageResponse = false,
     Map<String, dynamic>? data,
-    required Function(Map<String, dynamic>) converter,
+    required Function(dynamic) converter,
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters,
     CancelToken? cancelToken,
@@ -135,8 +135,18 @@ class ApiProvider {
           compact: true,
           maxWidth: 90));
 
-      var decodedJson =
-          response.data is String ? json.decode(response.data) : response.data;
+      var decodedJson;
+      if (response.data is String) {
+        debugPrint(response.toString());
+        decodedJson = json.decode(response.data);
+        debugPrint(decodedJson);
+      } else {
+        decodedJson = response.data;
+      }
+      if (kDebugMode) {
+        printWrapped(decodedJson.toString());
+      }
+
       // if (isImageResponse) {
       //   return Right(response.data);
       // }
@@ -148,23 +158,15 @@ class ApiProvider {
       }
       debugPrint('Response data: $decodedJson');
 
-      if (response.statusCode == 200) {
-        return Right(converter(decodedJson ?? {}));
-      } else if (response.statusCode == 401) {
-        final errorMessage = decodedJson['detail'] ??
-            decodedJson['description'] ??
-            'Something went wrong';
-        return Left(errorMessage);
-      } else if (response.statusCode != null &&
-          response.statusCode! >= 400 &&
-          response.statusCode! < 500) {
-        final errorMessage = decodedJson['message'] ??
-            'An error occurred. Please check your input.';
-        return Left(errorMessage);
-      } else if (response.statusCode != null && response.statusCode! >= 500) {
-        return const Left('Something went wrong');
+      if ((response.statusCode)! > 199 && (response.statusCode)! < 300) {
+        if (decodedJson['data'] != [] || decodedJson['data'] != null) {
+          return Right(converter(response.data));
+        } else {
+          return Left(response.data['message']);
+        }
       } else {
-        return const Left('Unexpected error occurred. Please try again later.');
+        debugPrint(decodedJson['message']);
+        return Left(response.data['message']);
       }
     } on DioException catch (e) {
       // Map to hold error details
