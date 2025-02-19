@@ -13,6 +13,6 @@ class CreateModelSuccessfully extends CreateModelState {
 
 class Error extends CreateModelState {
   final String message;
-final String? error;
+  final String? error;
   Error({required this.message, this.error});
 }

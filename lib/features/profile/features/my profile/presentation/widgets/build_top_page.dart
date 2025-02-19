@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/build_cover_image.dart';
 import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/build_profile_image.dart';
@@ -29,6 +30,7 @@ class BuildTopPage extends StatelessWidget {
         Positioned(
           top: profilePictureTop - profilePictureOffset, // Apply the offset
           child: ProfileImageWidget(
+            isOwner: CacheHelper.userID == person.id,
             person: person, // Pass the person data to display profile image
           ),
         ),

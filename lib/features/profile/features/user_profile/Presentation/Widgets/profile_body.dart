@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
 import 'package:sketch/features/home/presentation/views/widgets/post_list_view_item.dart';
@@ -67,6 +68,7 @@ class _ProfileBodyState extends State<ProfileBody>
         children: [
           // Pass the 'person' to BuildTopPage dynamically
           BuildTopPage(
+            isOwner: CacheHelper.userID! == widget.profileModel.id,
             person: widget.profileModel,
           ),
           ProfileBodyContent(

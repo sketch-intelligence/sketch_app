@@ -4,6 +4,9 @@ import 'package:sketch/features/auth/data/model/login_model/authority.dart';
 import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 import 'package:sketch/features/auth/data/model/login_model/role.dart';
 import 'package:sketch/features/auth/data/model/login_model/user.dart';
+import 'package:sketch/features/profile/data/models/profile_model/follower.dart';
+import 'package:sketch/features/profile/data/models/profile_model/following.dart';
+import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
 
 class CacheHelper {
   static late Box<dynamic> box;
@@ -14,6 +17,9 @@ class CacheHelper {
     Hive.registerAdapter(UserAdapter()); // Register the User adapter
     Hive.registerAdapter(RoleAdapter()); // Register the Role adapter
     Hive.registerAdapter(AuthorityAdapter()); // Register the Authority adapter
+    Hive.registerAdapter(ProfileModelAdapter());
+    Hive.registerAdapter(FollowerAdapter());
+    Hive.registerAdapter(FollowingAdapter());
     box = await Hive.openBox("default_box");
   }
 
@@ -30,6 +36,19 @@ class CacheHelper {
     if (!box.containsKey(accessToken)) return null;
     return "${box.get(accessToken)}";
   }
+
+  // ✅ Set Profile Image URL
+  static Future<void> setProfileImageUrl(String? value) =>
+      box.put('profile_image_url', value ?? '');
+
+  // ✅ Get Profile Image URL
+  static String? get profileImageUrl => box.get('profile_image_url');
+
+  static Future<void> setCoverImageUrl(String? value) =>
+      box.put('cover_image_url', value ?? '');
+
+  // ✅ Get Profile Image URL
+  static String? get profileCoverUrl => box.get('cover_image_url');
 
   static dynamic get balance {
     if (!box.containsKey(balanceKey)) return null;
@@ -52,5 +71,6 @@ class CacheHelper {
     setUserId(null);
     setUserInfo(null);
     setBalance(null);
+    setProfileImageUrl(null);
   }
 }

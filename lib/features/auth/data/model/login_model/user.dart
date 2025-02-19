@@ -42,11 +42,19 @@ class User {
   @HiveField(11)
   dynamic balance;
 
+  @HiveField(12)
+  String? imageUrl;
+
+  @HiveField(13)
+  String? coverImageUrl;
+
   User({
     this.id,
     this.name,
     this.email,
     this.password,
+    this.coverImageUrl,
+    this.imageUrl,
     this.roles,
     this.enabled,
     this.credentialsNonExpired,
@@ -63,6 +71,8 @@ class User {
         email: json['email'] as String?,
         balance: json['balance'] as dynamic,
         password: json['password'] as String?,
+        imageUrl: json['imageUrl'] as String?,
+        coverImageUrl: json['coverImageUrl'] as String?,
         roles: (json['roles'] as List<dynamic>?)
             ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
             .toList(),

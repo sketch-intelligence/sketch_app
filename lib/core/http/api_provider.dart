@@ -12,7 +12,7 @@ import 'http_method.dart';
 
 class ApiProvider {
   static var options = BaseOptions(
-      baseUrl: baseUrl, connectTimeout: const Duration(seconds: 10));
+      baseUrl: baseUrl, connectTimeout: const Duration(seconds: 20));
   static final Dio dio = Dio(options);
 
   static Future<Either<String, T>> sendObjectRequest<T>({

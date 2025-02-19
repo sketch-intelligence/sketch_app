@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sketch/constants.dart';
+import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
-import 'package:sketch/features/profile/features/user_profile/Presentation/views/profile_views.dart';
+import 'package:sketch/features/home/presentation/repository/home_repository.dart';
+import 'package:sketch/features/home/presentation/use_case/get_image_use_case.dart';
 
 class PostHeader extends StatelessWidget {
   const PostHeader({
@@ -18,27 +20,45 @@ class PostHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              print('${postModel.ownerId}');
-              return ProfilePage(userId: postModel.ownerId ?? 0);
-            }));
-          },
-          child: CircleAvatar(
-            radius: 26,
-            foregroundImage: const NetworkImage(dummyProfileImage),
-            backgroundColor: Colors.grey,
-            child: ClipOval(
-              child: Image.network(
-                dummyProfileImage,
-                fit: BoxFit.cover,
-                width: 100,
-                height: 100,
+        postModel.owner!.imageUrl != null
+            ? GetModel(
+                useCaseCallBack: () {
+                  return GetImageUseCase(homeRepository: HomeRepository()).call(
+                    params: GetImageParams(
+                      imageName: postModel.owner!.imageUrl!,
+                    ),
+                  );
+                },
+                onSuccess: (ImageModel image) {},
+                errorWidget: Icon(Icons.image_not_supported,
+                    size: 50, color: Colors.grey),
+                modelBuilder: (ImageModel model) {
+                  return CircleAvatar(
+                    radius: 26,
+                    backgroundColor: Colors.grey,
+                    child: ClipOval(
+                      child: postModel.owner!.imageUrl!.endsWith('.svg')
+                          ? SvgPicture.memory(model.imageData)
+                          : Image.memory(
+                              model.imageData,
+                            ),
+                    ),
+                  );
+                },
+              )
+            : CircleAvatar(
+                radius: 26,
+                foregroundImage: const NetworkImage(dummyProfileImage),
+                backgroundColor: Colors.grey,
+                child: ClipOval(
+                  child: Image.network(
+                    dummyProfileImage,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
         const SizedBox(width: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

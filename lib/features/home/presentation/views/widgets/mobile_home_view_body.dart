@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/constants.dart';
 import 'package:sketch/core/boilerplate/pagination/widgets/pagination_list.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
@@ -12,7 +11,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(isUser);
+    // print(isUser);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(

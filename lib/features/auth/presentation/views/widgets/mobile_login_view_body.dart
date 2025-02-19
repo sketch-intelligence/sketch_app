@@ -103,6 +103,10 @@ class MobileLoginViewBody extends StatelessWidget {
                       CacheHelper.setUserId(model.user!.id);
                       CacheHelper.setUserInfo(model);
                       CacheHelper.setBalance(model.user!.balance);
+                      CacheHelper.setProfileImageUrl(
+                          model.user!.imageUrl ?? '');
+                      CacheHelper.setCoverImageUrl(
+                          model.user!.coverImageUrl ?? '');
                       GoRouter.of(context).go(AppRouter.kRootView);
                     },
                     child: CustomButton(

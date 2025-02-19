@@ -104,5 +104,7 @@
   "addBalance":"Add to balance",
   "yourBalance":"Your Balance",
   "amount":"Amount",
-  "selectMethod":"Select Payment Method"
+  "selectMethod":"Select Payment Method",
+  "camera":"Camera",
+  "gallery":"Gallery"
 }

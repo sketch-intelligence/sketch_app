@@ -5,8 +5,8 @@ import 'package:sketch/features/profile/features/user_profile/Presentation/Widge
 
 class BuildTopPage extends StatelessWidget {
   final ProfileModel person;
-
-  const BuildTopPage({super.key, required this.person});
+  final bool isOwner;
+  const BuildTopPage({super.key, required this.person, required this.isOwner});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,7 @@ class BuildTopPage extends StatelessWidget {
         Positioned(
           top: profilePictureTop - profilePictureOffset,
           child: ProfileImageWidget(
+            isOwner: isOwner,
             person: person,
           ),
         ),

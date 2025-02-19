@@ -3,6 +3,7 @@ import 'package:sketch/core/data_source/remote_data_source.dart';
 import 'package:sketch/core/http/http_method.dart';
 import 'package:sketch/core/repository/core_repository.dart';
 import 'package:sketch/core/results/result.dart';
+import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
 import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
@@ -12,6 +13,7 @@ import 'package:sketch/features/profile/data/use_case/add_post_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/add_user_project_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/get_arch_protfolio_projects_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/get_profile_use_case.dart';
+import 'package:sketch/features/profile/data/use_case/update_profile_pic.dart';
 
 class ProfileRepository extends CoreRepository {
   Future<Result<ProfileModel>> getProfile(
@@ -57,6 +59,22 @@ class ProfileRepository extends CoreRepository {
         method: HttpMethod.POST,
         url: '${baseUrl}posts/add',
         converter: (json) => PostModel.fromJson(json['data']));
+    return call(result: result);
+  }
+
+  Future<Result<LoginModel>> updateProfilePic(
+      {required UpdateProfilePicParams params}) async {
+    final result = await RemoteDataSource.request(
+        withAuthentication: true,
+        responseStr: 'picResult',
+        file: params.coverImage != null ? params.coverImage : null,
+        fileKey: params.coverImage != null ? 'profileImage' : null,
+        secondFile: params.profileImage != null ? params.profileImage : null,
+        secondFileKey: params.coverImage != null ? 'coverImage' : null,
+        data: params.toJson(),
+        method: HttpMethod.POST,
+        url: '${baseUrl}users/update-user',
+        converter: (json) => LoginModel.fromJson(json['data']));
     return call(result: result);
   }
 

@@ -104,5 +104,7 @@
   "addBalance":"أضف إلى الميزانية",
   "yourBalance":"ميزانيتك",
   "amount":"الكمية",
-  "selectMethod":"اختر طريقة الدفع"
+  "selectMethod":"اختر طريقة الدفع",
+  "camera":"كاميرا",
+  "gallery":"المعرض"
 }

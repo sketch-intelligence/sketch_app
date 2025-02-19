@@ -1,10 +1,21 @@
 import 'dart:io';
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketch/core/boilerplate/create_model/widgets/create_model.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
+import 'package:sketch/core/ui/dialogs/dialogs.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
-import 'package:sketch/core/widgets/custom_text_field.dart';
+import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
+import 'package:sketch/core/ui/widgets/upload_image_bottom_sheet.dart';
+import 'package:sketch/core/utils/app_validator.dart';
+import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
+import 'package:sketch/features/profile/data/cubit/profile_cubit.dart';
+import 'package:sketch/features/profile/data/repository/profile_repository.dart';
+import 'package:sketch/features/profile/data/use_case/update_profile_pic.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -53,7 +64,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GestureDetector(
-                onTap: () => _pickImage(false),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return UploadPhotoBottomSheet(whenDone: (p0) {
+                          _coverImage = p0;
+                          context
+                              .read<ProfileCubit>()
+                              .profilePicParams
+                              .coverImage = p0;
+                          setState(() {});
+                        });
+                      });
+                },
                 child: Container(
                   height: 200,
                   width: double.infinity,
@@ -86,7 +110,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(height: 16),
               // Profile Image Section
               GestureDetector(
-                onTap: () => _pickImage(true),
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return UploadPhotoBottomSheet(whenDone: (p0) {
+                          _profileImage = p0;
+                          context
+                              .read<ProfileCubit>()
+                              .profilePicParams
+                              .profileImage = p0;
+                          setState(() {});
+                        });
+                      });
+                },
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -124,31 +161,54 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
               ),
               const SizedBox(height: 30),
-              CustomTextField(
-                controller: _nameController,
-                label: "Name",
-              ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                controller: _bioController,
-                label: "Bio",
+              CustomTextFormField(
+                initValue: context.read<ProfileCubit>().profilePicParams.name,
+                onChanged: (p0) {
+                  context.read<ProfileCubit>().profilePicParams.name = p0;
+                },
+                validator: (p0) {
+                  AppValidators.validateFillFields(context,
+                      context.read<ProfileCubit>().profilePicParams.name);
+                },
               ),
 
               const SizedBox(height: 30),
-              CustomButton(
-                onPressed: () {
-                  // Handle save action
+              CreateModel(
+                withValidation: false,
+                useCaseCallBack: (model) {
+                  return UpdateProfilePicUseCase(
+                          profileRepository: ProfileRepository())
+                      .call(
+                          params:
+                              context.read<ProfileCubit>().profilePicParams);
                 },
-                color: AppColors.primary,
-                w: screenWidth * 0.4,
-                h: 35,
-                borderSideColor: AppColors.primary,
-                radius: 8,
-                text: "Save Changes",
-                textStyle: TextStyle(
-                    fontSize: screenWidth * 0.04,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.white),
+                onSuccess: (LoginModel model) {
+                  CacheHelper.userInfo!.user!.name = model.user!.name;
+                  CacheHelper.setCoverImageUrl(model.user!.coverImageUrl);
+                  CacheHelper.setProfileImageUrl(model.user!.imageUrl);
+                  Dialogs.showSnackBar(
+                      message: 'Updated successfully',
+                      context: context,
+                      typeSnackBar: AnimatedSnackBarType.success);
+                },
+                onError: (val) {
+                  Dialogs.showSnackBar(
+                      message: val,
+                      context: context,
+                      typeSnackBar: AnimatedSnackBarType.error);
+                },
+                child: CustomButton(
+                  color: AppColors.primary,
+                  w: screenWidth * 0.4,
+                  h: 35,
+                  borderSideColor: AppColors.primary,
+                  radius: 8,
+                  text: "Save Changes",
+                  textStyle: TextStyle(
+                      fontSize: screenWidth * 0.04,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.white),
+                ),
               ),
             ],
           ),

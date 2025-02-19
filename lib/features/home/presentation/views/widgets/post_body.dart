@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:sketch/core/utils/app_router.dart';
@@ -46,7 +47,11 @@ class PostBody extends StatelessWidget {
                     errorWidget: Icon(Icons.image_not_supported,
                         size: 50, color: Colors.grey),
                     modelBuilder: (ImageModel model) {
-                      return Image.memory(model.imageData);
+                      return postModel.images![0].fileName!.endsWith('.svg')
+                          ? SvgPicture.memory(model.imageData)
+                          : Image.memory(
+                              model.imageData,
+                            );
                     },
                   )
                 : SizedBox()
