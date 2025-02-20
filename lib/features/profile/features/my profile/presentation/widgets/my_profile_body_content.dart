@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
@@ -24,7 +25,7 @@ class MyProfileBodyContent extends StatelessWidget {
     return Column(
       children: [
         Text(
-          profile.name ?? '',
+          CacheHelper.userInfo!.user!.name ?? '',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),

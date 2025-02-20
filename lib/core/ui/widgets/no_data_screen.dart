@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
 import 'package:sketch/core/constant/text_styles/font_size.dart';
+import 'package:sketch/translations.dart';
 
 import '../../constant/app_colors/app_colors.dart';
 
@@ -26,7 +27,7 @@ class NoDataScreen extends StatelessWidget {
                 height: height ?? 230.h,
               ),
               SizedBox(height: 30.h),
-              Text("AppLocalizations.of(context)!.no_data,",
+              Text(AppLocalizations.of(context)!.noData,
                   style: AppTextStyle.getRegularStyle(
                       color: AppColors.grey9A, fontSize: AppFontSize.size_16)),
             ],

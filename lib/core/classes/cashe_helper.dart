@@ -79,5 +79,6 @@ class CacheHelper {
     setUserInfo(null);
     setBalance(null);
     setProfileImageUrl(null);
+    setFirebaseUid(null);
   }
 }

@@ -6,8 +6,8 @@ import 'package:sketch/features/profile/features/user_profile/Presentation/Widge
 
 class BuildTopPage extends StatelessWidget {
   final ProfileModel person; // Accept ProfileModel dynamically
-
-  const BuildTopPage({super.key, required this.person});
+  final bool isOwner;
+  const BuildTopPage({super.key, required this.person, required this.isOwner});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BuildTopPage extends StatelessWidget {
         MediaQuery.of(context).size.height * 0.25; // 25% of screen height
     double profilePictureTop = coverHeight -
         (MediaQuery.of(context).size.width *
-            0.15); // Adjust based on profile picture size
+            0.35); // Adjust based on profile picture size
     double profilePictureOffset =
         10.0; // Adjust the offset for the profile picture
 
@@ -25,7 +25,9 @@ class BuildTopPage extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(bottom: profilePictureTop / 2),
-          child: CoverImageWidget(imageUrl: person.imageUrl),
+          child: CoverImageWidget(
+              imageUrl:
+                  isOwner ? CacheHelper.profileCoverUrl : person.coverImageUrl),
         ),
         Positioned(
           top: profilePictureTop - profilePictureOffset, // Apply the offset

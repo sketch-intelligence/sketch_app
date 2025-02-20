@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:sketch/core/params/base_params.dart';
 import 'package:sketch/core/results/result.dart';
 import 'package:sketch/core/usecase/usecase.dart';
-import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
+import 'package:sketch/features/profile/data/models/temp_model/temp_model.dart';
 import 'package:sketch/features/profile/data/repository/profile_repository.dart';
 
 class UpdateProfilePicParams extends BaseParams {
@@ -19,12 +19,12 @@ class UpdateProfilePicParams extends BaseParams {
 }
 
 class UpdateProfilePicUseCase
-    extends UseCase<LoginModel, UpdateProfilePicParams> {
+    extends UseCase<TempModel, UpdateProfilePicParams> {
   final ProfileRepository profileRepository;
 
   UpdateProfilePicUseCase({required this.profileRepository});
   @override
-  Future<Result<LoginModel>> call({required UpdateProfilePicParams params}) {
+  Future<Result<TempModel>> call({required UpdateProfilePicParams params}) {
     return profileRepository.updateProfilePic(params: params);
   }
 }

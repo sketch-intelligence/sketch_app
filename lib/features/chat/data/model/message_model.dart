@@ -30,7 +30,7 @@ class MessageModel {
       senderId: map['senderId'] as String,
       receiverId: map['receiverId'] as String,
       text: map['text'] as String,
-      isRead: map['isRead'] as bool,
+      isRead: map['isRead'] ?? false,
       timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp'] as int),
     );
   }

@@ -15,12 +15,14 @@ import 'package:sketch/core/utils/app_validator.dart';
 import 'package:sketch/core/widgets/custom_text_field.dart';
 import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 import 'package:sketch/features/auth/data/repos/auth_repository.dart';
+import 'package:sketch/features/auth/domain/use_case/login_use_case.dart';
 import 'package:sketch/features/auth/domain/use_case/register_use.case.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:sketch/features/auth/presentation/manager/cubit/auth_states.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/role_switch.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart';
+import 'package:sketch/features/chat/data/repository/chat_repository.dart';
 import 'package:sketch/translations.dart';
 
 class MobileRegisterViewBody extends StatelessWidget {
@@ -147,10 +149,31 @@ class MobileRegisterViewBody extends StatelessWidget {
                           context: context,
                           typeSnackBar: AnimatedSnackBarType.error);
                     },
-                    onSuccess: (LoginModel model) {
+                    onSuccess: (LoginModel model) async {
                       CacheHelper.setToken(model.token);
                       CacheHelper.setUserId(model.user!.id);
                       CacheHelper.setUserInfo(model);
+                      print(
+                          "🔹 User Info Stored: ID = ${model.user!.id}, Token = ${model.token}");
+
+                      // ✅ Authenticate user with Firebase
+                      print("🔹 Attempting Firebase authentication...");
+                      await signUpWithCred(
+                          context,
+                          model.user!.id!,
+                          LoginParams(
+                              email: context
+                                  .read<AuthCubit>()
+                                  .registerParams
+                                  .email,
+                              password: context
+                                  .read<AuthCubit>()
+                                  .registerParams
+                                  .password));
+                      await registerUserInFirestore(model.user!.name ?? '',
+                          model.user!.email ?? '', model.user!.imageUrl ?? '');
+                      print(
+                          "✅ Firebase authentication completed, navigating to Home Screen...");
                       GoRouter.of(context).go(AppRouter.kRootView);
                     },
                     child: CustomButton(

@@ -15,16 +15,33 @@ class ChatListView extends StatelessWidget {
       itemCount: chats.length,
       itemBuilder: (context, index) {
         final chat = chats[index];
+
         return ListTile(
           leading: CircleAvatar(
-              // backgroundImage: NetworkImage(chat.userProfilePic),
-              ),
-          title: Text(chat.userName),
-          subtitle: Text(chat.lastMessage),
+            backgroundImage: chat.userProfilePic.isNotEmpty
+                ? NetworkImage(chat.userProfilePic)
+                : null, // Use null if no profile picture
+            child: chat.userProfilePic.isEmpty
+                ? const Icon(Icons.person, color: Colors.white)
+                : null,
+          ),
+          title: Text(
+            chat.userName,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            chat.lastMessage,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: TextStyle(color: Colors.grey[600]),
+          ),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(chat.time),
+              Text(
+                chat.timestamp,
+                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+              ),
             ],
           ),
           onTap: () {

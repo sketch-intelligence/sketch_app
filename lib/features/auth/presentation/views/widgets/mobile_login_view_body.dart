@@ -117,7 +117,7 @@ class MobileLoginViewBody extends StatelessWidget {
 
                       // ✅ Authenticate user with Firebase
                       print("🔹 Attempting Firebase authentication...");
-                      await signInWithCred(model.user!.id!,
+                      await signInWithCred(context, model.user!.id!,
                           context.read<AuthCubit>().loginParams);
                       await registerUserInFirestore(model.user!.name ?? '',
                           model.user!.email ?? '', model.user!.imageUrl ?? '');

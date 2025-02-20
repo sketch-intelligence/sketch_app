@@ -4,6 +4,7 @@ import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sketch/core/boilerplate/create_model/widgets/create_model.dart';
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
@@ -12,8 +13,8 @@ import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/ui/widgets/custom_text_form_field.dart';
 import 'package:sketch/core/ui/widgets/upload_image_bottom_sheet.dart';
 import 'package:sketch/core/utils/app_validator.dart';
-import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 import 'package:sketch/features/profile/data/cubit/profile_cubit.dart';
+import 'package:sketch/features/profile/data/models/temp_model/temp_model.dart';
 import 'package:sketch/features/profile/data/repository/profile_repository.dart';
 import 'package:sketch/features/profile/data/use_case/update_profile_pic.dart';
 
@@ -182,14 +183,34 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           params:
                               context.read<ProfileCubit>().profilePicParams);
                 },
-                onSuccess: (LoginModel model) {
-                  CacheHelper.userInfo!.user!.name = model.user!.name;
-                  CacheHelper.setCoverImageUrl(model.user!.coverImageUrl);
-                  CacheHelper.setProfileImageUrl(model.user!.imageUrl);
+                onSuccess: (TempModel model) {
+                  print(
+                      "DEBUG: Checking CacheHelper.userInfo: ${CacheHelper.userInfo}");
+                  print(
+                      "DEBUG: Checking CacheHelper.userInfo!.user: ${CacheHelper.userInfo?.user}");
+                  print("DEBUG: Checking model.user: ${model.name}");
+
+                  if (CacheHelper.userInfo == null) {
+                    print("ERROR: CacheHelper.userInfo is NULL!");
+                    return;
+                  }
+
+                  if (CacheHelper.userInfo!.user == null) {
+                    print("ERROR: CacheHelper.userInfo!.user is NULL!");
+                    return;
+                  }
+
+// Now that we are sure these values are not null, proceed with updating
+                  CacheHelper.userInfo!.user!.name = model.name;
+                  CacheHelper.setCoverImageUrl(model.coverImageUrl);
+                  CacheHelper.setProfileImageUrl(model.imageUrl);
+
                   Dialogs.showSnackBar(
                       message: 'Updated successfully',
                       context: context,
                       typeSnackBar: AnimatedSnackBarType.success);
+
+                  GoRouter.of(context).pop();
                 },
                 onError: (val) {
                   Dialogs.showSnackBar(

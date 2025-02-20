@@ -95,7 +95,7 @@ class _GetModelState<Model> extends State<CreateModel<Model>> {
               // Navigator.push(context,);
               GoRouter.of(context).push(widget.errorWidgetPath!);
             } else if (widget.onError != null) {
-              widget.onError!('${state.message.toString()} yeahssss');
+              widget.onError!(state.message.toString());
             } else {
               Dialogs.showSnackBar(
                   context: context,

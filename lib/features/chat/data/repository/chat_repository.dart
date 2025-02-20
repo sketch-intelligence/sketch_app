@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/end_points/api_url.dart';
@@ -9,6 +11,7 @@ import 'package:sketch/core/data_source/remote_data_source.dart';
 import 'package:sketch/core/http/http_method.dart';
 import 'package:sketch/core/repository/core_repository.dart';
 import 'package:sketch/core/results/result.dart';
+import 'package:sketch/core/ui/dialogs/dialogs.dart';
 import 'package:sketch/features/auth/domain/use_case/login_use_case.dart';
 import 'package:sketch/features/chat/data/model/custom_token_model.dart';
 import 'package:sketch/features/chat/data/use_case/get_token_use_case.dart';
@@ -51,7 +54,8 @@ Future<void> updateFirebaseUid(int userId, String firebaseUid) async {
   }
 }
 
-Future<void> signUpWithCred(LoginParams params) async {
+Future<void> signUpWithCred(
+    BuildContext context, int userId, LoginParams params) async {
   try {
     print("🔹 Attempting to sign in with email: ${params.email}");
 // UserCredential userCredential =
@@ -59,7 +63,7 @@ Future<void> signUpWithCred(LoginParams params) async {
 
     UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: params.email ?? '',
+      email: params.email!.trim(),
       password: params.password ?? '',
     );
 
@@ -67,15 +71,26 @@ Future<void> signUpWithCred(LoginParams params) async {
     if (userCredential.user != null) {
       print("✅ Successfully signed in as: ${userCredential.user?.email}");
       print("🔹 Firebase UID: ${userCredential.user?.uid}");
+      CacheHelper.setFirebaseUid(userCredential.user!.uid);
+      await updateFirebaseUid(userId, userCredential.user!.uid);
     } else {
+      Dialogs.showErrorSnackBar(
+          message: 'Sign-up failed , try again later',
+          context: context,
+          typeSnackBar: AnimatedSnackBarType.error);
       print("⚠️ Sign-in failed: UserCredential returned null");
     }
   } catch (e) {
+    Dialogs.showErrorSnackBar(
+        message: 'Sign-up failed , $e',
+        context: context,
+        typeSnackBar: AnimatedSnackBarType.error);
     print("🚨 Error signing in with email and password: $e");
   }
 }
 
-Future<void> signInWithCred(int userId, LoginParams params) async {
+Future<void> signInWithCred(
+    BuildContext context, int userId, LoginParams params) async {
   try {
     print("🔹 Attempting to sign in with email: ${params.email}");
 // UserCredential userCredential =
@@ -94,9 +109,17 @@ Future<void> signInWithCred(int userId, LoginParams params) async {
       print("✅ Successfully signed in as: ${userCredential.user?.email}");
       print("🔹 Firebase UID: ${userCredential.user?.uid}");
     } else {
+      Dialogs.showErrorSnackBar(
+          message: 'Sign-up failed , try again later',
+          context: context,
+          typeSnackBar: AnimatedSnackBarType.error);
       print("⚠️ Sign-in failed: UserCredential returned null");
     }
   } catch (e) {
+    Dialogs.showErrorSnackBar(
+        message: 'Sign-up failed , $e',
+        context: context,
+        typeSnackBar: AnimatedSnackBarType.error);
     print("🚨 Error signing in with email and password: $e");
   }
 }

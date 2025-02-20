@@ -3,10 +3,10 @@ import 'package:sketch/core/data_source/remote_data_source.dart';
 import 'package:sketch/core/http/http_method.dart';
 import 'package:sketch/core/repository/core_repository.dart';
 import 'package:sketch/core/results/result.dart';
-import 'package:sketch/features/auth/data/model/login_model/login_model.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
 import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
+import 'package:sketch/features/profile/data/models/temp_model/temp_model.dart';
 import 'package:sketch/features/profile/data/use_case/add_follow_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/add_portfolio_project_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/add_post_use_case.dart';
@@ -62,7 +62,7 @@ class ProfileRepository extends CoreRepository {
     return call(result: result);
   }
 
-  Future<Result<LoginModel>> updateProfilePic(
+  Future<Result<TempModel>> updateProfilePic(
       {required UpdateProfilePicParams params}) async {
     final result = await RemoteDataSource.request(
         withAuthentication: true,
@@ -74,7 +74,7 @@ class ProfileRepository extends CoreRepository {
         data: params.toJson(),
         method: HttpMethod.POST,
         url: '${baseUrl}users/update-user',
-        converter: (json) => LoginModel.fromJson(json['data']));
+        converter: (json) => TempModel.fromJson(json['data']));
     return call(result: result);
   }
 

@@ -106,5 +106,7 @@
   "amount":"Amount",
   "selectMethod":"Select Payment Method",
   "camera":"Camera",
-  "gallery":"Gallery"
+  "gallery":"Gallery",
+  "noData":"No data"
+
 }

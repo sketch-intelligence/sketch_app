@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/features/chat/data/model/chat_model.dart';
 import 'package:sketch/features/chat/data/model/message_model.dart';
 
@@ -12,14 +13,50 @@ class ChatService {
       // Generate chat ID by checking if a chat already exists
       chatId = await _getOrCreateChat(senderId, receiverId);
     }
-    message.isRead = false;
 
-    // Send message in the chat
-    await _firestore
+    DocumentReference chatRef = _firestore.collection('chats').doc(chatId);
+
+    // ✅ Convert message to a map before adding to Firestore
+    await chatRef.collection('messages').add(message.toMap());
+
+    // ✅ Increase unread messages count for the receiver
+    await chatRef.update({
+      'unreadMessages.$receiverId': FieldValue.increment(1),
+    });
+    await chatRef.update({
+      'lastMessage': message.text,
+      'lastMessageTime': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> markMessagesAsRead(String userId) async {
+    QuerySnapshot chatSnapshot = await _firestore
         .collection('chats')
-        .doc(chatId)
-        .collection('messages')
-        .add(message.toMap());
+        .where('participants', arrayContains: userId)
+        .get();
+
+    for (var doc in chatSnapshot.docs) {
+      await doc.reference.update({
+        'unreadMessages.$userId': 0, // Reset unread count
+      });
+    }
+  }
+
+  Stream<num> getUnreadMessagesCount(String userId) {
+    return _firestore
+        .collection('chats')
+        .where('participants', arrayContains: userId)
+        .snapshots()
+        .map((snapshot) {
+      num totalUnread = 0;
+      for (var doc in snapshot.docs) {
+        Map<String, dynamic>? unreadMessages = doc['unreadMessages'];
+        if (unreadMessages != null && unreadMessages.containsKey(userId)) {
+          totalUnread += unreadMessages[userId];
+        }
+      }
+      return totalUnread;
+    });
   }
 
   Future<String> createChat(String senderId, String receiverId) async {
@@ -137,47 +174,111 @@ class ChatService {
     return newChatRef.id;
   }
 
+  // Future<List<ChatModel>> getUserChats() async {
+  //   String currentUserId = FirebaseAuth.instance.currentUser!.uid;
+
+  //   // 🔹 Fetch all chat documents where the user is a participant
+  //   QuerySnapshot chatSnapshot = await _firestore
+  //       .collection('chats')
+  //       .where('participants', arrayContains: currentUserId)
+  //       .orderBy('createdAt', descending: true)
+  //       .get();
+
+  //   List<ChatModel> chats = [];
+
+  //   for (var doc in chatSnapshot.docs) {
+  //     List participants = doc['participants'];
+
+  //     // 🔹 Get the other participant's ID
+  //     String receiverId = participants.firstWhere((id) => id != currentUserId,
+  //         orElse: () => '');
+
+  //     if (receiverId.isEmpty) continue; // Skip if invalid
+
+  //     // 🔹 Fetch receiver details from Firestore
+  //     DocumentSnapshot userDoc =
+  //         await _firestore.collection('users').doc(receiverId).get();
+
+  //     if (!userDoc.exists) continue; // Skip if user doesn't exist
+
+  //     // 🔹 Create Chat object
+  //     ChatModel chat = ChatModel(
+  //       chatId: doc.id,
+  //       userId: receiverId,
+  //       userName: userDoc['name'],
+  //       userProfilePic: userDoc['profilePic'],
+  //       lastMessage: "Tap to chat",
+  //       time: "Now",
+  //       isOnline: false,
+  //     );
+
+  //     chats.add(chat);
+  //   }
+
+  //   return chats;
+  // }
   Future<List<ChatModel>> getUserChats() async {
     String currentUserId = FirebaseAuth.instance.currentUser!.uid;
 
-    // 🔹 Fetch all chat documents where the user is a participant
-    QuerySnapshot chatSnapshot = await _firestore
-        .collection('chats')
-        .where('participants', arrayContains: currentUserId)
-        .orderBy('createdAt', descending: true)
-        .get();
+    try {
+      QuerySnapshot chatSnapshot = await _firestore
+          .collection('chats')
+          .where('participants', arrayContains: currentUserId)
+          .orderBy('lastMessageTime', descending: true)
+          .get();
 
-    List<ChatModel> chats = [];
+      if (chatSnapshot.docs.isEmpty) {
+        print("No chats found for user: $currentUserId");
+      } else {
+        print("Chats found: ${chatSnapshot.docs.length}");
+        for (var doc in chatSnapshot.docs) {
+          print("Chat ID: ${doc.id}, Data: ${doc.data()}");
+        }
+      }
 
-    for (var doc in chatSnapshot.docs) {
-      List participants = doc['participants'];
+      List<ChatModel> chats = [];
 
-      // 🔹 Get the other participant's ID
-      String receiverId = participants.firstWhere((id) => id != currentUserId,
-          orElse: () => '');
+      for (var doc in chatSnapshot.docs) {
+        Map<String, dynamic>? data = doc.data() as Map<String, dynamic>?;
 
-      if (receiverId.isEmpty) continue; // Skip if invalid
+        if (data == null) continue;
 
-      // 🔹 Fetch receiver details from Firestore
-      DocumentSnapshot userDoc =
-          await _firestore.collection('users').doc(receiverId).get();
+        List participants = data['participants'] ?? [];
 
-      if (!userDoc.exists) continue; // Skip if user doesn't exist
+        String? receiverId = participants
+            .firstWhere((id) => id != currentUserId, orElse: () => null);
 
-      // 🔹 Create Chat object
-      ChatModel chat = ChatModel(
-        chatId: doc.id,
-        userId: receiverId,
-        userName: userDoc['name'],
-        userProfilePic: userDoc['profilePic'],
-        lastMessage: "Tap to chat",
-        time: "Now",
-        isOnline: false,
-      );
+        if (receiverId == null) continue;
 
-      chats.add(chat);
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(receiverId).get();
+
+        if (!userDoc.exists) continue;
+
+        String lastMessage = data['lastMessage'] ?? "Tap to chat";
+        Timestamp? lastMessageTimestamp = data['lastMessageTime'] as Timestamp?;
+        String formattedTime = lastMessageTimestamp != null
+            ? formatTimestamp(lastMessageTimestamp)
+            : "Now";
+
+        ChatModel chat = ChatModel(
+          chatId: doc.id,
+          userId: receiverId,
+          userName: userDoc['name'],
+          userProfilePic: userDoc['profilePic'],
+          lastMessage: lastMessage,
+          timestamp: formattedTime,
+          isOnline: false,
+        );
+
+        chats.add(chat);
+      }
+
+      print("Final chat list count: ${chats.length}");
+      return chats;
+    } catch (e) {
+      print("Error fetching user chats: $e");
+      return [];
     }
-
-    return chats;
   }
 }

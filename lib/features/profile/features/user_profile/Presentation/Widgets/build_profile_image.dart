@@ -15,18 +15,14 @@ class ProfileImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double radius = MediaQuery.of(context).size.width * 0.15; // Adjust size
+    double radius = MediaQuery.of(context).size.width * 0.35; // Adjust size
 
     // Check if profileImage exists; if not, use a fallback image
-    return person.imageUrl != null
+    return isOwner && CacheHelper.profileImageUrl!.isNotEmpty
         ? GetModel(
             useCaseCallBack: () {
               return GetImageUseCase(homeRepository: HomeRepository()).call(
-                params: GetImageParams(
-                  imageName: isOwner
-                      ? CacheHelper.profileImageUrl ?? ''
-                      : person.imageUrl!,
-                ),
+                params: GetImageParams(imageName: CacheHelper.profileImageUrl!),
               );
             },
             onSuccess: (ImageModel image) {},
@@ -46,18 +42,44 @@ class ProfileImageWidget extends StatelessWidget {
               );
             },
           )
-        : CircleAvatar(
-            radius: 26,
-            foregroundImage: const NetworkImage(dummyProfileImage),
-            backgroundColor: Colors.grey,
-            child: ClipOval(
-              child: Image.network(
-                dummyProfileImage,
-                fit: BoxFit.cover,
-                width: 100,
-                height: 100,
-              ),
-            ),
-          );
+        : !isOwner && CacheHelper.profileImageUrl!.isNotEmpty
+            ? GetModel(
+                useCaseCallBack: () {
+                  return GetImageUseCase(homeRepository: HomeRepository()).call(
+                    params: GetImageParams(
+                      imageName: person.imageUrl!,
+                    ),
+                  );
+                },
+                onSuccess: (ImageModel image) {},
+                errorWidget: Icon(Icons.image_not_supported,
+                    size: 50, color: Colors.grey),
+                modelBuilder: (ImageModel model) {
+                  return CircleAvatar(
+                    radius: 26,
+                    backgroundColor: Colors.grey,
+                    child: ClipOval(
+                      child: person.imageUrl!.endsWith('.svg')
+                          ? SvgPicture.memory(model.imageData)
+                          : Image.memory(
+                              model.imageData,
+                            ),
+                    ),
+                  );
+                },
+              )
+            : CircleAvatar(
+                radius: 26,
+                foregroundImage: const NetworkImage(dummyProfileImage),
+                backgroundColor: Colors.grey,
+                child: ClipOval(
+                  child: Image.network(
+                    dummyProfileImage,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+              );
   }
 }

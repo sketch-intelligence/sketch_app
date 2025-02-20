@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -31,10 +32,9 @@ class CustomAppBar extends StatelessWidget {
                       )),
             );
           },
-          child: CacheHelper.profileImageUrl != null
+          child: CacheHelper.profileImageUrl!.isNotEmpty
               ? GetModel(
                   useCaseCallBack: () {
-                    print('the name : ${CacheHelper.profileImageUrl}');
                     return GetImageUseCase(homeRepository: HomeRepository())
                         .call(
                       params: GetImageParams(
@@ -50,8 +50,7 @@ class CustomAppBar extends StatelessWidget {
                       radius: 26,
                       backgroundColor: Colors.grey,
                       child: ClipOval(
-                        child: CacheHelper.userInfo!.user!.imageUrl!
-                                .endsWith('.svg')
+                        child: CacheHelper.profileImageUrl!.endsWith('.svg')
                             ? SvgPicture.memory(model.imageData)
                             : Image.memory(
                                 model.imageData,
@@ -86,38 +85,43 @@ class CustomAppBar extends StatelessWidget {
           },
           icon: SvgPicture.asset(Assets.imagesBell),
         ),
-        StreamBuilder<int>(
-          stream: chatService.getUnreadMessageCount(uid),
-          builder: (context, snapshot) {
-            int unreadCount = snapshot.data ?? 0;
-            return Stack(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const ChatPage();
-                    }));
-                  },
-                  icon: SvgPicture.asset(Assets.imagesChat),
-                ),
-                if (unreadCount > 0)
-                  Positioned(
-                    right: 4,
-                    top: 4,
-                    child: CircleAvatar(
-                      radius: 8,
-                      backgroundColor: Colors.red,
-                      child: Text(
-                        unreadCount.toString(),
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
-                      ),
-                    ),
-                  ),
-              ],
-            );
+        IconButton(
+          onPressed: () async {
+            // Mark messages as read
+            await chatService
+                .markMessagesAsRead(FirebaseAuth.instance.currentUser!.uid);
+
+            // Navigate to chat page
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const ChatPage();
+            }));
           },
+          icon: Stack(
+            children: [
+              SvgPicture.asset(Assets.imagesChat),
+              StreamBuilder<num>(
+                stream: chatService.getUnreadMessagesCount(
+                    FirebaseAuth.instance.currentUser!.uid),
+                builder: (context, snapshot) {
+                  num unreadCount = snapshot.data ?? 0;
+                  return unreadCount > 0
+                      ? Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Container(
+                            width: 10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        )
+                      : SizedBox();
+                },
+              ),
+            ],
+          ),
         ),
       ],
     );
