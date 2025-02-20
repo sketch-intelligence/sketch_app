@@ -12,6 +12,7 @@ class ChatService {
       // Generate chat ID by checking if a chat already exists
       chatId = await _getOrCreateChat(senderId, receiverId);
     }
+    message.isRead = false;
 
     // Send message in the chat
     await _firestore
@@ -54,6 +55,27 @@ class ChatService {
         .map((snapshot) => snapshot.docs
             .map((doc) => MessageModel.fromMap(doc.data()))
             .toList());
+  }
+
+  Stream<int> getUnreadMessageCount(String userId) {
+    return FirebaseFirestore.instance
+        .collection('chats')
+        .where('participants', arrayContains: userId)
+        .snapshots()
+        .asyncMap((querySnapshot) async {
+      int totalUnread = 0;
+
+      for (var chat in querySnapshot.docs) {
+        var messagesQuery = await chat.reference
+            .collection('messages')
+            .where('receiverId', isEqualTo: userId)
+            .where('isRead', isEqualTo: false)
+            .get();
+
+        totalUnread += messagesQuery.docs.length;
+      }
+      return totalUnread;
+    });
   }
 
   Future<String> getOrCreateChat(String senderId, String receiverId) async {

@@ -7,14 +7,16 @@ import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/widgets/custom_search_text_field.dart';
+import 'package:sketch/features/chat/service/real_chat_service.dart';
 import 'package:sketch/features/chat_bot/presentation/views/chatpage.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
 import 'package:sketch/features/home/presentation/use_case/get_image_use_case.dart';
 import 'package:sketch/features/profile/features/my%20profile/presentation/views/my_profile_view.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+  CustomAppBar({super.key, required this.uid});
+  final String uid;
+  ChatService chatService = ChatService();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -84,13 +86,38 @@ class CustomAppBar extends StatelessWidget {
           },
           icon: SvgPicture.asset(Assets.imagesBell),
         ),
-        IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const ChatPage();
-            }));
+        StreamBuilder<int>(
+          stream: chatService.getUnreadMessageCount(uid),
+          builder: (context, snapshot) {
+            int unreadCount = snapshot.data ?? 0;
+            return Stack(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const ChatPage();
+                    }));
+                  },
+                  icon: SvgPicture.asset(Assets.imagesChat),
+                ),
+                if (unreadCount > 0)
+                  Positioned(
+                    right: 4,
+                    top: 4,
+                    child: CircleAvatar(
+                      radius: 8,
+                      backgroundColor: Colors.red,
+                      child: Text(
+                        unreadCount.toString(),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 10),
+                      ),
+                    ),
+                  ),
+              ],
+            );
           },
-          icon: SvgPicture.asset(Assets.imagesChat),
         ),
       ],
     );

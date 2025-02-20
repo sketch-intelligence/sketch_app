@@ -37,6 +37,13 @@ class CacheHelper {
     return "${box.get(accessToken)}";
   }
 
+// ✅ Set Firebase UID
+  static Future<void> setFirebaseUid(String? value) =>
+      box.put('firebase_uid', value ?? '');
+
+  // ✅ Get Firebase UID
+  static String? get firebaseUid => box.get('firebase_uid');
+
   // ✅ Set Profile Image URL
   static Future<void> setProfileImageUrl(String? value) =>
       box.put('profile_image_url', value ?? '');

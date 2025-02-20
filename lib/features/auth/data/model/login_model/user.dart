@@ -48,9 +48,13 @@ class User {
   @HiveField(13)
   String? coverImageUrl;
 
+  @HiveField(14)
+  String? fireStoreId;
+
   User({
     this.id,
     this.name,
+    this.fireStoreId,
     this.email,
     this.password,
     this.coverImageUrl,
@@ -68,6 +72,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json['id'] as int?,
         name: json['name'] as String?,
+        fireStoreId: json['fireStoreId'] as String?,
         email: json['email'] as String?,
         balance: json['balance'] as dynamic,
         password: json['password'] as String?,

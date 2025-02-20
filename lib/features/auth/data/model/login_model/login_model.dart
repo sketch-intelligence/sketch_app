@@ -15,6 +15,7 @@ class LoginModel extends BaseModel {
 
   @HiveField(2)
   User? user;
+
   bool? isGoogle;
   LoginModel({this.token, this.isGoogle, this.expiresAt, this.user});
 

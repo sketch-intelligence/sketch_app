@@ -89,6 +89,7 @@ Future<void> signInWithCred(int userId, LoginParams params) async {
 
     // ✅ Debugging: Check if sign-in was successful
     if (userCredential.user != null) {
+      CacheHelper.setFirebaseUid(userCredential.user!.uid);
       await updateFirebaseUid(userId, userCredential.user!.uid);
       print("✅ Successfully signed in as: ${userCredential.user?.email}");
       print("🔹 Firebase UID: ${userCredential.user?.uid}");

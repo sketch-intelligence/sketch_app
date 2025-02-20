@@ -6,13 +6,14 @@ class MessageModel {
   final String receiverId;
   final String text;
   final DateTime timestamp;
+  bool? isRead;
 
-  MessageModel({
-    required this.senderId,
-    required this.receiverId,
-    required this.text,
-    required this.timestamp,
-  });
+  MessageModel(
+      {required this.senderId,
+      required this.receiverId,
+      required this.text,
+      required this.timestamp,
+      this.isRead = false});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -20,6 +21,7 @@ class MessageModel {
       'receiverId': receiverId,
       'text': text,
       'timestamp': timestamp.millisecondsSinceEpoch,
+      'isRead': isRead
     };
   }
 
@@ -28,6 +30,7 @@ class MessageModel {
       senderId: map['senderId'] as String,
       receiverId: map['receiverId'] as String,
       text: map['text'] as String,
+      isRead: map['isRead'] as bool,
       timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp'] as int),
     );
   }

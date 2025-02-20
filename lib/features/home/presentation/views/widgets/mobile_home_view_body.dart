@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch/core/boilerplate/pagination/widgets/pagination_list.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
 import 'package:sketch/features/home/presentation/use_case/get_posts_use_case.dart';
@@ -18,7 +19,7 @@ class HomeViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          const CustomAppBar(),
+          CustomAppBar(uid: CacheHelper.firebaseUid!),
           const Text(
             'Feed',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
