@@ -30,11 +30,14 @@ class ProfileModel extends BaseModel {
   String? role;
   @HiveField(7)
   String? coverImageUrl;
+  @HiveField(8)
+  String? fireStoreId;
 
   ProfileModel({
     this.id,
     this.email,
     this.name,
+    this.fireStoreId,
     this.imageUrl,
     this.coverImageUrl,
     this.followers,
@@ -48,6 +51,7 @@ class ProfileModel extends BaseModel {
         email: json['name'] as String?,
         imageUrl: json['imageUrl'] as String?,
         coverImageUrl: json['coverImageUrl'] as String?,
+        fireStoreId: json['fireStoreId'] as String?,
         followers: (json['followers'] as List<dynamic>?)
             ?.map((e) => Follower.fromJson(e as Map<String, dynamic>))
             .toList(),

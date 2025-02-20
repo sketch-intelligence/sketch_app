@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sketch/features/chat_bot/data/models/chat_model.dart';
-import 'package:sketch/features/chat_bot/presentation/views/detailed_chat_page.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sketch/core/utils/app_router.dart';
+import 'package:sketch/features/chat/data/model/chat_model.dart';
+import 'package:sketch/features/chat/presentation/chat_screen.dart';
 
 class ChatListView extends StatelessWidget {
-  final List<Chat> chats;
+  final List<ChatModel> chats;
 
   const ChatListView(this.chats, {super.key});
 
@@ -15,33 +17,20 @@ class ChatListView extends StatelessWidget {
         final chat = chats[index];
         return ListTile(
           leading: CircleAvatar(
-            backgroundColor: chat.isOnline ? Colors.green : Colors.grey,
-            child: Text(chat.userName[0]),
-          ),
+              // backgroundImage: NetworkImage(chat.userProfilePic),
+              ),
           title: Text(chat.userName),
           subtitle: Text(chat.lastMessage),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (chat.isOnline)
-                Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
-                  ),
-                ),
               Text(chat.time),
             ],
           ),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailedChatPage(chat: chat),
-              ),
-            );
+            // 🔹 Navigate to chat screen with chat ID and receiver ID
+            GoRouter.of(context).push(AppRouter.kChatScreen,
+                extra: ChatChat(chatId: chat.chatId, receiverId: chat.userId));
           },
         );
       },

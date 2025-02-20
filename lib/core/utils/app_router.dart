@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sketch/core/ui/screens/splash_screen.dart';
 import 'package:sketch/features/auth/presentation/views/login_view.dart';
 import 'package:sketch/features/auth/presentation/views/register_view.dart';
+import 'package:sketch/features/chat/presentation/chat_screen.dart';
 import 'package:sketch/features/design/presentation/views/generate_design_page.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/views/home_view.dart';
@@ -10,7 +11,9 @@ import 'package:sketch/features/home/presentation/views/widgets/post_details_vie
 import 'package:sketch/features/notification/presentation/views/notification_view.dart';
 import 'package:sketch/features/onboarding/screens/root_onboarding.dart';
 import 'package:sketch/features/payment_imp/ui/add_balance_screen.dart';
+import 'package:sketch/features/profile/features/my%20profile/presentation/views/my_profile_view.dart';
 import 'package:sketch/features/profile/features/profile_settings/presentation/widgets/change_lang.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/views/profile_views.dart';
 import 'package:sketch/features/project/arch_project/presentation/views/user_project.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
 import 'package:sketch/features/project/user_proposed_project/presentation/views/user_proposed_project_details_view.dart';
@@ -30,6 +33,9 @@ abstract class AppRouter {
   static const kOnBoard = '/onBoard';
   static const kAddBalance = '/addBalance';
   static const kAddUserProject = '/addUser';
+  static const kChatScreen = '/chatScreen';
+  static const kProfileScreen = '/profileScreen';
+  static const kMyProfileScreen = '/myProfileScreen';
 
   static final router = GoRouter(
     routes: [
@@ -75,6 +81,33 @@ abstract class AppRouter {
           final post = state.extra as PostModel;
           return PostDetailsView(
             post: post,
+          );
+        },
+      ),
+      GoRoute(
+        path: kChatScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          final chat = state.extra as ChatChat;
+          return ChatScreen(
+            chat: chat,
+          );
+        },
+      ),
+      GoRoute(
+        path: kProfileScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          final id = state.extra as int;
+          return ProfilePage(
+            userId: id,
+          );
+        },
+      ),
+      GoRoute(
+        path: kMyProfileScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          final id = state.extra as int;
+          return MyProfilePage(
+            userId: id,
           );
         },
       ),

@@ -1,12 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sketch/features/chat/model/message_model.dart';
+import 'package:sketch/features/chat/data/model/message_model.dart';
 import 'package:sketch/features/chat/service/real_chat_service.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatChat {
   final String chatId;
+  final String receiverId;
+  ChatChat({
+    required this.chatId,
+    required this.receiverId,
+  });
+}
 
-  const ChatScreen({Key? key, required this.chatId}) : super(key: key);
+class ChatScreen extends StatefulWidget {
+  ChatChat chat;
+
+  ChatScreen({Key? key, required this.chat}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -17,19 +27,29 @@ class _ChatScreenState extends State<ChatScreen> {
   final ChatService _chatService = ChatService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void _sendMessage() {
+  void _sendMessage() async {
     if (_messageController.text.isEmpty) return;
 
     final user = _auth.currentUser;
     if (user == null) return;
 
+    String chatId = widget.chat.chatId;
+    if (chatId == 'chatId') {
+      chatId = await _chatService.createChat(user.uid, widget.chat.receiverId);
+      setState(() {
+        widget.chat =
+            ChatChat(chatId: chatId, receiverId: widget.chat.receiverId);
+      });
+    }
+
     final message = MessageModel(
       senderId: user.uid,
+      receiverId: widget.chat.receiverId,
       text: _messageController.text,
       timestamp: DateTime.now(),
     );
 
-    _chatService.sendMessage(widget.chatId, message);
+    _chatService.sendMessage(user.uid, widget.chat.receiverId, chatId, message);
     _messageController.clear();
   }
 
@@ -41,7 +61,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: StreamBuilder<List<MessageModel>>(
-              stream: _chatService.getMessages(widget.chatId),
+              stream: _chatService.getMessages(widget.chat.chatId),
               builder: (context, snapshot) {
                 if (!snapshot.hasData)
                   return Center(child: CircularProgressIndicator());

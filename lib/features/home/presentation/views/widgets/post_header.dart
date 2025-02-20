@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sketch/constants.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/functions/format_time.dart';
+import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/home/presentation/repository/home_repository.dart';
 import 'package:sketch/features/home/presentation/use_case/get_image_use_case.dart';
@@ -36,26 +39,46 @@ class PostHeader extends StatelessWidget {
                   return CircleAvatar(
                     radius: 26,
                     backgroundColor: Colors.grey,
-                    child: ClipOval(
-                      child: postModel.owner!.imageUrl!.endsWith('.svg')
-                          ? SvgPicture.memory(model.imageData)
-                          : Image.memory(
-                              model.imageData,
-                            ),
+                    child: GestureDetector(
+                      onTap: () {
+                        CacheHelper.userID == postModel.ownerId
+                            ? GoRouter.of(context).push(
+                                AppRouter.kMyProfileScreen,
+                                extra: postModel.ownerId)
+                            : GoRouter.of(context).push(
+                                AppRouter.kProfileScreen,
+                                extra: postModel.ownerId);
+                      },
+                      child: ClipOval(
+                        child: postModel.owner!.imageUrl!.endsWith('.svg')
+                            ? SvgPicture.memory(model.imageData)
+                            : Image.memory(
+                                model.imageData,
+                              ),
+                      ),
                     ),
                   );
                 },
               )
-            : CircleAvatar(
-                radius: 26,
-                foregroundImage: const NetworkImage(dummyProfileImage),
-                backgroundColor: Colors.grey,
-                child: ClipOval(
-                  child: Image.network(
-                    dummyProfileImage,
-                    fit: BoxFit.cover,
-                    width: 100,
-                    height: 100,
+            : GestureDetector(
+                onTap: () {
+                  CacheHelper.userID == postModel.ownerId
+                      ? GoRouter.of(context).push(AppRouter.kMyProfileScreen,
+                          extra: postModel.ownerId)
+                      : GoRouter.of(context).push(AppRouter.kProfileScreen,
+                          extra: postModel.ownerId);
+                },
+                child: CircleAvatar(
+                  radius: 26,
+                  foregroundImage: const NetworkImage(dummyProfileImage),
+                  backgroundColor: Colors.grey,
+                  child: ClipOval(
+                    child: Image.network(
+                      dummyProfileImage,
+                      fit: BoxFit.cover,
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
                 ),
               ),

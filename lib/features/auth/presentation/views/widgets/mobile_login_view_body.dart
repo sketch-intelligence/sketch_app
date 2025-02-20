@@ -21,6 +21,7 @@ import 'package:sketch/features/auth/presentation/manager/cubit/auth_states.dart
 import 'package:sketch/features/auth/presentation/views/widgets/login_signup_alternative.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/sketch_logo.dart';
 import 'package:sketch/features/auth/presentation/views/widgets/social_login.dart';
+import 'package:sketch/features/chat/data/repository/chat_repository.dart';
 import 'package:sketch/translations.dart';
 
 class MobileLoginViewBody extends StatelessWidget {
@@ -98,7 +99,10 @@ class MobileLoginViewBody extends StatelessWidget {
                           context: context,
                           typeSnackBar: AnimatedSnackBarType.error);
                     },
-                    onSuccess: (LoginModel model) {
+                    onSuccess: (LoginModel model) async {
+                      print(
+                          "✅ Login successful, storing user details in CacheHelper...");
+
                       CacheHelper.setToken(model.token);
                       CacheHelper.setUserId(model.user!.id);
                       CacheHelper.setUserInfo(model);
@@ -107,6 +111,18 @@ class MobileLoginViewBody extends StatelessWidget {
                           model.user!.imageUrl ?? '');
                       CacheHelper.setCoverImageUrl(
                           model.user!.coverImageUrl ?? '');
+
+                      print(
+                          "🔹 User Info Stored: ID = ${model.user!.id}, Token = ${model.token}");
+
+                      // ✅ Authenticate user with Firebase
+                      print("🔹 Attempting Firebase authentication...");
+                      await signInWithCred(model.user!.id!,
+                          context.read<AuthCubit>().loginParams);
+                      await registerUserInFirestore(model.user!.name ?? '',
+                          model.user!.email ?? '', model.user!.imageUrl ?? '');
+                      print(
+                          "✅ Firebase authentication completed, navigating to Home Screen...");
                       GoRouter.of(context).go(AppRouter.kRootView);
                     },
                     child: CustomButton(
