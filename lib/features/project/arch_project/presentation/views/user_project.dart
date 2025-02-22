@@ -111,6 +111,7 @@ class UserProject extends StatelessWidget {
                       },
                       onError: (val) {
                         print('in on error the error is $val');
+
                         Dialogs.showErrorSnackBar(
                             message: val, context: context);
                       },

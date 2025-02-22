@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
-import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
 import 'package:sketch/core/utils/app_router.dart';
 import 'package:sketch/core/utils/app_styles.dart';
@@ -27,9 +27,19 @@ class UserProposedProjectItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              project.title ?? '',
-              style: AppStyles.styleBold18(context),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  project.title ?? '',
+                  style: AppStyles.styleBold18(context),
+                ),
+                Text(
+                  '${project.budget} \S',
+                  style: AppStyles.styleBold18(context)
+                      .copyWith(color: AppColors.green),
+                ),
+              ],
             ),
             const SizedBox(
               height: 8,
@@ -61,19 +71,25 @@ class UserProposedProjectItem extends StatelessWidget {
                     iconPath: Assets.imagesUserGroupSolid,
                   ),
                   ProjectDetailsInfo(
-                    date: DateTime(2020), //project.budget ?? '3',
+                    date: project.deadLine,
                     iconPath: Assets.imagesClockRegular,
                   ),
                 ],
               ),
             ),
             CustomButton(
-              text: 'View Project',
+              text: CacheHelper.userID == project.architectId
+                  ? 'View Project'
+                  : 'View Bids',
               color: Colors.transparent,
               textStyle: AppTextStyle.getMediumStyle(color: AppColors.primary),
               onPressed: () {
-                GoRouter.of(context).push(AppRouter.kUserProposedProjectDetails,
-                    extra: project);
+                CacheHelper.userID == project.architectId
+                    ? GoRouter.of(context)
+                        .push(AppRouter.kPorjectDetailsScreen, extra: project)
+                    : GoRouter.of(context).push(
+                        AppRouter.kUserProposedProjectDetails,
+                        extra: project);
               },
             )
           ],
@@ -93,7 +109,7 @@ class ProjectDetailsInfo extends StatelessWidget {
   final String? name;
   final String iconPath;
   final String? numberOfBids;
-  final DateTime? date;
+  final dynamic date;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -108,7 +124,7 @@ class ProjectDetailsInfo extends StatelessWidget {
           width: 4,
         ),
         if (numberOfBids != null) Text(numberOfBids!),
-        if (date != null) Text(formatTime(date!)),
+        if (date != null) Text('$date'),
         if (name != null) Text(name!),
         const SizedBox(
           width: 16,

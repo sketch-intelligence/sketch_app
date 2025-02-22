@@ -13,6 +13,7 @@ import 'package:sketch/features/onboarding/screens/root_onboarding.dart';
 import 'package:sketch/features/payment_imp/ui/add_balance_screen.dart';
 import 'package:sketch/features/profile/features/my%20profile/presentation/views/my_profile_view.dart';
 import 'package:sketch/features/profile/features/profile_settings/presentation/widgets/change_lang.dart';
+import 'package:sketch/features/profile/features/user_profile/Presentation/Widgets/project_detailed_page.dart';
 import 'package:sketch/features/profile/features/user_profile/Presentation/views/profile_views.dart';
 import 'package:sketch/features/project/arch_project/presentation/views/user_project.dart';
 import 'package:sketch/features/project/user_proposed_project/data/model/user_proposed_project_model/user_proposed_project_model.dart';
@@ -36,7 +37,7 @@ abstract class AppRouter {
   static const kChatScreen = '/chatScreen';
   static const kProfileScreen = '/profileScreen';
   static const kMyProfileScreen = '/myProfileScreen';
-
+  static const kPorjectDetailsScreen = '/projectDetailsScreen';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -108,6 +109,15 @@ abstract class AppRouter {
           final id = state.extra as int;
           return MyProfilePage(
             userId: id,
+          );
+        },
+      ),
+      GoRoute(
+        path: kPorjectDetailsScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          final project = state.extra as UserProposedProjectModel;
+          return ProjectDetailsPage(
+            project: project,
           );
         },
       ),

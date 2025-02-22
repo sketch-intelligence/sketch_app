@@ -37,6 +37,12 @@ class CacheHelper {
     return "${box.get(accessToken)}";
   }
 
+  static Future<void> setIsUser(bool? value) =>
+      box.put('is_user', value ?? false);
+
+  // ✅ Get Firebase UID
+  static bool? get isUser => box.get('is_user');
+
 // ✅ Set Firebase UID
   static Future<void> setFirebaseUid(String? value) =>
       box.put('firebase_uid', value ?? '');
@@ -76,9 +82,11 @@ class CacheHelper {
   static void deleteCertificates() {
     setToken(null);
     setUserId(null);
+    setIsUser(null);
     setUserInfo(null);
     setBalance(null);
     setProfileImageUrl(null);
+    setCoverImageUrl(null);
     setFirebaseUid(null);
   }
 }

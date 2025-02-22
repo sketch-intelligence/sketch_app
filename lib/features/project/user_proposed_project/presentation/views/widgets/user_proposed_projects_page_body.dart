@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sketch/core/boilerplate/get_model/widgets/get_model.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/app_padding/app_padding.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
@@ -17,32 +18,7 @@ import 'package:sketch/translations.dart';
 
 class UserProposedProjectsPageBody extends StatelessWidget {
   const UserProposedProjectsPageBody({super.key});
-  // static List<UserProposedProjectModel> projects = [
-  //   UserProposedProjectModel(
-  //     id: "1",
-  //     title: "project 1",
-  //     description:
-  //         "An environmentally-conscious office complex with solar panels and green roofing.",
-  //     numberOfBids: "2",
-  //     author: PersonModel(name: "Beshr"),
-  //     postDate: DateTime.now(),
-  //     budget: "250\$",
-  //     duration: "30 days",
-  //     state: ProjectState.Open,
-  //   ),
-  //   UserProposedProjectModel(
-  //     id: "2",
-  //     title: "project 2",
-  //     description:
-  //         "An environmentally-conscious office complex with solar panels and green roofing.",
-  //     numberOfBids: "2",
-  //     author: PersonModel(name: "Beshr"),
-  //     postDate: DateTime.now(),
-  //     budget: "250\$",
-  //     duration: "30 days",
-  //     state: ProjectState.Open,
-  //   )
-  // ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -75,23 +51,34 @@ class UserProposedProjectsPageBody extends StatelessWidget {
             height: 12,
           ),
           Expanded(
-            child: GetModel<ListUserProposedProjectModel>(
-              useCaseCallBack: () {
-                return GetAllUserProjectsUseCase(
-                        repository: ProjectsRepository())
-                    .call(params: GetAllUserProjectsParams());
-              },
-              modelBuilder: (model) => ListView.builder(
+            child: GetModel<ListUserProposedProjectModel>(useCaseCallBack: () {
+              return GetAllUserProjectsUseCase(repository: ProjectsRepository())
+                  .call(params: GetAllUserProjectsParams());
+            }, modelBuilder: (model) {
+              List<UserProposedProjectModel> filteredProjects =
+                  model.data!.where((project) {
+                if (CacheHelper.isUser ?? true) {
+                  return CacheHelper.userID == project.architectId;
+                }
+                return true;
+              }).toList();
+              return ListView.builder(
                 shrinkWrap: true,
                 // physics: const NeverScrollableScrollPhysics(),
-                itemCount: model.data?.length ?? 0,
+                itemCount: filteredProjects.length,
                 itemBuilder: (context, index) {
-                  return UserProposedProjectItem(
-                    project: model.data![index],
-                  );
+                  return filteredProjects.length == 0
+                      ? Center(
+                          child: Text(CacheHelper.isUser ?? true
+                              ? 'You don\'t have any project!'
+                              : 'No projects available'),
+                        )
+                      : UserProposedProjectItem(
+                          project: filteredProjects[index],
+                        );
                 },
-              ),
-            ),
+              );
+            }),
           )
         ],
       ),

@@ -51,11 +51,15 @@ class User {
   @HiveField(14)
   String? fireStoreId;
 
+  @HiveField(15)
+  String? role;
+
   User({
     this.id,
     this.name,
     this.fireStoreId,
     this.email,
+    this.role,
     this.password,
     this.coverImageUrl,
     this.imageUrl,
@@ -74,6 +78,7 @@ class User {
         name: json['name'] as String?,
         fireStoreId: json['fireStoreId'] as String?,
         email: json['email'] as String?,
+        role: json['role'] as String?,
         balance: json['balance'] as dynamic,
         password: json['password'] as String?,
         imageUrl: json['imageUrl'] as String?,

@@ -49,7 +49,7 @@ class UserProposedProjectModel extends BaseModel {
       userName: json['userName'] as String?,
       projectImage: json['projectImage'] as List<dynamic>?,
       budget: json['budget'] as dynamic,
-      deadLine: json['deadLine'] as dynamic,
+      deadLine: json['deadline'] as dynamic,
       bidDtos: (json['bidDtos'] as List<dynamic>?)
           ?.map((e) => BidDto.fromJson(e as Map<String, dynamic>))
           .toList(),

@@ -153,6 +153,7 @@ class MobileRegisterViewBody extends StatelessWidget {
                       CacheHelper.setToken(model.token);
                       CacheHelper.setUserId(model.user!.id);
                       CacheHelper.setUserInfo(model);
+                      CacheHelper.setIsUser(model.user!.role == 'USER');
                       print(
                           "🔹 User Info Stored: ID = ${model.user!.id}, Token = ${model.token}");
 

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/features/chat/data/model/message_model.dart';
 import 'package:sketch/features/chat/service/real_chat_service.dart';
 
@@ -96,7 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
             child: Row(
               children: [
                 Expanded(
@@ -106,7 +107,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: Icon(
+                    Icons.send,
+                    color: AppColors.primary,
+                  ),
                   onPressed: _sendMessage,
                 ),
               ],

@@ -105,6 +105,7 @@ class MobileLoginViewBody extends StatelessWidget {
 
                       CacheHelper.setToken(model.token);
                       CacheHelper.setUserId(model.user!.id);
+                      CacheHelper.setIsUser(model.user!.role == 'USER');
                       CacheHelper.setUserInfo(model);
                       CacheHelper.setBalance(model.user!.balance);
                       CacheHelper.setProfileImageUrl(

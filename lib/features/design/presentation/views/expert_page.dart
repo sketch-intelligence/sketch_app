@@ -12,7 +12,7 @@ class VillaDesignScreen extends StatefulWidget {
 }
 
 class _VillaDesignScreenState extends State<VillaDesignScreen> {
-  static const String apiUrl = 'https://1b95-91-207-174-13.ngrok-free.app';
+  static const String apiUrl = 'https://da13-149-34-244-140.ngrok-free.app';
   String _currentQuestion = "style";
   String? _questionText;
   String _description = "";

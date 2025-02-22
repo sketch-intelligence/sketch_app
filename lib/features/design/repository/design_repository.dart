@@ -17,7 +17,7 @@ class DesignRepository extends CoreRepository {
         // isImageResponse:true;
         converter: (json) => ListSimilarDesign.fromJson(json),
         method: HttpMethod.POST,
-        url: 'https://521b-34-23-227-33.ngrok-free.app/predict');
+        url: 'https://63e5-34-125-209-217.ngrok-free.app/predict');
 
     return call(result: result);
   }

@@ -107,6 +107,7 @@
   "selectMethod":"Select Payment Method",
   "camera":"Camera",
   "gallery":"Gallery",
-  "noData":"No data"
+  "noData":"No data",
+  "myProjects":"My projects"
 
 }

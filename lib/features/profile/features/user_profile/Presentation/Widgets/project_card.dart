@@ -31,26 +31,6 @@ class ProjectCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            project.projectImage != null
-                ? project.projectImage!.isNotEmpty
-                    ? GetModel(
-                        useCaseCallBack: () {
-                          return GetImageUseCase(
-                                  homeRepository: HomeRepository())
-                              .call(
-                                  params: GetImageParams(
-                                      imageName:
-                                          project.projectImage![0].fileName!));
-                        },
-                        onSuccess: (ImageModel image) {},
-                        errorWidget: Icon(Icons.image_not_supported,
-                            size: 50, color: Colors.grey),
-                        modelBuilder: (ImageModel model) {
-                          return Image.memory(model.imageData);
-                        },
-                      )
-                    : SizedBox()
-                : SizedBox(),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,17 +52,14 @@ class ProjectCard extends StatelessWidget {
                   SizedBox(height: screenHeight < 600 ? 20 : 28),
                   CustomButton(
                     text: "View Project",
-                    color: AppColors.white,
-                    w: screenWidth < 350 ? 75 : 87,
-                    h: screenHeight < 600 ? 28 : 32,
-                    borderSideColor: AppColors.primary,
-                    textStyle:
-                        AppTextStyle.getLightStyle(color: AppColors.primary),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return ProjectDetailsPage(project: project);
                       }));
+
+                      // GoRouter.of(context).push(AppRouter.kPorjectDetailsScreen,
+                      //     extra: project);
                     },
                   ),
                 ],

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sketch/core/boilerplate/create_model/widgets/create_model.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_padding/app_padding.dart';
-import 'package:sketch/core/functions/format_time.dart';
 import 'package:sketch/core/ui/dialogs/dialogs.dart';
 import 'package:sketch/core/ui/widgets/back_widget.dart';
 import 'package:sketch/core/ui/widgets/custom_button.dart';
@@ -163,7 +162,7 @@ class UserProposedProjectDetailsCard extends StatelessWidget {
           showDetailsCardInfo(
             context,
             text: "Project Status",
-            data: 'Open',
+            data: project.status,
           ),
           showDetailsCardInfo(
             context,
@@ -173,6 +172,11 @@ class UserProposedProjectDetailsCard extends StatelessWidget {
           showDetailsCardInfo(
             context,
             text: "Published Since",
+            date: project.publishedSince,
+          ),
+          showDetailsCardInfo(
+            context,
+            text: "Deadline",
             date: project.deadLine,
           ),
           showDetailsCardInfo(
@@ -186,7 +190,7 @@ class UserProposedProjectDetailsCard extends StatelessWidget {
   }
 
   Row showDetailsCardInfo(BuildContext context,
-      {required String text, String? data, DateTime? date}) {
+      {required String text, dynamic data, dynamic date}) {
     return Row(
       children: [
         const SizedBox(
@@ -203,21 +207,21 @@ class UserProposedProjectDetailsCard extends StatelessWidget {
             ),
           ),
         ),
-        if (date != null) Expanded(child: Text(formatTime(date))),
+        if (date != null)
+          Expanded(
+              child: FittedBox(fit: BoxFit.scaleDown, child: Text('$date'))),
         if (data != null)
           Expanded(
             child: Text(
-              data.contains("Open")
-                  ? "Open"
-                  : data.contains("Closed")
-                      ? "Closed"
-                      : data,
+              '$data',
               style: AppStyles.styleRegular18(context).copyWith(
-                color: data.contains("Open")
-                    ? AppColors.green32
-                    : data.contains("Closed")
-                        ? AppColors.red
-                        : AppColors.black14,
+                color: data is String
+                    ? data.contains("Open")
+                        ? AppColors.green32
+                        : data.contains("Closed")
+                            ? AppColors.red
+                            : AppColors.orange
+                    : AppColors.black14,
               ),
             ),
           ),

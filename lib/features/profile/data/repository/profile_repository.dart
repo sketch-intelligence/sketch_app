@@ -7,6 +7,7 @@ import 'package:sketch/features/home/data/models/post_model/post_model.dart';
 import 'package:sketch/features/profile/data/models/portfolio_project_model/portfolio_project_model.dart';
 import 'package:sketch/features/profile/data/models/profile_model/profile_model.dart';
 import 'package:sketch/features/profile/data/models/temp_model/temp_model.dart';
+import 'package:sketch/features/profile/data/use_case/accept_bid.dart';
 import 'package:sketch/features/profile/data/use_case/add_follow_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/add_portfolio_project_use_case.dart';
 import 'package:sketch/features/profile/data/use_case/add_post_use_case.dart';
@@ -45,6 +46,17 @@ class ProfileRepository extends CoreRepository {
       data: params.toJson(),
       method: HttpMethod.POST,
       url: '${baseUrl}user-projects',
+    );
+    return noModelCall(result: result);
+  }
+
+  Future<Result<String>> acceptBid({required AcceptParams params}) async {
+    final result = await RemoteDataSource.noModelRequest(
+      withAuthentication: true,
+      method: HttpMethod.POST,
+      queryParameters: {'userId': params.uid},
+      url:
+          '${baseUrl}user-projects/${params.pid}/bids/${params.bid}/accept?userId=2002',
     );
     return noModelCall(result: result);
   }

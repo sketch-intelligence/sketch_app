@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sketch/core/classes/cashe_helper.dart';
 import 'package:sketch/core/constant/app_colors/app_colors.dart';
 import 'package:sketch/core/constant/app_images_icons/app_assets.dart';
 import 'package:sketch/core/constant/text_styles/app_text_style.dart';
@@ -75,15 +76,25 @@ class RootScreen extends StatelessWidget {
                         fit: BoxFit.fill,
                       )),
                   //
-                  BottomNavigationBarItem(
-                      label: AppLocalizations.of(context)!.projects,
-                      icon: SvgPicture.asset(
-                        Assets.imagesConfigurationTool,
-                        color: context.read<RootPageCubit>().rootIndex == 2
-                            ? AppColors.primary
-                            : AppColors.grey9A,
-                        fit: BoxFit.fill,
-                      )),
+                  CacheHelper.isUser ?? true
+                      ? BottomNavigationBarItem(
+                          label: AppLocalizations.of(context)!.myProjects,
+                          icon: SvgPicture.asset(
+                            Assets.imagesConfigurationTool,
+                            color: context.read<RootPageCubit>().rootIndex == 2
+                                ? AppColors.primary
+                                : AppColors.grey9A,
+                            fit: BoxFit.fill,
+                          ))
+                      : BottomNavigationBarItem(
+                          label: AppLocalizations.of(context)!.projects,
+                          icon: SvgPicture.asset(
+                            Assets.imagesConfigurationTool,
+                            color: context.read<RootPageCubit>().rootIndex == 2
+                                ? AppColors.primary
+                                : AppColors.grey9A,
+                            fit: BoxFit.fill,
+                          )),
                   BottomNavigationBarItem(
                       label: AppLocalizations.of(context)!.generate,
                       icon: SvgPicture.asset(
